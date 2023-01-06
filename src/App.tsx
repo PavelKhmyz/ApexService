@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Footer } from './components/footer/Fotter';
+import { Header } from './components/header/Header';
+import { Home } from './components/home/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MapRotation } from './components/mapRotation/MapRotation';
+import { ServerStatus } from './components/serverStatus/ServerStatus';
+import { SignIn } from './components/signIn/SignIn';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/maps' element={<MapRotation />} />
+          <Route path='/server' element={<ServerStatus />} />
+          <Route path='/signIn' element={<SignIn />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

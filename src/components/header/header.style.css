@@ -1,0 +1,50 @@
+@font-face {
+	font-family: 'Duke'; 
+	src: url(../../font/Duke\ Fill.otf); 
+}
+
+.headerContainer {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(218, 41, 42);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: 'Duke';
+    /* apex-red - rgb(218, 41, 42) */
+}
+.navigationContainer {
+    display: flex;
+    gap: 20px;
+}
+.logo{
+    width: 80px;
+    height: auto;
+}
+.logo:hover #apex-legends-symbol{
+      fill: #130C0D;
+      transition: fill 0.5s;
+}
+
+#apex-legends-symbol{
+    fill: white;
+    transition: fill 1s;
+}
+
+.navigationLink{
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+.navigationLink:active{
+    text-decoration: none;
+}
+.navigationLink:hover{
+    text-decoration: underline;
+    color: #130C0D;
+    transition: color 0.5s;
+}
