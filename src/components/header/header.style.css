@@ -6,7 +6,7 @@
 .headerContainer {
     width: 100%;
     height: 100px;
-    background-color: rgb(218, 41, 42);
+    background-color: rgb(14, 13, 13);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,7 @@
     height: auto;
 }
 .logo:hover #apex-legends-symbol{
-      fill: #130C0D;
+      fill: rgb(218, 41, 42);
       transition: fill 0.5s;
 }
 
@@ -45,6 +45,6 @@
 }
 .navigationLink:hover{
     text-decoration: underline;
-    color: #130C0D;
+    color: rgb(218, 41, 42);
     transition: color 0.5s;
 }

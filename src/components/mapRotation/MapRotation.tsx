@@ -1,28 +1,29 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import { getRotation } from '../../redux/reducer/stateSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
+import { getRotation } from '../../redux/reducer/mapSlice';
+import { MapComponent } from './components/MapComponent';
 import './mapRotation.css';
 
 export const MapRotation = () => {
-  const dispatch = useDispatch();
-  const maps = useSelector((state: any) => JSON.parse(state.map.maps));
+  const dispatch = useAppDispatch();
+  const maps = useAppSelector((state) => state.map.maps);
 
   useEffect(() => {
-    dispatch(getRotation());
+    if (!maps) {
+      dispatch(getRotation());
+    }
   }, []);
 
-  useEffect(() => {
-    console.log(maps);
-  }, [maps]);
   return (
-    <div className='container'>
+    <div className='wrapper'>
       {maps ? (
         <div
           style={{ backgroundImage: `url(${maps.current.asset})` }}
-          className='bla'
+          className='container'
         >
-          Map Rotation
+          <MapComponent data={maps.current} />
+          <MapComponent data={maps.next} />
         </div>
       ) : (
         <PropagateLoader />

@@ -6,8 +6,27 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MapRotation } from './components/mapRotation/MapRotation';
 import { ServerStatus } from './components/serverStatus/ServerStatus';
 import { SignIn } from './components/signIn/SignIn';
+import { useEffect } from 'react';
+import { changeTime, getRotation } from './redux/reducer/mapSlice';
+import { useAppDispatch, useAppSelector } from './redux/hooks/hook';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const time = useAppSelector((state) => state.map.time);
+
+  const handleChangeTime = () => {
+    dispatch(changeTime());
+  };
+
+  useEffect(() => {
+    if (time) {
+      setTimeout(handleChangeTime, 1000);
+    }
+    if (time === 0) {
+      dispatch(getRotation());
+    }
+  }, [time]);
+
   return (
     <div className='App'>
       <BrowserRouter>
