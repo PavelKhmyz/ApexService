@@ -1,3 +1,27 @@
+import { useEffect } from 'react';
+import PropagateLoader from 'react-spinners/PropagateLoader';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
+import { getServerStatus } from '../../redux/reducer/serverSlice';
+import { ServerComponent } from './components/ServerComponent';
+import './serverStatusStyle.css';
+
 export const ServerStatus = () => {
-  return <div>ServerStatus</div>;
+  const serverData = useAppSelector((state) => state.server.serverData);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getServerStatus());
+  }, []);
+
+  return (
+    <div>
+      {serverData ? (
+        serverData.map((server: any) => (
+          <ServerComponent key={server[0]} serverData={server} />
+        ))
+      ) : (
+        <PropagateLoader />
+      )}
+    </div>
+  );
 };

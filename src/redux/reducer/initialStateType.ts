@@ -1,6 +1,6 @@
-export interface InitialStateType {
+export interface MapsStateType {
   maps: null | ResponseDataType;
-  time: number;
+  time: number | null;
   loading: boolean;
   error: string | undefined;
 }
