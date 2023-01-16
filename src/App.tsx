@@ -9,6 +9,7 @@ import { SignIn } from './components/signIn/SignIn';
 import { useEffect } from 'react';
 import { changeTime, getRotation } from './redux/reducer/mapSlice';
 import { useAppDispatch, useAppSelector } from './redux/hooks/hook';
+import { NewsPage } from './components/news/NewsPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -36,6 +37,7 @@ function App() {
           <Route path='/maps' element={<MapRotation />} />
           <Route path='/server' element={<ServerStatus />} />
           <Route path='/signIn' element={<SignIn />} />
+          <Route path='/news' element={<NewsPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

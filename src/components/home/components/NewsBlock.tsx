@@ -2,18 +2,18 @@ export const NewsBlock = (props: any) => {
   const { newsEl } = props;
   const news = newsEl[1];
   return (
-    <div className='newsBlock'>
+    <a className='newsBlock' href={news.link} target='_blank'>
       <div className='newsBlockWrapper'>
         <img className='newsBlockImg' src={news.img} />
         <div className='newsBlockContent'>
           <p>{news.short_desc}</p>
-          <a>Read more...</a>
+          <span className='newsBlockLink'>Read more...</span>
         </div>
       </div>
       <div className='newsBlockTitle'>
         <p>{news.title}</p>
       </div>
-    </div>
+    </a>
   );
 };
 

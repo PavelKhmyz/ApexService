@@ -1,9 +1,12 @@
 .homeContainer{
-    display: flex;
-    flex-wrap: wrap;
+    font-family: 'Duke';
+    color: white;
+    /* display: flex; */
+    display: block;
+    /* flex-wrap: wrap; */
     background-color: rgb(22, 22, 22);
     padding: 20px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 .newsBlock{
     font-family: 'Duke';
@@ -16,6 +19,7 @@
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
+    text-decoration: none;
 }
 .newsBlockWrapper{
     height: 80%;
@@ -46,13 +50,49 @@
     z-index: -1;
     bottom: 0;
     width: 100%;
-    height: 0;
+    height: 0;   
 }
 .newsBlock:hover .newsBlockContent{
     height: 100%;    
     transition: height 1s;
+    z-index: 1;
 }
 .newsBlock:hover .newsBlockTitle{
     color: rgb(218, 41, 42);
     transition: color 0.5s;
+}
+.newsBlockLink{
+    color: rgb(218, 41, 42);
+}
+.newsBlockLink:hover{
+    text-decoration: underline;
+    color: white;
+    transition: color 0.5s;
+}
+.newsFeed{
+    /* font-family: 'Duke'; */
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: white
+}
+
+.videoContainer{    
+    position: relative;
+}
+
+.player{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.craftAndPredatorsWrapper{
+    display: flex;
+    width: 100%;
 }

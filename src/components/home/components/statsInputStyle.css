@@ -1,0 +1,14 @@
+.input{
+    width: 450px;
+    height: 600px;
+    background-color: red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+    flex-direction: column;
+}
+.inputLogo{
+    width: 250px;
+}

@@ -1,8 +1,9 @@
 import './header.style.css';
 
-export const Logo = () => {
+export const Logo = (props: any) => {
+  const { className } = props;
   return (
-    <svg className='logo' viewBox='0 0 1600 1200'>
+    <svg className={className} viewBox='0 0 1600 1200'>
       <title>Apex Legends Symbol</title>
       <g id='Page-1' stroke='none'>
         <g

@@ -26,3 +26,35 @@ export const newsState: NewsDataType = {
   newsData: null,
   loadingNews: false,
 };
+
+interface playerStatsStateType {
+  name: string;
+  platform: string;
+  playerStats: any;
+  loadingStats: boolean;
+}
+
+export const playerStatsState: playerStatsStateType = {
+  name: '',
+  platform: '',
+  playerStats: null,
+  loadingStats: false,
+};
+
+interface PredatorsStateType {
+  predators: any;
+  loadingPredators: boolean;
+}
+export const predatorsState: PredatorsStateType = {
+  predators: null,
+  loadingPredators: false,
+};
+
+interface CraftStateType {
+  items: any;
+  loadingItems: boolean;
+}
+export const craftState: CraftStateType = {
+  items: null,
+  loadingItems: false,
+};

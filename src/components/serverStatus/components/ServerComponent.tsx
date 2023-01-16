@@ -9,7 +9,9 @@ export const ServerComponent = (props: any) => {
       <p>{serverData[0]}</p>
       <div className='serverComponent'>
         {parse ? (
-          parse.map((server: any) => <ServerElement data={server} />)
+          parse.map((server: any) => (
+            <ServerElement key={server[0]} data={server} />
+          ))
         ) : (
           <PropagateLoader />
         )}
