@@ -6,6 +6,9 @@ import {
 } from '../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../common/Input';
 import { Logo } from '../../header/Logo';
+import { PcLogo } from './PcLogo';
+import { PsLogo } from './PsLogo';
+import { XboxLogo } from './XboxLogo';
 import './statsInputStyle.css';
 
 export const StatsInput = () => {
@@ -41,15 +44,53 @@ export const StatsInput = () => {
         }}
         value={nameValue}
       />
-      <Input
-        text={'Platform:'}
-        type={'text'}
-        placeholder={'Enter yor Platform'}
-        onChangeFunc={(event) => {
-          handleChangePlatform(event);
-        }}
-        value={platformValue}
-      />
+      <div className='radioWrapper'>
+        <div className='radioButton'>
+          <input
+            className='radioButtonInput'
+            name='platform'
+            type='radio'
+            id='input1'
+            value='X1'
+            onClick={(event) => {
+              handleChangePlatform(event);
+            }}
+          />
+          <label htmlFor='input1'>
+            <XboxLogo />
+          </label>
+        </div>
+        <div className='radioButton'>
+          <input
+            className='radioButtonInput'
+            name='platform'
+            type='radio'
+            id='input2'
+            value='PS4'
+            onClick={(event) => {
+              handleChangePlatform(event);
+            }}
+          />
+          <label htmlFor='input2'>
+            <PsLogo />
+          </label>
+        </div>
+        <div className='radioButton'>
+          <input
+            className='radioButtonInput'
+            name='platform'
+            type='radio'
+            id='input3'
+            value='PC'
+            onClick={(event) => {
+              handleChangePlatform(event);
+            }}
+          />
+          <label htmlFor='input3'>
+            <PcLogo />
+          </label>
+        </div>
+      </div>
       <button type='button' onClick={getStats}>
         Show
       </button>

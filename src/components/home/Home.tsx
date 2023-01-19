@@ -8,7 +8,6 @@ import ReactPlayer from 'react-player/youtube';
 import 'react-multi-carousel/lib/styles.css';
 import './homeStyle.css';
 import { StatsInput } from './components/StatsInput';
-import { ServerComponent } from '../serverStatus/components/ServerComponent';
 import { NavLink } from 'react-router-dom';
 import { getPredators } from '../../redux/reducer/predatorsSlice';
 import { PredatorsComponent } from '../predatorsComponent/PredatorsComponent';
@@ -83,7 +82,7 @@ export const Home = () => {
     <div className='homeContainer'>
       <div className='videoContainer'>
         <ReactPlayer
-          url=''
+          url='https://www.youtube.com/watch?v=IFrrZ3j8hw4'
           // https://www.youtube.com/watch?v=IFrrZ3j8hw4
           width={'96.5vw'}
           height={'54.8vw'}
