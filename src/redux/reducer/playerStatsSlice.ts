@@ -34,7 +34,6 @@ const playerStatsSlice = createSlice({
       .addCase(getPlayerStats.fulfilled, (state, action: any) => {
         state.playerStats = action.payload;
         state.loadingStats = false;
-        console.log(action.payload);
       })
 
       .addCase(getPlayerStats.rejected, (state, action: any) => {

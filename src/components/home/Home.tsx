@@ -13,12 +13,14 @@ import { getPredators } from '../../redux/reducer/predatorsSlice';
 import { PredatorsComponent } from '../predatorsComponent/PredatorsComponent';
 import { getCraftItems } from '../../redux/reducer/craftSlice';
 import { CraftComponent } from '../craft/CraftComponent';
+import { PlayerStats } from './components/PlayerStats';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
   const news = useAppSelector((state) => state.news.newsData);
   const predators = useAppSelector((state) => state.predators.predators);
   const craft = useAppSelector((state) => state.craft.items);
+  const playerStats = useAppSelector((state) => state.playerStats.playerStats);
 
   const responsive = {
     superLargeDesktop: {
@@ -77,13 +79,14 @@ export const Home = () => {
       }, 4000);
     }
   }, []);
+  console.log(playerStats);
 
   return (
     <div className='homeContainer'>
       <div className='videoContainer'>
         <ReactPlayer
-          url='https://www.youtube.com/watch?v=IFrrZ3j8hw4'
-          // https://www.youtube.com/watch?v=IFrrZ3j8hw4
+          url=''
+          // https://www.youtube.com/watch?v=VldQc7Y_4H8
           width={'96.5vw'}
           height={'54.8vw'}
           loop={true}
@@ -97,6 +100,7 @@ export const Home = () => {
           <StatsInput />
         </div>
       </div>
+      {playerStats && <PlayerStats data={playerStats} />}
       <div className='newsFeed'>
         <NavLink to={'/news'}>News feed</NavLink>
         {news ? (

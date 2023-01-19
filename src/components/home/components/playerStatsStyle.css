@@ -1,0 +1,9 @@
+.playerStatsWrapper{
+    width: 100%;
+    height: 1000px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: yellow;
+    display: flex;
+    
+}
