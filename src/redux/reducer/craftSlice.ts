@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
-import { craftState } from './intialState';
+import { CraftResponseType } from '../initialStates/Types/craftInitialStateTypes';
+import { craftState } from '../initialStates/intialState';
+import { ErrorType } from '../initialStates/Types/errorType';
 
 export const getCraftItems = createAsyncThunk('apex/craft', async () => {
-  const rotation = await apexApi.get(`/crafting?auth=${API_KEY}`);
-  const response = rotation.data;
-  return response;
+  const response = await apexApi.get(`/crafting?auth=${API_KEY}`);
+  return response.data;
 });
 
 const craftItemsSlice = createSlice({
@@ -18,14 +19,21 @@ const craftItemsSlice = createSlice({
         state.loadingItems = true;
       })
 
-      .addCase(getCraftItems.fulfilled, (state, action: any) => {
-        state.items = action.payload;
-        state.loadingItems = false;
-      })
+      .addCase(
+        getCraftItems.fulfilled,
+        (state, action: PayloadAction<[CraftResponseType]>) => {
+          state.items = action.payload;
+          state.loadingItems = false;
+        }
+      )
 
-      .addCase(getCraftItems.rejected, (state, action: any) => {
-        state.loadingItems = false;
-      });
+      .addCase(
+        getCraftItems.rejected,
+        (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
+          state.loadingItems = false;
+          state.error = action.error.message;
+        }
+      );
   },
 });
 

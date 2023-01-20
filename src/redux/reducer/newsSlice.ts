@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
-import { newsState } from './intialState';
+import { newsState } from '../initialStates/intialState';
+import { ErrorType } from '../initialStates/Types/errorType';
+import { NewsResponseType } from '../initialStates/Types/newsInitialStateType';
 
 export const getNews = createAsyncThunk('apex/news', async () => {
-  const news = await apexApi.get(`/news?auth=${API_KEY}`);
-  const response = news.data;
-  return response;
+  const response = await apexApi.get(`/news?auth=${API_KEY}`);
+  return response.data;
 });
 
 const newsSlice = createSlice({
@@ -18,14 +19,21 @@ const newsSlice = createSlice({
         state.loadingNews = true;
       })
 
-      .addCase(getNews.fulfilled, (state, action: any) => {
-        state.newsData = Object.entries(action.payload);
-        state.loadingNews = false;
-      })
+      .addCase(
+        getNews.fulfilled,
+        (state, action: PayloadAction<[NewsResponseType]>) => {
+          state.newsData = action.payload;
+          state.loadingNews = false;
+        }
+      )
 
-      .addCase(getNews.rejected, (state, action: any) => {
-        state.loadingNews = false;
-      });
+      .addCase(
+        getNews.rejected,
+        (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
+          state.loadingNews = false;
+          state.error = action.error.message;
+        }
+      );
   },
 });
 

@@ -1,16 +1,21 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
-import { playerStatsState } from './intialState';
+import { playerStatsState } from '../initialStates/intialState';
+import { ErrorType } from '../initialStates/Types/errorType';
 
-export const getPlayerStats: any = createAsyncThunk(
+interface getPlayerStatsProps {
+  name: string;
+  platform: string;
+}
+
+export const getPlayerStats = createAsyncThunk(
   'apex/playerStats',
-  async (data: any) => {
+  async (data: getPlayerStatsProps) => {
     const { name, platform } = data;
-    const rotation = await apexApi.get(
+    const response = await apexApi.get(
       `/bridge?auth=${API_KEY}&player=${name}&platform=${platform}`
     );
-    const response = rotation.data;
-    return response;
+    return response.data;
   }
 );
 
@@ -18,10 +23,10 @@ const playerStatsSlice = createSlice({
   name: 'playerStats',
   initialState: playerStatsState,
   reducers: {
-    addName: (state, action) => {
+    addName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
-    addPlatform: (state, action) => {
+    addPlatform: (state, action: PayloadAction<string>) => {
       state.platform = action.payload;
     },
   },
@@ -36,9 +41,13 @@ const playerStatsSlice = createSlice({
         state.loadingStats = false;
       })
 
-      .addCase(getPlayerStats.rejected, (state, action: any) => {
-        state.loadingStats = false;
-      });
+      .addCase(
+        getPlayerStats.rejected,
+        (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
+          state.loadingStats = false;
+          state.error = action.error.message;
+        }
+      );
   },
 });
 

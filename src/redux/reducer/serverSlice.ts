@@ -1,13 +1,13 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
-import { serverState } from './intialState';
+import { serverState } from '../initialStates/intialState';
+import { ErrorType } from '../initialStates/Types/errorType';
 
 export const getServerStatus = createAsyncThunk(
   'apex/serverStatus',
   async () => {
-    const rotation = await apexApi.get(`/servers?auth=${API_KEY}`);
-    const response = rotation.data;
-    return response;
+    const response = await apexApi.get(`/servers?auth=${API_KEY}`);
+    return response.data;
   }
 );
 
@@ -26,9 +26,13 @@ const serverStatusSlice = createSlice({
         state.loadingServer = false;
       })
 
-      .addCase(getServerStatus.rejected, (state, action: any) => {
-        state.loadingServer = false;
-      });
+      .addCase(
+        getServerStatus.rejected,
+        (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
+          state.loadingServer = false;
+          state.error = action.error.message;
+        }
+      );
   },
 });
 

@@ -1,11 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
-import { predatorsState } from './intialState';
+import { predatorsState } from '../initialStates/intialState';
+import { ErrorType } from '../initialStates/Types/errorType';
+import { PredatorsResponseType } from '../initialStates/Types/predatorsInitialStateType';
 
 export const getPredators = createAsyncThunk('apex/predators', async () => {
-  const rotation = await apexApi.get(`/predator?auth=${API_KEY}`);
-  const response = rotation.data;
-  return response;
+  const response = await apexApi.get(`/predator?auth=${API_KEY}`);
+  return response.data;
 });
 
 const predatorSlice = createSlice({
@@ -18,14 +19,21 @@ const predatorSlice = createSlice({
         state.loadingPredators = true;
       })
 
-      .addCase(getPredators.fulfilled, (state, action: any) => {
-        state.predators = action.payload;
-        state.loadingPredators = false;
-      })
+      .addCase(
+        getPredators.fulfilled,
+        (state, action: PayloadAction<PredatorsResponseType>) => {
+          state.predators = action.payload;
+          state.loadingPredators = false;
+        }
+      )
 
-      .addCase(getPredators.rejected, (state, action: any) => {
-        state.loadingPredators = false;
-      });
+      .addCase(
+        getPredators.rejected,
+        (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
+          state.loadingPredators = false;
+          state.error = action.error.message;
+        }
+      );
   },
 });
 

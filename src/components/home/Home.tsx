@@ -79,7 +79,6 @@ export const Home = () => {
       }, 4000);
     }
   }, []);
-  console.log(playerStats);
 
   return (
     <div className='homeContainer'>
@@ -111,7 +110,7 @@ export const Home = () => {
             infinite={true}
           >
             {news.map((newsEl: any) => (
-              <NewsBlock key={newsEl[0]} newsEl={newsEl} />
+              <NewsBlock key={newsEl.title} newsEl={newsEl} />
             ))}
           </Carousel>
         ) : (

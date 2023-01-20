@@ -1,10 +1,3 @@
-export interface MapsStateType {
-  maps: null | ResponseDataType;
-  time: number | null;
-  loading: boolean;
-  error: string | undefined;
-}
-
 export interface Current {
   start: number;
   end: number;
@@ -38,10 +31,4 @@ export interface Next {
 export interface ResponseDataType {
   current: Current;
   next: Next;
-}
-export interface ErrorType {
-  code?: string;
-  message?: string;
-  name?: string;
-  stack?: string;
 }

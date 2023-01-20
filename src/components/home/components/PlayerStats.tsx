@@ -16,7 +16,7 @@ interface PlayerStatsProps {
 
 export const PlayerStats = ({ data }: PlayerStatsProps) => {
   const { global, legends } = data;
-  console.log(global);
+  console.log(data);
   return (
     <div
       className='playerStatsWrapper'
