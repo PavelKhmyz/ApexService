@@ -1,67 +1,3 @@
-export interface Bans {
-  isActive: boolean;
-  remainingSeconds: number;
-  last_banReason: string;
-}
-
-export interface Rank {
-  rankScore: number;
-  rankName: string;
-  rankDiv: number;
-  ladderPosPlatform: number;
-  rankImg: string;
-  rankedSeason: string;
-}
-
-export interface Arena {
-  rankScore: number;
-  rankName: string;
-  rankDiv: number;
-  ladderPosPlatform: number;
-  rankImg: string;
-  rankedSeason: string;
-}
-
-export interface Battlepass {
-  level: string;
-  history: any;
-}
-
-export interface Badge {
-  name: string;
-  value: number;
-  category?: string;
-}
-
-export interface Global {
-  name: string;
-  uid: number;
-  avatar: string;
-  platform: string;
-  level: number;
-  toNextLevelPercent: number;
-  internalUpdateCount: number;
-  bans: Bans;
-  rank: Rank;
-  arena: Arena;
-  battlepass: Battlepass;
-  internalParsingVersion: number;
-  badges: Badge[];
-  levelPrestige: number;
-}
-
-export interface Realtime {
-  lobbyState: string;
-  isOnline: number;
-  isInGame: number;
-  canJoin: number;
-  partyFull: number;
-  selectedLegend: string;
-  currentState: string;
-  currentStateSinceTimestamp: number;
-  currentStateAsText: string;
-}
-
 export interface Datum {
   name: string;
   value: number;
@@ -141,14 +77,11 @@ export interface All {
   Vantage: Legend;
   Catalyst: Legend;
 }
+//---------------------------------------------
 
 export interface Legends {
   selected: Selected;
   all: All;
-}
-
-export interface ALS {
-  isALSDataEnabled: boolean;
 }
 
 export interface TotalKeys {
@@ -165,11 +98,74 @@ export interface Total {
   kd?: TotalKeys;
 }
 
+export interface Bans {
+  isActive: boolean;
+  remainingSeconds: number;
+  last_banReason: string;
+}
+
+export interface Rank {
+  rankScore: number;
+  rankName: string;
+  rankDiv: number;
+  ladderPosPlatform: number;
+  rankImg: string;
+  rankedSeason: string;
+}
+
+export interface Arena {
+  rankScore: number;
+  rankName: string;
+  rankDiv: number;
+  ladderPosPlatform: number;
+  rankImg: string;
+  rankedSeason: string;
+}
+
+export interface Battlepass {
+  level: string;
+  history: any;
+}
+
+export interface Badge {
+  name: string;
+  value: number;
+}
+
+export interface Global {
+  name: string;
+  uid: number;
+  avatar: string;
+  platform: string;
+  level: number;
+  toNextLevelPercent: number;
+  internalUpdateCount: number;
+  bans: Bans;
+  rank: Rank;
+  arena: Arena;
+  battlepass: Battlepass;
+  internalParsingVersion: number;
+  badges: Badge[];
+  levelPrestige: number;
+}
+
+export interface Realtime {
+  lobbyState: string;
+  isOnline: number;
+  isInGame: number;
+  canJoin: number;
+  partyFull: number;
+  selectedLegend: string;
+  currentState: string;
+  currentStateSinceTimestamp: number;
+  currentStateAsText: string;
+}
+
 export interface RootObject {
   global: Global;
   realtime: Realtime;
   legends: Legends;
-  mozambiquehere_internal: any;
-  ALS: ALS;
+  mozambiquehere_internal?: any;
+  ALS?: any;
   total: Total;
 }

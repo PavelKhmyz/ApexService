@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
 import { mapsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
-import { ResponseDataType } from '../initialStates/Types/mapStateType';
+import { MapResponseType } from '../initialStates/Types/mapStateType';
 
 export const getRotation = createAsyncThunk('apex/rotation', async () => {
   const response = await apexApi.get(`/maprotation?auth=${API_KEY}`);
@@ -28,7 +28,7 @@ const mapSlice = createSlice({
 
       .addCase(
         getRotation.fulfilled,
-        (state, action: PayloadAction<ResponseDataType>) => {
+        (state, action: PayloadAction<MapResponseType>) => {
           console.log(action);
           state.time = action.payload.current.remainingSecs;
           state.maps = action.payload;

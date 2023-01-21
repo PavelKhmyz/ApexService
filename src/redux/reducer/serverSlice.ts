@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { apexApi, API_KEY } from '../../axios/api';
 import { serverState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
+import { ServerResponseType } from '../initialStates/Types/serverInitialStateType';
 
 export const getServerStatus = createAsyncThunk(
   'apex/serverStatus',
@@ -21,10 +22,13 @@ const serverStatusSlice = createSlice({
         state.loadingServer = true;
       })
 
-      .addCase(getServerStatus.fulfilled, (state, action: any) => {
-        state.serverData = Object.entries(action.payload);
-        state.loadingServer = false;
-      })
+      .addCase(
+        getServerStatus.fulfilled,
+        (state, action: PayloadAction<ServerResponseType>) => {
+          state.serverData = Object.entries(action.payload);
+          state.loadingServer = false;
+        }
+      )
 
       .addCase(
         getServerStatus.rejected,

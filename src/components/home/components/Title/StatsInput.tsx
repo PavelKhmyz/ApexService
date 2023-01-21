@@ -1,15 +1,15 @@
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks/hook';
-import {
-  addName,
-  addPlatform,
-  getPlayerStats,
-} from '../../../redux/reducer/playerStatsSlice';
-import { Input } from '../../common/Input';
-import { Logo } from '../../header/Logo';
 import { PcLogo } from './PcLogo';
 import { PsLogo } from './PsLogo';
 import { XboxLogo } from './XboxLogo';
 import './statsInputStyle.css';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
+import {
+  addName,
+  addPlatform,
+  getPlayerStats,
+} from '../../../../redux/reducer/playerStatsSlice';
+import { Input } from '../../../common/Input';
+import { Logo } from '../../../header/Logo';
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();

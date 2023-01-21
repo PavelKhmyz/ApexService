@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../redux/hooks/hook';
-import { NewsBlock } from '../home/components/NewsBlock';
+import { NewsBlock } from '../home/components/NewsFeed/NewsBlock';
 import './newsPage.css';
 
 export const NewsPage = () => {

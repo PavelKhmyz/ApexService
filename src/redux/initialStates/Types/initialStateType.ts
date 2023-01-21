@@ -1,18 +1,18 @@
 import { CraftResponseType } from './craftInitialStateTypes';
-import { ResponseDataType } from './mapStateType';
+import { MapResponseType } from './mapStateType';
 import { NewsResponseType } from './newsInitialStateType';
 import { PredatorsResponseType } from './predatorsInitialStateType';
-import { ServerResponseType } from './serverInitialStateType';
+import { ServerResponseStateType } from './serverInitialStateType';
 
 export interface MapsStateType {
-  maps: null | ResponseDataType;
+  maps: null | MapResponseType;
   time: number | null;
   loading: boolean;
   error: string | undefined;
 }
 
 export interface ServerDataType {
-  serverData: null | Array<ServerResponseType>;
+  serverData: null | Array<ServerResponseStateType>;
   loadingServer: boolean;
   error: string | undefined;
 }

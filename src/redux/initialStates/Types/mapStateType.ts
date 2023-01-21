@@ -28,7 +28,7 @@ export interface Next {
   remainingTimer?: string;
 }
 
-export interface ResponseDataType {
+export interface MapResponseType {
   current: Current;
   next: Next;
 }

@@ -29,8 +29,16 @@ export interface OtherPlatforms {
   'Playstation-Network': Server;
   'Xbox-Live': Server;
 }
+export interface ServerResponseType {
+  Origin_login: ServerGroup;
+  EA_novafusion: ServerGroup;
+  EA_accounts: ServerGroup;
+  ApexOauth_Crossplay: ServerGroup;
+  selfCoreTest: SelfCoreTest;
+  otherPlatforms: OtherPlatforms;
+}
 
-export type ServerResponseType = [
+export type ServerResponseStateType = [
   string,
   ServerGroup | SelfCoreTest | OtherPlatforms
 ];
