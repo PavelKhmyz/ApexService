@@ -1,8 +1,14 @@
 export interface Datum {
   name: string;
   value: number;
-  key: string;
-  global: boolean;
+  key?: string;
+  global?: boolean;
+  rank?: Datum2Inner;
+  rankPlatformSpecific?: Datum2Inner;
+}
+export interface Datum2Inner {
+  rankPos: number;
+  topPercent: number;
 }
 
 export interface GameInfo {
@@ -31,25 +37,9 @@ export interface Selected {
 
 export interface Legend {
   ImgAssets: ImgAssets;
-  data?: Datum2;
-}
-
-export interface Rank2 {
-  rankPos: number;
-  topPercent: number;
-}
-
-export interface RankPlatformSpecific {
-  rankPos: number;
-  topPercent: number;
-}
-
-export interface Datum2 {
-  name: string;
-  value: number;
-  key: string;
-  rank: Rank2;
-  rankPlatformSpecific: RankPlatformSpecific;
+  data?: Datum[];
+  gameInfo?: GameInfo;
+  LegendName?: string;
 }
 
 export interface All {
@@ -113,15 +103,6 @@ export interface Rank {
   rankedSeason: string;
 }
 
-export interface Arena {
-  rankScore: number;
-  rankName: string;
-  rankDiv: number;
-  ladderPosPlatform: number;
-  rankImg: string;
-  rankedSeason: string;
-}
-
 export interface Battlepass {
   level: string;
   history: any;
@@ -142,7 +123,7 @@ export interface Global {
   internalUpdateCount: number;
   bans: Bans;
   rank: Rank;
-  arena: Arena;
+  arena: Rank;
   battlepass: Battlepass;
   internalParsingVersion: number;
   badges: Badge[];
@@ -161,11 +142,15 @@ export interface Realtime {
   currentStateAsText: string;
 }
 
-export interface RootObject {
+export interface ALS {
+  isALSDataEnabled: boolean;
+}
+
+export interface PlayerStatsResponseType {
   global: Global;
   realtime: Realtime;
   legends: Legends;
-  mozambiquehere_internal?: any;
-  ALS?: any;
-  total: Total;
+  mozambiquehere_internal: {};
+  ALS: ALS;
+  total: {};
 }

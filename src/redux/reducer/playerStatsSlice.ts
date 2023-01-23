@@ -23,6 +23,12 @@ const playerStatsSlice = createSlice({
   name: 'playerStats',
   initialState: playerStatsState,
   reducers: {
+    setNewLegend: (state, action: any) => {
+      state.newLegend = action.payload;
+    },
+    changeSearchValue: (state, action: PayloadAction<string>) => {
+      state.searchValue = action.payload;
+    },
     addName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
@@ -51,6 +57,7 @@ const playerStatsSlice = createSlice({
   },
 });
 
-export const { addName, addPlatform } = playerStatsSlice.actions;
+export const { addName, addPlatform, changeSearchValue, setNewLegend } =
+  playerStatsSlice.actions;
 
 export const playerStatsReducer = playerStatsSlice.reducer;

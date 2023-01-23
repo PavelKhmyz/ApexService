@@ -1,12 +1,11 @@
-import { CraftDataObject } from './CraftComponent';
+import { CraftResponseType } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
 import { ItemCard } from './ItemCard';
 
 interface CraftElementProps {
-  craftElement: CraftDataObject;
+  craftElement: CraftResponseType;
 }
 
-export const CraftElement = (props: CraftElementProps) => {
-  const { craftElement } = props;
+export const CraftElement = ({ craftElement }: CraftElementProps) => {
   const { bundleContent } = craftElement;
 
   return (

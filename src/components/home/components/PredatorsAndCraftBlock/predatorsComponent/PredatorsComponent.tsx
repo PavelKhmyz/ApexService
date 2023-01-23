@@ -1,59 +1,22 @@
 import Carousel from 'react-multi-carousel';
+import { RP } from '../../../../../redux/initialStates/Types/predatorsInitialStateType';
+import { predatorResponsive } from './predatorCarouselResponsive';
 import './PredatorsStyle.css';
 
 interface PredatorComponentProps {
   title: string;
-  data: {
-    PC: PredatorComponentPropsElement;
-    PS4: PredatorComponentPropsElement;
-    SWITCH: PredatorComponentPropsElement;
-    X1: PredatorComponentPropsElement;
-  };
+  data: RP;
 }
 
-interface PredatorComponentPropsElement {
-  foundRank: number;
-  totalMastersAndPreds: number;
-  uid: string;
-  updateTimestamp: number;
-  val: number;
-}
+export const PredatorsComponent = ({ title, data }: PredatorComponentProps) => {
+  const { PC, PS4, X1 } = data;
 
-export const PredatorsComponent = (props: PredatorComponentProps) => {
-  const { title } = props;
-  const { PC, PS4, X1 } = props.data;
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 4000, min: 3000 },
-      items: 1,
-      slidesToSlide: 1,
-      partialVisibilityGutter: -1,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 1,
-      slidesToSlide: 1,
-      partialVisibilityGutter: -1,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1,
-      slidesToSlide: 1,
-      partialVisibilityGutter: -1,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1,
-      partialVisibilityGutter: -1,
-    },
-  };
   return (
     <div className='predatorsBR'>
       <h1>{title}</h1>
       <Carousel
         partialVisible={true}
-        responsive={responsive}
+        responsive={predatorResponsive}
         autoPlay={true}
         infinite={true}
         arrows={false}

@@ -1,6 +1,7 @@
 import { CraftResponseType } from './craftInitialStateTypes';
 import { MapResponseType } from './mapStateType';
 import { NewsResponseType } from './newsInitialStateType';
+import { Legend, PlayerStatsResponseType } from './playerStatsStateType';
 import { PredatorsResponseType } from './predatorsInitialStateType';
 import { ServerResponseStateType } from './serverInitialStateType';
 
@@ -26,7 +27,9 @@ export interface NewsDataType {
 export interface PlayerStatsStateType {
   name: string;
   platform: string;
-  playerStats: any;
+  playerStats: null | PlayerStatsResponseType;
+  searchValue: string;
+  newLegend: null | Legend;
   loadingStats: boolean;
   error: string | undefined;
 }

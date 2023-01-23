@@ -1,6 +1,12 @@
+import { Rank } from '../../../../redux/initialStates/Types/playerStatsStateType';
 import './playerStatsStyle.css';
 
-export const RankComponent = ({ data, name }: any) => {
+interface RankComponentProps {
+  name: string;
+  data: Rank;
+}
+
+export const RankComponent = ({ data, name }: RankComponentProps) => {
   return (
     <div className='rankComponentContainer'>
       <p className='rankComponentTitle'>{name}</p>

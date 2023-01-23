@@ -30,6 +30,8 @@ export const playerStatsState: PlayerStatsStateType = {
   name: '',
   platform: '',
   playerStats: null,
+  searchValue: '',
+  newLegend: null,
   loadingStats: false,
   error: undefined,
 };

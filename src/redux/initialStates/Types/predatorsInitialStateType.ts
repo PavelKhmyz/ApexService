@@ -1,28 +1,4 @@
-export interface PC {
-  foundRank: number;
-  val: number;
-  uid: string;
-  updateTimestamp: number;
-  totalMastersAndPreds: number;
-}
-
-export interface PS4 {
-  foundRank: number;
-  val: number;
-  uid: string;
-  updateTimestamp: number;
-  totalMastersAndPreds: number;
-}
-
-export interface X1 {
-  foundRank: number;
-  val: number;
-  uid: string;
-  updateTimestamp: number;
-  totalMastersAndPreds: number;
-}
-
-export interface SWITCH {
+export interface PlatformData {
   foundRank: number;
   val: number;
   uid: string;
@@ -31,20 +7,13 @@ export interface SWITCH {
 }
 
 export interface RP {
-  PC: PC;
-  PS4: PS4;
-  X1: X1;
-  SWITCH: SWITCH;
-}
-
-export interface AP {
-  PC: PC;
-  PS4: PS4;
-  X1: X1;
-  SWITCH: SWITCH;
+  PC: PlatformData;
+  PS4: PlatformData;
+  X1: PlatformData;
+  SWITCH: PlatformData;
 }
 
 export interface PredatorsResponseType {
   RP: RP;
-  AP: AP;
+  AP: RP;
 }

@@ -10,6 +10,7 @@ export const PredatorsAndCraftBlock = () => {
   const dispatch = useAppDispatch();
   const predators = useAppSelector((state) => state.predators.predators);
   const craft = useAppSelector((state) => state.craft.items);
+
   useEffect(() => {
     if (!predators) {
       setTimeout(() => {

@@ -106,13 +106,24 @@
     margin: 0;
     font-size: 30px;
 }
+.legendWrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .legendInner{
-    position: relative;
+    width: 50%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .legendAsset{
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-    width: 25%;
+    width: 60%;
     height: auto;
+}
+.legendContentWrapper{
+    display: flex;
+    flex-direction: row;
 }

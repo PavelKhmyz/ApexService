@@ -2,15 +2,7 @@ import './playerStatsStyle.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { PlayerStatsPage } from './PlayerStatsPage';
 import { LegendsPage } from './LegendsPage';
-
-export interface PlayerStatsResponseType {
-  global: any;
-  realtime: any;
-  legends: any;
-  mozambiquehere_internal: any;
-  ALS: any;
-  total: any;
-}
+import { PlayerStatsResponseType } from '../../../../redux/initialStates/Types/playerStatsStateType';
 
 interface PlayerStatsProps {
   data: PlayerStatsResponseType;
@@ -18,7 +10,6 @@ interface PlayerStatsProps {
 
 export const PlayerStats = ({ data }: PlayerStatsProps) => {
   const { legends } = data;
-  console.log(data);
   return (
     <div
       className='playerStatsWrapper'
@@ -33,12 +24,11 @@ export const PlayerStats = ({ data }: PlayerStatsProps) => {
             Legends
           </Tab>
         </TabList>
-
         <TabPanel className={'tabContent'}>
-          <PlayerStatsPage />
+          <PlayerStatsPage data={data} />
         </TabPanel>
         <TabPanel className={'tabContent'}>
-          <LegendsPage />
+          <LegendsPage data={legends} />
         </TabPanel>
       </Tabs>
     </div>

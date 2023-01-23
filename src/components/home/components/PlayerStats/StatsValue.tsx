@@ -1,6 +1,11 @@
+import { Datum } from '../../../../redux/initialStates/Types/playerStatsStateType';
 import './playerStatsStyle.css';
 
-export const StatsValue = ({ data }: any) => {
+interface StatsValueProps {
+  data: Datum;
+}
+
+export const StatsValue = ({ data }: StatsValueProps) => {
   return (
     <p className='blabla'>
       {data.name}: {data.value}

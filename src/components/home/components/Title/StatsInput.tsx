@@ -5,23 +5,19 @@ import './statsInputStyle.css';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import {
   addName,
-  addPlatform,
   getPlayerStats,
 } from '../../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../../common/Input';
 import { Logo } from '../../../header/Logo';
+import { RadioButton } from './RadioButtons';
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();
   const nameValue = useAppSelector((state) => state.playerStats.name);
   const platformValue = useAppSelector((state) => state.playerStats.platform);
 
-  const handleChangeName = (event: any) => {
+  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(addName(event.target.value));
-  };
-
-  const handleChangePlatform = (event: any) => {
-    dispatch(addPlatform(event.target.value));
   };
 
   const getStats = () => {
@@ -45,51 +41,12 @@ export const StatsInput = () => {
         value={nameValue}
       />
       <div className='radioWrapper'>
-        <div className='radioButton'>
-          <input
-            className='radioButtonInput'
-            name='platform'
-            type='radio'
-            id='input1'
-            value='X1'
-            onClick={(event) => {
-              handleChangePlatform(event);
-            }}
-          />
-          <label htmlFor='input1'>
-            <XboxLogo />
-          </label>
-        </div>
-        <div className='radioButton'>
-          <input
-            className='radioButtonInput'
-            name='platform'
-            type='radio'
-            id='input2'
-            value='PS4'
-            onClick={(event) => {
-              handleChangePlatform(event);
-            }}
-          />
-          <label htmlFor='input2'>
-            <PsLogo />
-          </label>
-        </div>
-        <div className='radioButton'>
-          <input
-            className='radioButtonInput'
-            name='platform'
-            type='radio'
-            id='input3'
-            value='PC'
-            onClick={(event) => {
-              handleChangePlatform(event);
-            }}
-          />
-          <label htmlFor='input3'>
-            <PcLogo />
-          </label>
-        </div>
+        <RadioButton
+          child={<XboxLogo />}
+          data={{ id: 'input1', value: 'X1' }}
+        />
+        <RadioButton child={<PsLogo />} data={{ id: 'input2', value: 'PS4' }} />
+        <RadioButton child={<PcLogo />} data={{ id: 'input3', value: 'PC' }} />
       </div>
       <button type='button' onClick={getStats}>
         Show

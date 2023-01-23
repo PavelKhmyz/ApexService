@@ -1,35 +1,12 @@
+import { CraftResponseType } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
 import { CraftElement } from './CraftElement';
 import './craftStyle.css';
 
-export interface ItemType {
-  name: string;
-  rarity: string;
-  asset: string;
-  rarityHex: string;
-}
-
-export interface BundleContent {
-  item: string;
-  cost: number;
-  itemType: ItemType;
-}
-
-export interface CraftDataObject {
-  bundle: string;
-  start: number;
-  end: number;
-  startDate: string;
-  endDate: string;
-  bundleType: string;
-  bundleContent: BundleContent[];
-}
-
 interface CraftComponentPropsType {
-  data: [CraftDataObject];
+  data: [CraftResponseType];
 }
 
-export const CraftComponent = (props: CraftComponentPropsType) => {
-  const { data } = props;
+export const CraftComponent = ({ data }: CraftComponentPropsType) => {
   const filteredData = data.filter(
     (element) =>
       element.bundle !== 'health_pickup' &&

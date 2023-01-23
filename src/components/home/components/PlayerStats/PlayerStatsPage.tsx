@@ -1,14 +1,21 @@
-import { useAppSelector } from '../../../../redux/hooks/hook';
+import {
+  Datum,
+  PlayerStatsResponseType,
+} from '../../../../redux/initialStates/Types/playerStatsStateType';
 import { PcLogo } from '../Title/PcLogo';
 import { PsLogo } from '../Title/PsLogo';
 import { XboxLogo } from '../Title/XboxLogo';
 import { RankComponent } from './RankComponent';
 import { StatsValue } from './StatsValue';
 
-export const PlayerStatsPage = () => {
-  const playerStats = useAppSelector((state) => state.playerStats.playerStats);
-  const { realtime, total, global } = playerStats;
-  const valuesArray = Object.values(total);
+interface PlayerStatsPageProps {
+  data: PlayerStatsResponseType;
+}
+
+export const PlayerStatsPage = ({ data }: PlayerStatsPageProps) => {
+  const { realtime, total, global } = data;
+  const valuesArray: Datum[] = Object.values(total);
+  console.log(valuesArray);
 
   const platform = () => {
     if (global.platform === 'X1') {
@@ -38,7 +45,7 @@ export const PlayerStatsPage = () => {
             </div>
             <p className='bla'>{realtime.currentStateAsText}</p>
           </div>
-          {valuesArray.map((data: any) => (
+          {valuesArray.map((data: Datum) => (
             <StatsValue key={data.value} data={data} />
           ))}
         </div>
