@@ -10,7 +10,7 @@ export const CraftElement = ({ craftElement }: CraftElementProps) => {
 
   return (
     <div className='craftElement'>
-      <span>{craftElement.bundleType}</span>
+      <span className='craftElementInner'>{craftElement.bundleType}</span>
       <div className='cardsWrapper'>
         {bundleContent.map((el) => (
           <ItemCard key={el.item} card={el} />

@@ -19,6 +19,11 @@ const mapSlice = createSlice({
         state.time -= 1;
       }
     },
+    clearState: (state) => {
+      state.maps = null;
+      state.time = null;
+      state.error = undefined;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,6 +52,6 @@ const mapSlice = createSlice({
   },
 });
 
-export const { changeTime } = mapSlice.actions;
+export const { changeTime, clearState } = mapSlice.actions;
 
 export const mapReducer = mapSlice.reducer;

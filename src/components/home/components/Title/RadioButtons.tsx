@@ -29,7 +29,9 @@ export const RadioButton = ({ data, child }: RadioButtonProps) => {
           handleChangePlatform(event);
         }}
       />
-      <label htmlFor={id}>{child}</label>
+      <label className='radioButtonLabel' htmlFor={id}>
+        {child}
+      </label>
     </div>
   );
 };

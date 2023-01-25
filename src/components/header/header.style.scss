@@ -1,0 +1,38 @@
+.headerContainer {
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-sizing: border-box;
+
+    .logo{
+        width: 80px;
+        height: auto;
+        fill: white;
+        transition: fill 0.5s;
+        &:hover{
+            fill: rgb(218, 41, 42);
+            transition: fill 0.5s;
+        }
+    }
+
+    .navigationContainer {
+        display: flex;
+        gap: 20px;
+
+        .navigationLink{
+            font-size: 30px;
+            letter-spacing: 0.5px;
+            color: white;
+            transition: color 0.5s;
+            &:hover{
+                text-decoration: underline;
+                color: rgb(218, 41, 42);
+                transition: color 0.5s;
+            }
+        }
+    }
+}

@@ -1,20 +1,20 @@
 import { PcLogo } from './PcLogo';
 import { PsLogo } from './PsLogo';
 import { XboxLogo } from './XboxLogo';
-import './statsInputStyle.css';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import {
   addName,
   getPlayerStats,
 } from '../../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../../common/Input';
-import { Logo } from '../../../header/Logo';
 import { RadioButton } from './RadioButtons';
+import { useEffect, useState } from 'react';
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();
   const nameValue = useAppSelector((state) => state.playerStats.name);
   const platformValue = useAppSelector((state) => state.playerStats.platform);
+  const [isValid, setIsValid] = useState(true);
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(addName(event.target.value));
@@ -28,13 +28,18 @@ export const StatsInput = () => {
     dispatch(getPlayerStats(data));
   };
 
+  useEffect(() => {
+    if (nameValue && platformValue) {
+      setIsValid(false);
+    }
+  }, [nameValue, platformValue]);
+
   return (
     <div className='input'>
-      <Logo className={'inputLogo'} />
       <Input
         text={'Name:'}
         type={'text'}
-        placeholder={'Enter yor Player name'}
+        placeholder={'Enter your Player name'}
         onChangeFunc={(event) => {
           handleChangeName(event);
         }}
@@ -48,8 +53,13 @@ export const StatsInput = () => {
         <RadioButton child={<PsLogo />} data={{ id: 'input2', value: 'PS4' }} />
         <RadioButton child={<PcLogo />} data={{ id: 'input3', value: 'PC' }} />
       </div>
-      <button type='button' onClick={getStats}>
-        Show
+      <button
+        disabled={isValid}
+        className='inputButton'
+        type='button'
+        onClick={getStats}
+      >
+        Show Stats
       </button>
     </div>
   );

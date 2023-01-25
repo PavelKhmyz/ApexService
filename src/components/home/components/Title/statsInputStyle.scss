@@ -1,0 +1,85 @@
+.input{
+    width: 100%;
+    height: 120px;
+    background-color: rgb(218, 41, 42);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0px -18px 15px 2px rgba(0, 0, 0, 1);
+    .inputLabel{
+        width: 30%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;        
+        & span {
+            font-size: 30px;
+        }
+        & input{
+            font-size: 30px;
+            width: 80%;
+            height: 50%;
+            background-color: inherit;
+            color: white;
+            padding: 5px;
+            border-bottom: 2px solid white;
+            &:focus{
+                border-bottom: 2px solid black;
+                transition: all 0.5s;
+            }
+            &::placeholder{
+                color: white
+            }
+        }
+    }
+    .radioWrapper{
+        display: flex;
+        width: 30%;
+        align-items: center;
+        justify-content: space-between; 
+        .radioButton{
+            display: flex;
+            width: 25%;
+            height: auto;            
+            padding: 5px;
+            &:hover label{                
+                fill: white
+            }
+            &:active label{                
+                fill: rgb(168, 168, 168);;
+            }
+            .radioButtonInput{
+                display: none;
+                &:checked + .radioButtonLabel{
+                    border-radius: 5px;
+                    box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2) inset;
+                    fill: white;
+                    transition: fill 0.2s;
+                }
+            }
+            .radioButtonLabel{
+                padding: 5px;
+            }
+            .platformLogo{
+                color: black;
+                width: 100%;
+                height: auto;
+                transition: fill 0.5s;
+            }
+        }
+    }
+    .inputButton{
+        width: 30%;
+        height: 100%;
+        font-size: 30px;
+        &:hover{
+            background-color: rgb(211, 211, 211);
+        }
+        &:active{
+            background-color: rgb(168, 168, 168);
+        }
+    }
+}
+

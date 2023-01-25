@@ -1,0 +1,59 @@
+.newsBlock{
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    width: 32%;
+    height: auto;
+    color: white;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    .newsBlockWrapper{
+        height: 80%;
+        position: relative;
+        .newsBlockImg{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: -2;
+        }
+        .newsBlockContent{
+            padding: 0 10px;
+            overflow: hidden;    
+            background-color: rgba(0, 0, 0, 0.712);
+            position: absolute;
+            z-index: -1;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+            & p {
+                margin: 10px 0;
+            } 
+        }
+        .newsBlockLink{
+            color: rgb(218, 41, 42);
+            &:hover{
+                text-decoration: underline;
+                color: white;
+                transition: color 0.5s;
+            }
+        }
+    }
+    .newsBlockTitle{
+        display: flex;
+        align-items: center;
+        height: 20%;
+        background-color: rgb(0, 0, 0);    
+        padding: 10px;
+    }
+    &:hover .newsBlockContent{
+        height: 100%;    
+        transition: height 1s;
+        z-index: 1;
+    }
+    &:hover .newsBlockTitle{
+        color: rgb(218, 41, 42);
+        transition: color 0.5s;
+    }
+}

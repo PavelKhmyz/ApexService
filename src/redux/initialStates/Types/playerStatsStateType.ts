@@ -153,4 +153,5 @@ export interface PlayerStatsResponseType {
   mozambiquehere_internal: {};
   ALS: ALS;
   total: {};
+  Error?: string;
 }

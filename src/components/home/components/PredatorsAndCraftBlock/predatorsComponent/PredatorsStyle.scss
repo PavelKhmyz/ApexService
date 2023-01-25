@@ -1,0 +1,16 @@
+.predatorsBR{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .predatorsTitle{
+        font-size: 35px;
+    }
+    .predatorsInnerTitle{
+        font-size: 30px;
+    }
+    .predatorsInnerContent{
+        font-size: 25px;
+        margin: 20px 0;
+    }
+}

@@ -7,6 +7,7 @@ import { NewsResponseType } from '../../../../redux/initialStates/Types/newsInit
 import { getNews } from '../../../../redux/reducer/newsSlice';
 import { responsive } from '../../reactCarouselResponsive';
 import { NewsBlock } from './NewsBlock';
+import './newsFeedStyle.scss';
 
 export const NewsFeed = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,9 @@ export const NewsFeed = () => {
 
   return (
     <div className='newsFeed'>
-      <NavLink to={'/news'}>News feed</NavLink>
+      <NavLink className='newsLink' to={'/news'}>
+        News feed
+      </NavLink>
       {news ? (
         <Carousel
           partialVisible={true}

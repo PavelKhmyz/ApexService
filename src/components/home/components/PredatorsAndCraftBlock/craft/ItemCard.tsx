@@ -5,9 +5,5 @@ interface ItemCardProps {
 }
 
 export const ItemCard = ({ card }: ItemCardProps) => {
-  return (
-    <div className='itemCard'>
-      <img className='itemCardImg' src={card.itemType.asset} />
-    </div>
-  );
+  return <img className='itemCardImg' src={card.itemType.asset} />;
 };

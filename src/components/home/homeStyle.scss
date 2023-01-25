@@ -1,0 +1,75 @@
+.homeContainer{
+    color: white;
+    display: block;
+    .videoContainer{    
+        max-width: 100%;     
+        width: 100vw;
+        height: 55.7vw;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .player{
+        background-color: rgba(0, 0, 0, 0.253);
+        box-shadow: 0px 80px 29px -5px rgba(0, 0, 0, 1) inset;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        
+    }
+    .homeContent{
+        margin: 20px;
+        .errorMessage{
+            width: 100%;
+            height: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            background-color: red;
+        }
+        .newsFeed{
+            font-size: 30px;
+            letter-spacing: 1px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            .newsLink{
+                color: white;
+                &:hover{
+                    color: rgb(218, 41, 42);
+                    text-decoration: underline;
+                    transition: all, 0.5s;
+                }
+            }
+        }
+        .craftAndPredatorsWrapper{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 20px;
+
+            .craftAndPredatorsTitle{
+                font-size: 30px;
+                letter-spacing: 1px;
+            }
+            .craftAndPredatorsContent{
+                display: flex;
+                width: 100%;
+            }
+        }
+    }
+}

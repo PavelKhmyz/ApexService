@@ -12,11 +12,14 @@ export interface SelectedLegendProps {
 export const SelectedLegend = ({ data }: SelectedLegendProps) => {
   return (
     <>
-      <div className='legendInner'>
-        <p style={{ fontSize: '50px', margin: 0 }}>{data.LegendName}</p>
+      <div
+        className='legendInner'
+        // style={{ backgroundImage: `url(${data.ImgAssets.icon})` }}
+      >
         <img className='legendAsset' src={data.ImgAssets.icon} />
       </div>
       <div className='legendInner'>
+        <p className='legendName'>{data.LegendName}</p>
         {data.data &&
           data.data.map((data: Datum) => (
             <StatsValue key={data.value} data={data} />

@@ -28,15 +28,18 @@ export const PredatorsAndCraftBlock = () => {
   }, []);
   return (
     <div className='craftAndPredatorsWrapper'>
-      {predators ? (
-        <>
-          <PredatorsComponent title='Battle Royal' data={predators.RP} />
-          <PredatorsComponent title='Arenas' data={predators.AP} />
-        </>
-      ) : (
-        <PropagateLoader />
-      )}
-      {craft ? <CraftComponent data={craft} /> : <PropagateLoader />}
+      <p className='craftAndPredatorsTitle'>Predators cutoff</p>
+      <div className='craftAndPredatorsContent'>
+        {predators ? (
+          <>
+            <PredatorsComponent title='Battle Royal' data={predators.RP} />
+            <PredatorsComponent title='Arenas' data={predators.AP} />
+          </>
+        ) : (
+          <PropagateLoader />
+        )}
+        {craft ? <CraftComponent data={craft} /> : <PropagateLoader />}
+      </div>
     </div>
   );
 };

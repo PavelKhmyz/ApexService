@@ -7,6 +7,7 @@ import { PsLogo } from '../Title/PsLogo';
 import { XboxLogo } from '../Title/XboxLogo';
 import { RankComponent } from './RankComponent';
 import { StatsValue } from './StatsValue';
+import './playerStatsPageStyle.scss';
 
 interface PlayerStatsPageProps {
   data: PlayerStatsResponseType;
@@ -15,7 +16,6 @@ interface PlayerStatsPageProps {
 export const PlayerStatsPage = ({ data }: PlayerStatsPageProps) => {
   const { realtime, total, global } = data;
   const valuesArray: Datum[] = Object.values(total);
-  console.log(valuesArray);
 
   const platform = () => {
     if (global.platform === 'X1') {
@@ -30,28 +30,30 @@ export const PlayerStatsPage = ({ data }: PlayerStatsPageProps) => {
   return (
     <>
       <div className='statsWrapper'>
-        <div className='statsInner'>
-          <div className='playerStatsContent'>
-            <p className='bla'>{global.name}</p>
-            <div className='playerPlatform'>{platform()}</div>
-            <div>
-              <p className='bla'>Level: {global.level}</p>
-              <div className='percentsBorder'>
-                <div
-                  className='percentsBar'
-                  style={{ width: `${global.toNextLevelPercent}%` }}
-                ></div>
-              </div>
+        <div className='statsWrapperTitle'>
+          <p className='playerName'>{global.name}</p>
+          <div className='playerPlatform'>{platform()}</div>
+          <div>
+            <p>Level: {global.level}</p>
+            <div className='percentsBorder'>
+              <div
+                className='percentsBar'
+                style={{ width: `${global.toNextLevelPercent}%` }}
+              ></div>
             </div>
-            <p className='bla'>{realtime.currentStateAsText}</p>
           </div>
-          {valuesArray.map((data: Datum) => (
-            <StatsValue key={data.value} data={data} />
-          ))}
+          <p>{realtime.currentStateAsText}</p>
         </div>
-        <div className='statsInner2'>
-          <RankComponent name='Battle Royal' data={global.rank} />
-          <RankComponent name='Arena' data={global.arena} />
+        <div className='statsWrapperContent'>
+          <div className='statsInner'>
+            {valuesArray.map((data: Datum) => (
+              <StatsValue key={data.value} data={data} />
+            ))}
+          </div>
+          <div className='statsInner2'>
+            <RankComponent name='Battle Royal' data={global.rank} />
+            <RankComponent name='Arena' data={global.arena} />
+          </div>
         </div>
       </div>
     </>

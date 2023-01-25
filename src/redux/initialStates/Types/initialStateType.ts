@@ -28,6 +28,7 @@ export interface PlayerStatsStateType {
   name: string;
   platform: string;
   playerStats: null | PlayerStatsResponseType;
+  badRequest: null | PlayerStatsResponseType;
   searchValue: string;
   newLegend: null | Legend;
   loadingStats: boolean;

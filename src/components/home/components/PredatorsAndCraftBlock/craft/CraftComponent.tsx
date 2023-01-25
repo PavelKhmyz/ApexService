@@ -1,6 +1,6 @@
 import { CraftResponseType } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
 import { CraftElement } from './CraftElement';
-import './craftStyle.css';
+import './craftStyle.scss';
 
 interface CraftComponentPropsType {
   data: [CraftResponseType];
@@ -32,7 +32,7 @@ export const CraftComponent = ({ data }: CraftComponentPropsType) => {
   filteredData.push(weapons);
   return (
     <div className='craftWrapper'>
-      <h1>Craft Rotation</h1>
+      <p className='craftTitle'>Craft Rotation</p>
       {filteredData.map((el) => (
         <CraftElement key={el.bundle} craftElement={el} />
       ))}

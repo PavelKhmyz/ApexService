@@ -1,20 +1,27 @@
 import { useAppSelector } from '../../redux/hooks/hook';
 import 'react-multi-carousel/lib/styles.css';
-import './homeStyle.css';
+import './homeStyle.scss';
 import { NewsFeed } from './components/NewsFeed/NewsFeed';
 import { PredatorsAndCraftBlock } from './components/PredatorsAndCraftBlock/PredatorsAndCraftBlock';
 import { TitleComponent } from './components/Title/TitleComponent';
 import { PlayerStats } from './components/PlayerStats/PlayerStats';
+import { ErrorComponent } from './components/ErrorComponent';
 
 export const Home = () => {
   const playerStats = useAppSelector((state) => state.playerStats.playerStats);
+  const badRequest = useAppSelector((state) => state.playerStats.badRequest);
+  const error = useAppSelector((state) => state.playerStats.error);
 
   return (
     <div className='homeContainer'>
       <TitleComponent />
-      {playerStats && <PlayerStats data={playerStats} />}
-      <NewsFeed />
-      <PredatorsAndCraftBlock />
+      <div className='homeContent'>
+        {error && <ErrorComponent data={error} />}
+        {badRequest && <ErrorComponent data={badRequest} />}
+        {playerStats && <PlayerStats data={playerStats} />}
+        <NewsFeed />
+        <PredatorsAndCraftBlock />
+      </div>
     </div>
   );
 };

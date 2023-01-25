@@ -1,4 +1,4 @@
-import './statsInputStyle.css';
+import './statsInputStyle.scss';
 
 export const PcLogo = () => {
   return (
