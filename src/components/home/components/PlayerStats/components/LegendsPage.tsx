@@ -1,13 +1,16 @@
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
-import { Legends } from '../../../../redux/initialStates/Types/playerStatsStateType';
-import {
-  changeSearchValue,
-  setNewLegend,
-} from '../../../../redux/reducer/playerStatsSlice';
+import { useEffect } from 'react';
 import { SelectedLegend } from './SelectedLegend';
 import './legendsPageStyle.scss';
 import { SelectOption } from './SelectOption';
-import { useEffect } from 'react';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../../../redux/hooks/hook';
+import { Legends } from '../../../../../redux/initialStates/Types/playerStatsStateType';
+import {
+  changeSearchValue,
+  setNewLegend,
+} from '../../../../../redux/reducer/playerStatsSlice';
 
 interface LegendsPageProps {
   data: Legends;
@@ -22,7 +25,7 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
 
   useEffect(() => {
     dispatch(changeSearchValue(data.selected.LegendName));
-  }, []);
+  }, [data.selected.LegendName, dispatch]);
 
   const handleChangeInputValue = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -39,11 +42,12 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
   return (
     <div className='legendWrapper'>
       <div className='legendsSearch'>
-        <label className='inputLabel'>
+        <label htmlFor='selectId' className='inputLabel'>
           <span>Legend Name:</span>
           <select
             onChange={(event) => handleChangeInputValue(event)}
             value={searchValue}
+            id='selectId'
           >
             {selectKeys.map((key) => (
               <SelectOption key={key} data={key} />

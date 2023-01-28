@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apexApi, API_KEY } from '../../axios/api';
+import { requests } from '../../axios/requests';
 import { predatorsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { PredatorsResponseType } from '../initialStates/Types/predatorsInitialStateType';
 
 export const getPredators = createAsyncThunk('apex/predators', async () => {
-  const response = await apexApi.get(`/predator?auth=${API_KEY}`);
+  const apexResponse = requests();
+  const response = await apexResponse.getPredators();
   return response.data;
 });
 
@@ -36,7 +37,5 @@ const predatorSlice = createSlice({
       );
   },
 });
-
-export const {} = predatorSlice.actions;
 
 export const predatorReducer = predatorSlice.reducer;

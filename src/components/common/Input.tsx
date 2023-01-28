@@ -4,19 +4,40 @@ interface InputProps {
   placeholder: string;
   onChangeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  id: string;
+  disabled?: boolean;
 }
 
-export const Input = (props: InputProps) => {
+export const Input = ({
+  text,
+  type,
+  placeholder,
+  onChangeFunc,
+  value,
+  id,
+  ...disabled
+}: InputProps) => {
+  const isDisable = () => {
+    if (disabled.disabled) {
+      return disabled.disabled;
+    }
+    return false;
+  };
+
   return (
-    <label className='inputLabel'>
-      <span>{props.text}</span>
+    <div className='inputLabel'>
+      <label htmlFor={id}>
+        <span>{text}</span>
+      </label>
       <input
+        id={id}
         className='inputElement'
-        type={props.type}
-        placeholder={props.placeholder}
-        onChange={props.onChangeFunc}
-        value={props.value}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChangeFunc}
+        value={value}
+        disabled={isDisable()}
       />
-    </label>
+    </div>
   );
 };

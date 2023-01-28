@@ -17,7 +17,7 @@ export const NewsFeed = () => {
     if (!news) {
       dispatch(getNews());
     }
-  }, []);
+  }, [dispatch, news]);
 
   return (
     <div className='newsFeed'>
@@ -25,12 +25,7 @@ export const NewsFeed = () => {
         News feed
       </NavLink>
       {news ? (
-        <Carousel
-          partialVisible={true}
-          responsive={responsive}
-          autoPlay={true}
-          infinite={true}
-        >
+        <Carousel partialVisible responsive={responsive} autoPlay infinite>
           {news.map((newsEl: NewsResponseType) => (
             <NewsBlock key={newsEl.title} newsEl={newsEl} />
           ))}

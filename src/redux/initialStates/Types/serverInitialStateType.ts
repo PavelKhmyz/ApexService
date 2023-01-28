@@ -42,3 +42,4 @@ export type ServerResponseStateType = [
   string,
   ServerGroup | SelfCoreTest | OtherPlatforms
 ];
+export type ServerProps = [string, Server];

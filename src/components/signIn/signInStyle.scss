@@ -1,0 +1,45 @@
+.signInWrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .inputForm{
+        width: 30%;
+        height: 500px;
+        background-color: rgb(218, 41, 42);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+        gap: 20px;
+        .signInlogo{
+            fill: white;
+        }
+        .inputLabel{
+            width: 100%;
+            height: 30px;
+            font-size: 30px;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+            justify-content: space-between;
+            color: white;
+            & input{
+                width: 60%;
+                background-color: inherit;
+                border-bottom: 2px solid white;
+                font-size: 25px;
+                color: white;
+                &::placeholder{
+                    color: white;
+                }
+            }
+        }
+        .signInButton{
+            width: 100%;
+            height: 50px;
+            font-size: 30px;
+        }
+    }
+}

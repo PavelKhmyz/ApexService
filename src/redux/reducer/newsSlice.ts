@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apexApi, API_KEY } from '../../axios/api';
+import { requests } from '../../axios/requests';
 import { newsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { NewsResponseType } from '../initialStates/Types/newsInitialStateType';
 
 export const getNews = createAsyncThunk('apex/news', async () => {
-  const response = await apexApi.get(`/news?auth=${API_KEY}`);
+  const apexResponse = requests();
+  const response = await apexResponse.getNews();
   return response.data;
 });
 
@@ -36,7 +37,5 @@ const newsSlice = createSlice({
       );
   },
 });
-
-export const {} = newsSlice.actions;
 
 export const newsReducer = newsSlice.reducer;

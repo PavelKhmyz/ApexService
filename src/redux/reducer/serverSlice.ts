@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apexApi, API_KEY } from '../../axios/api';
+import { requests } from '../../axios/requests';
 import { serverState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { ServerResponseType } from '../initialStates/Types/serverInitialStateType';
@@ -7,7 +7,8 @@ import { ServerResponseType } from '../initialStates/Types/serverInitialStateTyp
 export const getServerStatus = createAsyncThunk(
   'apex/serverStatus',
   async () => {
-    const response = await apexApi.get(`/servers?auth=${API_KEY}`);
+    const apexResponse = requests();
+    const response = await apexResponse.getServerStatus();
     return response.data;
   }
 );
@@ -39,7 +40,5 @@ const serverStatusSlice = createSlice({
       );
   },
 });
-
-export const {} = serverStatusSlice.actions;
 
 export const serverReducer = serverStatusSlice.reducer;

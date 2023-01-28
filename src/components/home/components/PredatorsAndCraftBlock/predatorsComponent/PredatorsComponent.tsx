@@ -16,10 +16,10 @@ export const PredatorsComponent = ({ title, data }: PredatorComponentProps) => {
     <div className='predatorsBR'>
       <p className='predatorsTitle'>{title}</p>
       <Carousel
-        partialVisible={true}
+        partialVisible
         responsive={predatorResponsive}
-        autoPlay={true}
-        infinite={true}
+        autoPlay
+        infinite
         arrows={false}
       >
         <PredatorsInner title='PC' data={PC} />

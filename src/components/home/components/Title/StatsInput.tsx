@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { PcLogo } from './PcLogo';
 import { PsLogo } from './PsLogo';
 import { XboxLogo } from './XboxLogo';
@@ -8,7 +9,6 @@ import {
 } from '../../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../../common/Input';
 import { RadioButton } from './RadioButtons';
-import { useEffect, useState } from 'react';
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();
@@ -37,6 +37,7 @@ export const StatsInput = () => {
   return (
     <div className='input'>
       <Input
+        id='inputFromStats'
         text={'Name:'}
         type={'text'}
         placeholder={'Enter your Player name'}

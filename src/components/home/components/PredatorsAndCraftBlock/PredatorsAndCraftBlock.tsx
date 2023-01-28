@@ -17,7 +17,7 @@ export const PredatorsAndCraftBlock = () => {
         dispatch(getPredators());
       }, 2000);
     }
-  }, []);
+  }, [dispatch, predators]);
 
   useEffect(() => {
     if (!craft) {
@@ -25,7 +25,7 @@ export const PredatorsAndCraftBlock = () => {
         dispatch(getCraftItems());
       }, 4000);
     }
-  }, []);
+  }, [craft, dispatch]);
   return (
     <div className='craftAndPredatorsWrapper'>
       <p className='craftAndPredatorsTitle'>Predators cutoff</p>

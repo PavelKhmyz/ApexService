@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
 import {
   changeTime,
-  clearState,
+  clearTime,
   getRotation,
 } from '../../redux/reducer/mapSlice';
 import { MapComponent } from './components/MapComponent';
@@ -14,31 +14,33 @@ export const MapRotation = () => {
   const maps = useAppSelector((state) => state.map.maps);
   const time = useAppSelector((state) => state.map.time);
 
-  const handleChangeTime = () => {
+  const handleChangeTime = useCallback(() => {
     dispatch(changeTime());
-  };
-  // const handleClear = () => {
-  //   () => dispatch(clearState());
-  // };
+  }, [dispatch]);
+
+  const handleClear = useCallback(() => {
+    dispatch(clearTime());
+  }, [dispatch]);
 
   useEffect(() => {
     if (time) {
       setTimeout(handleChangeTime, 1000);
     }
-    if (time === 0) {
+    if (time === (0 || null)) {
       dispatch(getRotation());
     }
-  }, [time]);
+  }, [dispatch, handleChangeTime, time]);
 
   useEffect(() => {
     if (!maps) {
       dispatch(getRotation());
     }
-  }, []);
+  }, [dispatch, handleClear, maps]);
 
-  // useEffect(() => {
-  //   return handleClear();
-  // }, []);
+  // eslint-disable-next-line arrow-body-style
+  useEffect(() => {
+    return handleClear;
+  }, [handleClear]);
 
   return (
     <div className='wrapper'>

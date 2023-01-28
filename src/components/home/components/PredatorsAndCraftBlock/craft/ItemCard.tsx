@@ -4,6 +4,6 @@ interface ItemCardProps {
   card: BundleContent;
 }
 
-export const ItemCard = ({ card }: ItemCardProps) => {
-  return <img className='itemCardImg' src={card.itemType.asset} />;
-};
+export const ItemCard = ({ card }: ItemCardProps) => (
+  <img className='itemCardImg' src={card.itemType.asset} alt='Craft item' />
+);

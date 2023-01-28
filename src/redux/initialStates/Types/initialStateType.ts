@@ -46,3 +46,19 @@ export interface CraftStateType {
   loadingItems: boolean;
   error: string | undefined;
 }
+
+export interface UserEditableData {
+  name: string;
+  platform: string;
+  id: string;
+}
+
+export interface UserDataStateType {
+  email: string;
+  password: string;
+  playerData: UserEditableData[] | [];
+  selectUser: null | UserEditableData;
+  loader: boolean;
+  serverResponse: null | PlayerStatsResponseType;
+  badRequest: null | PlayerStatsResponseType;
+}

@@ -5,6 +5,7 @@ import {
   PlayerStatsStateType,
   PredatorsStateType,
   ServerDataType,
+  UserDataStateType,
 } from './Types/initialStateType';
 
 export const mapsState: MapsStateType = {
@@ -47,4 +48,14 @@ export const craftState: CraftStateType = {
   items: null,
   loadingItems: false,
   error: undefined,
+};
+
+export const userData: UserDataStateType = {
+  email: '',
+  password: '',
+  playerData: [],
+  selectUser: null,
+  loader: false,
+  serverResponse: null,
+  badRequest: null,
 };

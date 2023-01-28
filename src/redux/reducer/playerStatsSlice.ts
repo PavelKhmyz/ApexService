@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apexApi, API_KEY } from '../../axios/api';
+import { GetPlayerStatsProps, requests } from '../../axios/requests';
 import { playerStatsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import {
@@ -7,18 +7,11 @@ import {
   PlayerStatsResponseType,
 } from '../initialStates/Types/playerStatsStateType';
 
-interface getPlayerStatsProps {
-  name: string;
-  platform: string;
-}
-
 export const getPlayerStats = createAsyncThunk(
   'apex/playerStats',
-  async (data: getPlayerStatsProps) => {
-    const { name, platform } = data;
-    const response = await apexApi.get(
-      `/bridge?auth=${API_KEY}&player=${name}&platform=${platform}`
-    );
+  async (data: GetPlayerStatsProps) => {
+    const apexResponse = requests();
+    const response = await apexResponse.getPlayerStats(data);
     return response.data;
   }
 );

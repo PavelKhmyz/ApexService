@@ -1,4 +1,10 @@
-export const ServerElement = (props: any) => {
+import { ServerProps } from '../../../redux/initialStates/Types/serverInitialStateType';
+
+interface ServerElementProps {
+  data: ServerProps;
+}
+
+export const ServerElement = (props: ServerElementProps) => {
   const { data } = props;
 
   return (

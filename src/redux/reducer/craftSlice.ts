@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apexApi, API_KEY } from '../../axios/api';
 import { CraftResponseType } from '../initialStates/Types/craftInitialStateTypes';
 import { craftState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
+import { requests } from '../../axios/requests';
 
 export const getCraftItems = createAsyncThunk('apex/craft', async () => {
-  const response = await apexApi.get(`/crafting?auth=${API_KEY}`);
+  const apexResponse = requests();
+  const response = await apexResponse.getCraftRotation();
   return response.data;
 });
 
@@ -36,7 +37,5 @@ const craftItemsSlice = createSlice({
       );
   },
 });
-
-export const {} = craftItemsSlice.actions;
 
 export const craftItemsReducer = craftItemsSlice.reducer;
