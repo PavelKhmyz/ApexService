@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GetPlayerStatsProps, requests } from '../../axios/requests';
+import { ThemeElementType } from '../../components/userProfile/components/theme';
 import { userData } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { UserEditableData } from '../initialStates/Types/initialStateType';
@@ -18,6 +19,9 @@ const userSlice = createSlice({
   name: 'userData',
   initialState: userData,
   reducers: {
+    changeTheme: (state, action: PayloadAction<ThemeElementType>) => {
+      state.theme = action.payload;
+    },
     selectUser: (state, action) => {
       const filtered = state.playerData.filter(
         (el) => el.id === action.payload
@@ -68,7 +72,13 @@ const userSlice = createSlice({
   },
 });
 
-export const { setEmail, setPassword, setPlayerData, filterArray, selectUser } =
-  userSlice.actions;
+export const {
+  setEmail,
+  setPassword,
+  setPlayerData,
+  filterArray,
+  selectUser,
+  changeTheme,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

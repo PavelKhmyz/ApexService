@@ -1,3 +1,4 @@
+import { ThemeElementType } from '../../../components/userProfile/components/theme';
 import { CraftResponseType } from './craftInitialStateTypes';
 import { MapResponseType } from './mapStateType';
 import { NewsResponseType } from './newsInitialStateType';
@@ -61,4 +62,5 @@ export interface UserDataStateType {
   loader: boolean;
   serverResponse: null | PlayerStatsResponseType;
   badRequest: null | PlayerStatsResponseType;
+  theme: ThemeElementType;
 }

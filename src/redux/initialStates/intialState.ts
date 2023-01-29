@@ -1,3 +1,4 @@
+import { theme } from '../../components/userProfile/components/theme';
 import {
   CraftStateType,
   MapsStateType,
@@ -58,4 +59,5 @@ export const userData: UserDataStateType = {
   loader: false,
   serverResponse: null,
   badRequest: null,
+  theme: theme[0],
 };

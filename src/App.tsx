@@ -8,10 +8,20 @@ import { ServerStatus } from './components/serverStatus/ServerStatus';
 import { SignIn } from './components/signIn/SignIn';
 import { NewsPage } from './components/news/NewsPage';
 import { UserProfile } from './components/userProfile/UserProfile';
-import { ContentElement } from './components/userProfile/ContentElement';
-import { SettingsElement } from './components/userProfile/SettingsElement';
+import { ContentElement } from './components/userProfile/components/ContentElement';
+import { SettingsElement } from './components/userProfile/components/SettingsElement';
+import { useAppSelector } from './redux/hooks/hook';
 
 function App() {
+  const themeValue = useAppSelector((state) => state.user.theme);
+
+  const main = document.documentElement;
+  main.style.setProperty('--bgColor', themeValue.bgColor);
+  main.style.setProperty('--firstColor', themeValue.firstColor);
+  main.style.setProperty('--secondColor', themeValue.secondColor);
+  main.style.setProperty('--fontColor', themeValue.fontColor);
+  main.style.setProperty('--shadow', themeValue.shadow);
+
   return (
     <div className='App'>
       <BrowserRouter>
