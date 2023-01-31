@@ -38,12 +38,6 @@ const userSlice = createSlice({
       ...state,
       playerData: [...state.playerData, action.payload],
     }),
-    setEmail: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
-    },
-    setPassword: (state, action: PayloadAction<string>) => {
-      state.password = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -72,13 +66,7 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  setEmail,
-  setPassword,
-  setPlayerData,
-  filterArray,
-  selectUser,
-  changeTheme,
-} = userSlice.actions;
+export const { setPlayerData, filterArray, selectUser, changeTheme } =
+  userSlice.actions;
 
 export const userReducer = userSlice.reducer;

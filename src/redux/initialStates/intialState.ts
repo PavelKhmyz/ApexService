@@ -1,5 +1,6 @@
 import { theme } from '../../components/userProfile/components/theme';
 import {
+  AuthDataStateType,
   CraftStateType,
   MapsStateType,
   NewsDataType,
@@ -52,12 +53,17 @@ export const craftState: CraftStateType = {
 };
 
 export const userData: UserDataStateType = {
-  email: '',
-  password: '',
   playerData: [],
   selectUser: null,
   loader: false,
   serverResponse: null,
   badRequest: null,
   theme: theme[0],
+};
+
+export const authData: AuthDataStateType = {
+  email: '',
+  password: '',
+  loader: false,
+  accessToken: null,
 };

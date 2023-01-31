@@ -1,12 +1,21 @@
 import { apexApi, API_KEY } from './api';
+import { authApi } from './auth';
 
 export interface GetPlayerStatsProps {
   name: string;
   platform: string;
 }
 
+export interface RegistrationRequestProps {
+  email: string;
+  password: string;
+  playerName?: string;
+  userPlatform?: string;
+}
+
 export const requests = () => {
   const api = apexApi;
+  const backEnd = authApi;
 
   return {
     getMapRotation: () => api.get(`/maprotation?auth=${API_KEY}`),
@@ -16,5 +25,12 @@ export const requests = () => {
       api.get(`/bridge?auth=${API_KEY}&player=${name}&platform=${platform}`),
     getPredators: () => api.get(`/predator?auth=${API_KEY}`),
     getServerStatus: () => api.get(`/servers?auth=${API_KEY}`),
+    registrationRequest: (data: RegistrationRequestProps) =>
+      backEnd.post('/registration', data),
+    loginRequest: (data: RegistrationRequestProps) =>
+      backEnd.post('/login', data),
+    logoutRequest: () => backEnd.post('/logout'),
+    refreshToken: () => backEnd.get('/refresh'),
+    getUsers: () => backEnd.get('/users'),
   };
 };

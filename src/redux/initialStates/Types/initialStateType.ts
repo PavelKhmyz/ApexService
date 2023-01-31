@@ -55,12 +55,17 @@ export interface UserEditableData {
 }
 
 export interface UserDataStateType {
-  email: string;
-  password: string;
   playerData: UserEditableData[] | [];
   selectUser: null | UserEditableData;
   loader: boolean;
   serverResponse: null | PlayerStatsResponseType;
   badRequest: null | PlayerStatsResponseType;
   theme: ThemeElementType;
+}
+
+export interface AuthDataStateType {
+  email: string;
+  password: string;
+  loader: boolean;
+  accessToken: null | string;
 }

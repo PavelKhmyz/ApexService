@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { authReducer } from '../reducer/authSlice';
 import { craftItemsReducer } from '../reducer/craftSlice';
 import { mapReducer } from '../reducer/mapSlice';
 import { newsReducer } from '../reducer/newsSlice';
@@ -18,6 +19,7 @@ export const store = configureStore({
     predators: predatorReducer,
     craft: craftItemsReducer,
     user: userReducer,
+    auth: authReducer,
   },
 });
 
