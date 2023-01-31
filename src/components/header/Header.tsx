@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import './header.style.scss';
 import { Logo } from '../common/Logo';
+import { useAppSelector } from '../../redux/hooks/hook';
 
 export const Header = () => {
+  const auth = !useAppSelector((state) => state.auth.accessToken);
   const activeStyle = { textDecoration: 'underline' };
   const isActiveLink = (isActive: boolean) =>
     isActive ? activeStyle : undefined;
@@ -32,7 +34,7 @@ export const Header = () => {
           className='navigationLink'
           to={'/signIn'}
         >
-          Sign In
+          {auth ? 'Sign In' : 'Profile'}
         </NavLink>
       </div>
     </div>

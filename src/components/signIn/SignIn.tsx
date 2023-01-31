@@ -1,12 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { requests } from '../../axios/requests';
+import { serverRequests } from '../../axios/requests';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import {
-  addAccessToken,
-  setEmail,
-  setPassword,
-} from '../../redux/reducer/authSlice';
+import { addAccessToken } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
 import { PcLogo } from '../home/components/Title/PcLogo';
@@ -14,34 +10,38 @@ import { PsLogo } from '../home/components/Title/PsLogo';
 import { RadioButton } from '../home/components/Title/RadioButtons';
 import { XboxLogo } from '../home/components/Title/XboxLogo';
 import './signInStyle.scss';
+import { setPlayerData } from '../../redux/reducer/userSlice';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
-  const emailValue = useAppSelector((state) => state.auth.email);
+  const navigate = useNavigate();
+  const auth = !!useAppSelector((state) => state.auth.accessToken);
   const platform = useAppSelector((state) => state.playerStats.platform);
-  const passwordValue = useAppSelector((state) => state.auth.password);
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isHiden, setIsHiden] = useState(true);
   const [name, setName] = useState('');
-  const navigate = useNavigate();
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setEmail(event.target.value));
+    setEmailValue(event.target.value);
   };
-
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setPassword(event.target.value));
+    setPasswordValue(event.target.value);
   };
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
-
-  const handleChangeConfirmPassword = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChangeConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(event.target.value);
   };
+
+  useEffect(() => {
+    if (auth) {
+      navigate('/profile/user');
+    }
+  }, [auth, navigate]);
 
   useEffect(() => {
     if (confirmPassword === passwordValue && passwordValue) {
@@ -56,16 +56,21 @@ export const SignIn = () => {
   };
 
   const sendRegistrationRequest = async () => {
-    const data = {
+    const regisrationData = {
       email: emailValue,
       password: passwordValue,
       playerName: name,
       userPlatform: platform,
     };
-    const response = await requests().registrationRequest(data);
-    if (response.data.accessToken) {
-      navigate('/profile/user');
-    }
+    const playerData = {
+      name,
+      platform,
+      id: name,
+    };
+    const response = await serverRequests().registrationRequest(
+      regisrationData
+    );
+    dispatch(setPlayerData(playerData));
     dispatch(addAccessToken(response.data.accessToken));
   };
 
@@ -74,10 +79,8 @@ export const SignIn = () => {
       email: emailValue,
       password: passwordValue,
     };
-    const response = await requests().loginRequest(data);
-    if (response.data.accessToken) {
-      navigate('/profile/user');
-    }
+    const response = await serverRequests().loginRequest(data);
+    localStorage.setItem('jwt', response.data.accessToken);
     dispatch(addAccessToken(response.data.accessToken));
   };
 
@@ -115,7 +118,7 @@ export const SignIn = () => {
             type={'password'}
             placeholder={'Enter Password again'}
             onChangeFunc={(event) => {
-              handleChangeConfirmPassword(event);
+              handleChangeConfirm(event);
             }}
             value={confirmPassword}
           />

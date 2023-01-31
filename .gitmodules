@@ -1,0 +1,3 @@
+[submodule "jwtServer"]
+	path = jwtServer
+	url = https://github.com/PavelKhmyz/jwtServer

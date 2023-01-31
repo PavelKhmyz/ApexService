@@ -11,6 +11,7 @@ import { UserProfile } from './components/userProfile/UserProfile';
 import { ContentElement } from './components/userProfile/components/ContentElement';
 import { SettingsElement } from './components/userProfile/components/SettingsElement';
 import { useAppSelector } from './redux/hooks/hook';
+import { RequerAuth } from './private/RequerAuth';
 
 function App() {
   const themeValue = useAppSelector((state) => state.user.theme);
@@ -32,7 +33,14 @@ function App() {
           <Route path='/server' element={<ServerStatus />} />
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/news' element={<NewsPage />} />
-          <Route path='/profile' element={<UserProfile />}>
+          <Route
+            path='/profile'
+            element={
+              <RequerAuth>
+                <UserProfile />
+              </RequerAuth>
+            }
+          >
             <Route path='user' element={<ContentElement />} />
             <Route path='settings' element={<SettingsElement />} />
           </Route>
