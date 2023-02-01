@@ -66,4 +66,5 @@ export const authData: AuthDataStateType = {
   password: '',
   loader: false,
   accessToken: null,
+  refreshToken: null,
 };

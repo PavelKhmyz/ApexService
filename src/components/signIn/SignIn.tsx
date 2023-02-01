@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { serverRequests } from '../../axios/requests';
+import { requests } from '../../axios/requests';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { addAccessToken } from '../../redux/reducer/authSlice';
+import { addAccessToken, addRefreshToken } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
 import { PcLogo } from '../home/components/Title/PcLogo';
@@ -39,7 +39,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (auth) {
-      navigate('/profile/user');
+      navigate('/profile');
     }
   }, [auth, navigate]);
 
@@ -67,9 +67,7 @@ export const SignIn = () => {
       platform,
       id: name,
     };
-    const response = await serverRequests().registrationRequest(
-      regisrationData
-    );
+    const response = await requests().registrationRequest(regisrationData);
     dispatch(setPlayerData(playerData));
     dispatch(addAccessToken(response.data.accessToken));
   };
@@ -79,9 +77,9 @@ export const SignIn = () => {
       email: emailValue,
       password: passwordValue,
     };
-    const response = await serverRequests().loginRequest(data);
-    localStorage.setItem('jwt', response.data.accessToken);
+    const response = await requests().loginRequest(data);
     dispatch(addAccessToken(response.data.accessToken));
+    dispatch(addRefreshToken(response.data.refreshToken));
   };
 
   return (

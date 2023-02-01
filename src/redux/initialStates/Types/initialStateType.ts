@@ -68,4 +68,5 @@ export interface AuthDataStateType {
   password: string;
   loader: boolean;
   accessToken: null | string;
+  refreshToken: null | string;
 }
