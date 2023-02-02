@@ -1,22 +1,18 @@
 interface InputProps {
-  text: string;
-  type: string;
-  placeholder: string;
+  data: { text: string; type: string; placeholder: string; id: string };
   onChangeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
-  id: string;
   disabled?: boolean;
 }
 
 export const Input = ({
-  text,
-  type,
-  placeholder,
+  data,
   onChangeFunc,
   value,
-  id,
   ...disabled
 }: InputProps) => {
+  const { text, type, placeholder, id } = data;
+
   const isDisable = () => {
     if (disabled.disabled) {
       return disabled.disabled;

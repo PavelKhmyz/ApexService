@@ -1,9 +1,18 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../../redux/hooks/hook';
-import { UserEditableData } from '../../../redux/initialStates/Types/initialStateType';
-import { filterArray, setPlayerData } from '../../../redux/reducer/userSlice';
-import { Input } from '../../common/Input';
+import { useAppDispatch } from '../../../../../redux/hooks/hook';
+import { UserEditableData } from '../../../../../redux/initialStates/Types/initialStateType';
+import {
+  filterArray,
+  setPlayerData,
+} from '../../../../../redux/reducer/userSlice';
+import { Input } from '../../../../common/Input';
 
+const inputConfig = {
+  text: 'PlayerName:',
+  type: 'text',
+  placeholder: 'Enter Player Name',
+  id: 'nameInput',
+};
 interface AccountFormProps {
   inputsValue: UserEditableData;
 }
@@ -43,12 +52,9 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
   return (
     <div className='settingsInput'>
       <Input
-        text='PlayerName:'
-        type='text'
-        placeholder='Enter Player Name'
+        data={inputConfig}
         onChangeFunc={(event) => handleChangeUserName(event)}
         value={playerName}
-        id={'nameInput'}
         disabled={isDisabled}
       />
       <label htmlFor='selectId' className='settingsSelect'>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks/hook';
-import { getPlayerProfile } from '../../../redux/reducer/userSlice';
-import { PlayerStats } from '../../home/components/PlayerStats/PlayerStats';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
+import { getPlayerProfile } from '../../../../redux/reducer/userSlice';
+import { PlayerStats } from '../../../home/components/PlayerStats/PlayerStats';
 
 export const ContentElement = () => {
   const dispatch = useAppDispatch();
@@ -14,10 +14,6 @@ export const ContentElement = () => {
       dispatch(getPlayerProfile(parse));
     }
   }, [dispatch, requestData]);
-
-  useEffect(() => {
-    console.log(response);
-  }, [response]);
 
   return <div>{response && <PlayerStats data={response} />}</div>;
 };

@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
-import { PcLogo } from './PcLogo';
-import { PsLogo } from './PsLogo';
-import { XboxLogo } from './XboxLogo';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import {
   addName,
   getPlayerStats,
 } from '../../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../../common/Input';
-import { RadioButton } from './RadioButtons';
+import { RadioBlock } from '../../../common/radioBlock/RadioBlock';
+import './statsInputStyle.scss';
+
+const inputConfig = {
+  nameInput: {
+    id: 'inputFromStats',
+    text: 'Name:',
+    type: 'text',
+    placeholder: 'Enter your Player name',
+  },
+};
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();
@@ -37,23 +44,13 @@ export const StatsInput = () => {
   return (
     <div className='input'>
       <Input
-        id='inputFromStats'
-        text={'Name:'}
-        type={'text'}
-        placeholder={'Enter your Player name'}
+        data={inputConfig.nameInput}
         onChangeFunc={(event) => {
           handleChangeName(event);
         }}
         value={nameValue}
       />
-      <div className='radioWrapper'>
-        <RadioButton
-          child={<XboxLogo />}
-          data={{ id: 'input1', value: 'X1' }}
-        />
-        <RadioButton child={<PsLogo />} data={{ id: 'input2', value: 'PS4' }} />
-        <RadioButton child={<PcLogo />} data={{ id: 'input3', value: 'PC' }} />
-      </div>
+      <RadioBlock fromAuth={false} />
       <button
         disabled={isValid}
         className='inputButton'

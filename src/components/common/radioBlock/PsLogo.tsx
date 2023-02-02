@@ -1,5 +1,3 @@
-import './statsInputStyle.scss';
-
 export const PsLogo = () => (
   <svg className='platformLogo' viewBox='0 0 32 32'>
     <title>playstation</title>

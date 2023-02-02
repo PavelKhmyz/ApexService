@@ -1,4 +1,4 @@
-import { ThemeElementType } from '../../../components/userProfile/components/theme';
+import { ThemeElementType } from '../../../components/userProfile/components/settings/components/theme';
 import { CraftResponseType } from './craftInitialStateTypes';
 import { MapResponseType } from './mapStateType';
 import { NewsResponseType } from './newsInitialStateType';
@@ -65,7 +65,11 @@ export interface UserDataStateType {
 
 export interface AuthDataStateType {
   email: string;
+  name: string;
   password: string;
+  passwordConfirm: string;
+  platform: string;
+  isHiden: boolean;
   loader: boolean;
   accessToken: null | string;
   refreshToken: null | string;

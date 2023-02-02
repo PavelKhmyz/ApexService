@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks/hook';
-import { changeTheme } from '../../../redux/reducer/userSlice';
+import {
+  useAppSelector,
+  useAppDispatch,
+} from '../../../../../redux/hooks/hook';
+import { changeTheme } from '../../../../../redux/reducer/userSlice';
 import { theme } from './theme';
 import { ThemeSelectOption } from './ThemeSelectOption';
 

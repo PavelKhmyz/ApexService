@@ -1,5 +1,5 @@
-import { useAppDispatch } from '../../../redux/hooks/hook';
-import { selectUser } from '../../../redux/reducer/userSlice';
+import { useAppDispatch } from '../../../../../redux/hooks/hook';
+import { selectUser } from '../../../../../redux/reducer/userSlice';
 
 interface InputProps {
   name: string;

@@ -13,6 +13,21 @@ const authSlice = createSlice({
     changeEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
+    changePlatform: (state, action: PayloadAction<string>) => {
+      state.platform = action.payload;
+    },
+    changeName: (state, action: PayloadAction<string>) => {
+      state.name = action.payload;
+    },
+    changePassword: (state, action: PayloadAction<string>) => {
+      state.password = action.payload;
+    },
+    changePasswordConfirm: (state, action: PayloadAction<string>) => {
+      state.passwordConfirm = action.payload;
+    },
+    setIsHiden: (state) => {
+      state.isHiden = !state.isHiden;
+    },
     addTokens: (state, action: PayloadAction<PayloadType>) => {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
@@ -24,6 +39,15 @@ const authSlice = createSlice({
   },
 });
 
-export const { addTokens, logout, changeEmail } = authSlice.actions;
+export const {
+  addTokens,
+  logout,
+  changeEmail,
+  changePlatform,
+  changePassword,
+  changePasswordConfirm,
+  changeName,
+  setIsHiden,
+} = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

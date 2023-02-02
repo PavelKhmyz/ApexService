@@ -9,13 +9,13 @@ import { ServerStatus } from './components/serverStatus/ServerStatus';
 import { SignIn } from './components/signIn/SignIn';
 import { NewsPage } from './components/news/NewsPage';
 import { UserProfile } from './components/userProfile/UserProfile';
-import { ContentElement } from './components/userProfile/components/ContentElement';
-import { SettingsElement } from './components/userProfile/components/SettingsElement';
+import { ContentElement } from './components/userProfile/components/content/ContentElement';
 import { useAppDispatch, useAppSelector } from './redux/hooks/hook';
 import { RequerAuth } from './private/RequerAuth';
 import { requests } from './axios/requests';
 import { addPlayerData } from './redux/reducer/userSlice';
 import { addTokens } from './redux/reducer/authSlice';
+import { SettingsElement } from './components/userProfile/components/settings/SettingsElement';
 
 function App() {
   const themeValue = useAppSelector((state) => state.user.theme);
@@ -31,7 +31,7 @@ function App() {
     };
     dispatch(addPlayerData(response.data.user.userAccounts));
     dispatch(addTokens(tokens));
-    console.log(response);
+    console.log(response); // TODO: after refresh store is empty, add email and other data to store after refresh
   };
 
   useEffect(() => {

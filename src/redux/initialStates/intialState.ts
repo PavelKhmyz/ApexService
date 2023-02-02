@@ -1,4 +1,4 @@
-import { theme } from '../../components/userProfile/components/theme';
+import { theme } from '../../components/userProfile/components/settings/components/theme';
 import {
   AuthDataStateType,
   CraftStateType,
@@ -63,7 +63,11 @@ export const userData: UserDataStateType = {
 
 export const authData: AuthDataStateType = {
   email: '',
+  name: '',
   password: '',
+  passwordConfirm: '',
+  platform: '',
+  isHiden: true,
   loader: false,
   accessToken: null,
   refreshToken: null,

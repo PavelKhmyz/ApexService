@@ -10,8 +10,7 @@ export interface GetPlayerStatsProps {
 export interface RegistrationRequestProps {
   email: string;
   password: string;
-  playerName?: string;
-  userPlatform?: string;
+  userAccounts?: UserEditableData[];
 }
 
 export interface SendAccountsProps {

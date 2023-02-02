@@ -1,5 +1,3 @@
-import './statsInputStyle.scss';
-
 export const XboxLogo = () => (
   <svg className='platformLogo' viewBox='0 0 575.568 575.568'>
     <g>

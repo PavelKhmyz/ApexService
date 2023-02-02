@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GetPlayerStatsProps, requests } from '../../axios/requests';
-import { ThemeElementType } from '../../components/userProfile/components/theme';
+import { ThemeElementType } from '../../components/userProfile/components/settings/components/theme';
 import { userData } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { UserEditableData } from '../initialStates/Types/initialStateType';

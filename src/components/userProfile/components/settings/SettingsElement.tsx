@@ -1,8 +1,11 @@
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks/hook';
-import { filterArray, setPlayerData } from '../../../redux/reducer/userSlice';
-import { AccountForm } from './AccountForm';
-import { ChangeThemeComponent } from './ChangeThemeComponent';
-import { CheckAccountButton } from './CheckAccountButton';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
+import {
+  filterArray,
+  setPlayerData,
+} from '../../../../redux/reducer/userSlice';
+import { AccountForm } from './components/AccountForm';
+import { ChangeThemeComponent } from './components/ChangeThemeComponent';
+import { CheckAccountButton } from './components/CheckAccountButton';
 import './settingsElementStyle.scss';
 
 export const SettingsElement = () => {

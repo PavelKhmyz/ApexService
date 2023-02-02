@@ -2,12 +2,12 @@ import {
   Datum,
   PlayerStatsResponseType,
 } from '../../../../../redux/initialStates/Types/playerStatsStateType';
-import { PcLogo } from '../../Title/PcLogo';
-import { PsLogo } from '../../Title/PsLogo';
-import { XboxLogo } from '../../Title/XboxLogo';
+import { PcLogo } from '../../../../common/radioBlock/PcLogo';
 import { RankComponent } from './RankComponent';
 import { StatsValue } from './StatsValue';
 import './playerStatsPageStyle.scss';
+import { XboxLogo } from '../../../../common/radioBlock/XboxLogo';
+import { PsLogo } from '../../../../common/radioBlock/PsLogo';
 
 interface PlayerStatsPageProps {
   data: PlayerStatsResponseType;

@@ -1,95 +1,90 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { requests } from '../../axios/requests';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { addTokens, changeEmail } from '../../redux/reducer/authSlice';
+import { changeEmail, changePassword } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
-import { PcLogo } from '../home/components/Title/PcLogo';
-import { PsLogo } from '../home/components/Title/PsLogo';
-import { RadioButton } from '../home/components/Title/RadioButtons';
-import { XboxLogo } from '../home/components/Title/XboxLogo';
 import './signInStyle.scss';
-import { addPlayerData } from '../../redux/reducer/userSlice';
+import { RegistrationBlock } from './RegistrationBlock';
+import { ConfirmButton } from './ConfirmButton';
+import {
+  sendLoginRequest,
+  sendRegistrationRequest,
+} from '../../axios/authRequests';
+
+const inputConfig = {
+  emailInput: {
+    id: 'signInInput1',
+    text: 'E-mail:',
+    type: 'text',
+    placeholder: 'Enter your E-mail',
+  },
+  passwordInput: {
+    id: 'signInInput2',
+    text: 'Password:',
+    type: 'password',
+    placeholder: 'Enter your Password',
+  },
+};
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const auth = !!useAppSelector((state) => state.auth.accessToken);
-  const platform = useAppSelector((state) => state.playerStats.platform);
+  const platform = useAppSelector((state) => state.auth.platform);
   const emailValue = useAppSelector((state) => state.auth.email);
-  const [passwordValue, setPasswordValue] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const passwordValue = useAppSelector((state) => state.auth.password);
+  const confirmPassword = useAppSelector((state) => state.auth.passwordConfirm);
+  const name = useAppSelector((state) => state.auth.name);
   const [isValid, setIsValid] = useState(false);
-  const [isHiden, setIsHiden] = useState(true);
-  const [name, setName] = useState('');
+  const isHiden = useAppSelector((state) => state.auth.isHiden);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(event.target.value));
   };
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPasswordValue(event.target.value);
-  };
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
-  const handleChangeConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(event.target.value);
+    dispatch(changePassword(event.target.value));
   };
 
   useEffect(() => {
     if (auth) {
-      navigate('/');
+      navigate('/profile/user');
     }
   }, [auth, navigate]);
 
   useEffect(() => {
-    if (confirmPassword === passwordValue && passwordValue) {
-      setIsValid(true);
-    } else {
+    if (isHiden) {
+      if (emailValue && passwordValue) {
+        setIsValid(false);
+      } else {
+        setIsValid(true);
+      }
+    } else if (
+      confirmPassword === passwordValue &&
+      passwordValue &&
+      emailValue
+    ) {
       setIsValid(false);
+    } else {
+      setIsValid(true);
     }
-  }, [confirmPassword, passwordValue]);
+  }, [confirmPassword, emailValue, isHiden, passwordValue]);
 
-  const showRegistrationForm = () => {
-    setIsHiden((prev) => !prev);
-  };
-
-  const sendRegistrationRequest = async () => {
+  const registration = () => {
     const regisrationData = {
       email: emailValue,
       password: passwordValue,
       userAccounts: [{ name, platform, id: name + platform }],
     };
-    const response = await requests().registrationRequest(regisrationData);
-
-    const tokens = {
-      accessToken: response.data.accessToken,
-      refreshToken: response.data.refreshToken,
-    };
-
-    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-
-    dispatch(addPlayerData(response.data.user.userAccounts));
-    dispatch(addTokens(tokens));
+    sendRegistrationRequest(regisrationData);
   };
 
-  const sendLoginRequest = async () => {
+  const login = () => {
     const data = {
       email: emailValue,
       password: passwordValue,
     };
-    const response = await requests().loginRequest(data);
-
-    const tokens = {
-      accessToken: response.data.accessToken,
-      refreshToken: response.data.refreshToken,
-    };
-
-    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-
-    dispatch(addPlayerData(response.data.user.userAccounts));
-    dispatch(addTokens(tokens));
+    sendLoginRequest(data);
   };
 
   return (
@@ -97,98 +92,29 @@ export const SignIn = () => {
       <div className='inputForm'>
         <Logo className='signInlogo' />
         <Input
-          id='signInInput1'
-          text={'E-mail:'}
-          type={'text'}
-          placeholder={'Enter your E-mail'}
+          data={inputConfig.emailInput}
           onChangeFunc={(event) => {
             handleChangeEmail(event);
           }}
           value={emailValue}
         />
         <Input
-          id='signInInput2'
-          text={'Password:'}
-          type={'password'}
-          placeholder={'Enter your Password'}
+          data={inputConfig.passwordInput}
           onChangeFunc={(event) => {
             handleChangePassword(event);
           }}
           value={passwordValue}
         />
-        <div
-          className='registrationForm'
-          style={isHiden ? { height: '0px' } : { height: '240px' }}
-        >
-          <Input
-            id='signInInput3'
-            text={'Confirm:'}
-            type={'password'}
-            placeholder={'Enter Password again'}
-            onChangeFunc={(event) => {
-              handleChangeConfirm(event);
-            }}
-            value={confirmPassword}
-          />
-          <Input
-            id='signInInput4'
-            text={'Player Name:'}
-            type={'text'}
-            placeholder={'Name'}
-            onChangeFunc={(event) => {
-              handleChangeName(event);
-            }}
-            value={name}
-          />
-          <div className='radioWrapper'>
-            <RadioButton
-              child={<XboxLogo />}
-              data={{ id: 'input1', value: 'X1' }}
-            />
-            <RadioButton
-              child={<PsLogo />}
-              data={{ id: 'input2', value: 'PS4' }}
-            />
-            <RadioButton
-              child={<PcLogo />}
-              data={{ id: 'input3', value: 'PC' }}
-            />
-          </div>
-        </div>
+        <RegistrationBlock isHiden={isHiden} />
         <div className='buttonWrapper'>
           {isHiden ? (
-            <>
-              <button
-                type='button'
-                className='signInButton'
-                onClick={sendLoginRequest}
-              >
-                Sign in
-              </button>
-              <p className='haveAnAccount'>
-                Didn`t have an account?{' '}
-                <button type='button' onClick={showRegistrationForm}>
-                  Registration!
-                </button>
-              </p>
-            </>
+            <ConfirmButton validate={isValid} isLogin requestFunc={login} />
           ) : (
-            <>
-              <button
-                type='button'
-                className='signInButton'
-                disabled={!isValid}
-                onClick={sendRegistrationRequest}
-              >
-                Register
-              </button>
-              <p className='haveAnAccount'>
-                Have an account?{' '}
-                <button type='button' onClick={showRegistrationForm}>
-                  SignIn!
-                </button>
-              </p>
-            </>
+            <ConfirmButton
+              validate={isValid}
+              isLogin={false}
+              requestFunc={registration}
+            />
           )}
         </div>
       </div>

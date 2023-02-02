@@ -1,9 +1,7 @@
-import { useAppDispatch } from '../../../../redux/hooks/hook';
-import { addPlatform } from '../../../../redux/reducer/playerStatsSlice';
-
 interface InputProps {
   id: string;
   value: string;
+  changeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 interface RadioButtonProps {
   data: InputProps;
@@ -11,12 +9,8 @@ interface RadioButtonProps {
 }
 
 export const RadioButton = ({ data, child }: RadioButtonProps) => {
-  const dispatch = useAppDispatch();
-  const { id, value } = data;
+  const { id, value, changeFunc } = data;
 
-  const handleChangePlatform = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(addPlatform(event.target.value));
-  };
   return (
     <div className='radioButton'>
       <input
@@ -26,7 +20,7 @@ export const RadioButton = ({ data, child }: RadioButtonProps) => {
         id={id}
         value={value}
         onChange={(event) => {
-          handleChangePlatform(event);
+          changeFunc(event);
         }}
       />
       <label className='radioButtonLabel' htmlFor={id}>
