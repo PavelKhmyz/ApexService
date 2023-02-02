@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { requests } from '../../axios/requests';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { addAccessToken, addRefreshToken } from '../../redux/reducer/authSlice';
+import { addTokens } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
 import { PcLogo } from '../home/components/Title/PcLogo';
@@ -10,7 +10,7 @@ import { PsLogo } from '../home/components/Title/PsLogo';
 import { RadioButton } from '../home/components/Title/RadioButtons';
 import { XboxLogo } from '../home/components/Title/XboxLogo';
 import './signInStyle.scss';
-import { setPlayerData } from '../../redux/reducer/userSlice';
+import { addPlayerData } from '../../redux/reducer/userSlice';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (auth) {
-      navigate('/profile');
+      navigate('/');
     }
   }, [auth, navigate]);
 
@@ -59,17 +59,17 @@ export const SignIn = () => {
     const regisrationData = {
       email: emailValue,
       password: passwordValue,
-      playerName: name,
-      userPlatform: platform,
-    };
-    const playerData = {
-      name,
-      platform,
-      id: name,
+      userAccounts: [{ name, platform, id: name }],
     };
     const response = await requests().registrationRequest(regisrationData);
-    dispatch(setPlayerData(playerData));
-    dispatch(addAccessToken(response.data.accessToken));
+
+    const tokens = {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+    };
+
+    dispatch(addPlayerData(response.data.user.userAccounts));
+    dispatch(addTokens(tokens));
   };
 
   const sendLoginRequest = async () => {
@@ -78,8 +78,13 @@ export const SignIn = () => {
       password: passwordValue,
     };
     const response = await requests().loginRequest(data);
-    dispatch(addAccessToken(response.data.accessToken));
-    dispatch(addRefreshToken(response.data.refreshToken));
+
+    const tokens = {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+    };
+    dispatch(addPlayerData(response.data.user.userAccounts));
+    dispatch(addTokens(tokens));
   };
 
   return (

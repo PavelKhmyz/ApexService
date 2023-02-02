@@ -29,12 +29,11 @@ export const requests = () => {
       backEnd.post('/registration', data),
     loginRequest: (data: RegistrationRequestProps) =>
       backEnd.post('/login', data),
-    logoutRequest: () => backEnd.post('/logout'),
-    // refreshToken: () => backEnd.get('/refresh'),
+    logoutRequest: (refToken: string) =>
+      backEnd.post('/logout', { headers: { token: refToken } }),
+    refreshToken: (refToken: string) =>
+      backEnd.get('/refresh', { headers: { token: refToken } }),
     getUsers: (header: string) =>
       backEnd.get('/users', { headers: { Authorization: header } }),
   };
 };
-
-export const refreshToken = (refToken: string) =>
-  authApi.get('/refresh', { headers: { token: refToken } });

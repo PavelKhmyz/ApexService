@@ -38,6 +38,9 @@ const userSlice = createSlice({
       ...state,
       playerData: [...state.playerData, action.payload],
     }),
+    addPlayerData: (state, action: PayloadAction<Array<UserEditableData>>) => {
+      state.playerData = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -66,7 +69,12 @@ const userSlice = createSlice({
   },
 });
 
-export const { setPlayerData, filterArray, selectUser, changeTheme } =
-  userSlice.actions;
+export const {
+  setPlayerData,
+  filterArray,
+  selectUser,
+  changeTheme,
+  addPlayerData,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

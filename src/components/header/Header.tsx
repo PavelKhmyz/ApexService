@@ -4,7 +4,7 @@ import { Logo } from '../common/Logo';
 import { useAppSelector } from '../../redux/hooks/hook';
 
 export const Header = () => {
-  const auth = !useAppSelector((state) => state.auth.accessToken);
+  const auth = !!useAppSelector((state) => state.auth.accessToken);
   const activeStyle = { textDecoration: 'underline' };
   const isActiveLink = (isActive: boolean) =>
     isActive ? activeStyle : undefined;
@@ -29,13 +29,23 @@ export const Header = () => {
         >
           Server Status
         </NavLink>
-        <NavLink
-          style={({ isActive }) => isActiveLink(isActive)}
-          className='navigationLink'
-          to={'/signIn'}
-        >
-          {auth ? 'Sign In' : 'Profile'}
-        </NavLink>
+        {auth ? (
+          <NavLink
+            style={({ isActive }) => isActiveLink(isActive)}
+            className='navigationLink'
+            to={'/profile/user'}
+          >
+            Profile
+          </NavLink>
+        ) : (
+          <NavLink
+            style={({ isActive }) => isActiveLink(isActive)}
+            className='navigationLink'
+            to={'/signIn'}
+          >
+            Sign In
+          </NavLink>
+        )}
       </div>
     </div>
   );
