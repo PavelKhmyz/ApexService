@@ -7,8 +7,10 @@ import './userProfileStyle.scss';
 export const UserProfile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const email = useAppSelector((state) => state.auth.email);
   const token = useAppSelector((state) => state.auth.accessToken);
   const refToken = useAppSelector((state) => state.auth.refreshToken);
+  const accounts = useAppSelector((state) => state.user.playerData);
   const requestToken = `Bearer ${token}`;
 
   const refreshRequest = async () => {
@@ -19,12 +21,16 @@ export const UserProfile = () => {
 
   const handleLogout = async () => {
     await requests().logoutRequest(requestToken);
+    window.sessionStorage.removeItem('refreshToken');
     navigate(-1);
     dispatch(logout());
   };
   const sendRequestUsers = async () => {
-    console.log(document.cookie);
-    const response = await requests().getUsers(requestToken);
+    const data = {
+      email,
+      userAccounts: accounts,
+    };
+    const response = await requests().sendAccounts(data);
     console.log(response);
   };
 
@@ -42,7 +48,7 @@ export const UserProfile = () => {
         </button>
         <button type='button' onClick={sendRequestUsers}>
           {' '}
-          users
+          accounts
         </button>
       </div>
       <div className='profileContentWrapper'>

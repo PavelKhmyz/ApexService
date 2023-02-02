@@ -1,3 +1,4 @@
+import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
 import { apexApi, API_KEY } from './api';
 import { authApi } from './auth';
 
@@ -11,6 +12,11 @@ export interface RegistrationRequestProps {
   password: string;
   playerName?: string;
   userPlatform?: string;
+}
+
+export interface SendAccountsProps {
+  email: string;
+  userAccounts: UserEditableData[];
 }
 
 export const requests = () => {
@@ -35,5 +41,6 @@ export const requests = () => {
       backEnd.get('/refresh', { headers: { token: refToken } }),
     getUsers: (header: string) =>
       backEnd.get('/users', { headers: { Authorization: header } }),
+    sendAccounts: (data: SendAccountsProps) => backEnd.post('/account', data),
   };
 };

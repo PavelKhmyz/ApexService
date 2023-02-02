@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { requests } from '../../axios/requests';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { addTokens } from '../../redux/reducer/authSlice';
+import { addTokens, changeEmail } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
 import { PcLogo } from '../home/components/Title/PcLogo';
@@ -17,7 +17,7 @@ export const SignIn = () => {
   const navigate = useNavigate();
   const auth = !!useAppSelector((state) => state.auth.accessToken);
   const platform = useAppSelector((state) => state.playerStats.platform);
-  const [emailValue, setEmailValue] = useState('');
+  const emailValue = useAppSelector((state) => state.auth.email);
   const [passwordValue, setPasswordValue] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
@@ -25,7 +25,7 @@ export const SignIn = () => {
   const [name, setName] = useState('');
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmailValue(event.target.value);
+    dispatch(changeEmail(event.target.value));
   };
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event.target.value);
@@ -59,7 +59,7 @@ export const SignIn = () => {
     const regisrationData = {
       email: emailValue,
       password: passwordValue,
-      userAccounts: [{ name, platform, id: name }],
+      userAccounts: [{ name, platform, id: name + platform }],
     };
     const response = await requests().registrationRequest(regisrationData);
 
@@ -67,6 +67,8 @@ export const SignIn = () => {
       accessToken: response.data.accessToken,
       refreshToken: response.data.refreshToken,
     };
+
+    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
 
     dispatch(addPlayerData(response.data.user.userAccounts));
     dispatch(addTokens(tokens));
@@ -83,6 +85,9 @@ export const SignIn = () => {
       accessToken: response.data.accessToken,
       refreshToken: response.data.refreshToken,
     };
+
+    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
+
     dispatch(addPlayerData(response.data.user.userAccounts));
     dispatch(addTokens(tokens));
   };

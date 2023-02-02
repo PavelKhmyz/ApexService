@@ -1,4 +1,5 @@
 import './App.scss';
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/footer/Fotter';
 import { Header } from './components/header/Header';
@@ -10,11 +11,37 @@ import { NewsPage } from './components/news/NewsPage';
 import { UserProfile } from './components/userProfile/UserProfile';
 import { ContentElement } from './components/userProfile/components/ContentElement';
 import { SettingsElement } from './components/userProfile/components/SettingsElement';
-import { useAppSelector } from './redux/hooks/hook';
+import { useAppDispatch, useAppSelector } from './redux/hooks/hook';
 import { RequerAuth } from './private/RequerAuth';
+import { requests } from './axios/requests';
+import { addPlayerData } from './redux/reducer/userSlice';
+import { addTokens } from './redux/reducer/authSlice';
 
 function App() {
   const themeValue = useAppSelector((state) => state.user.theme);
+  const auth = useAppSelector((state) => state.auth.accessToken);
+  const dispatch = useAppDispatch();
+
+  const refresh = async (refToken: string) => {
+    const response = await requests().refreshToken(refToken);
+    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
+    const tokens = {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+    };
+    dispatch(addPlayerData(response.data.user.userAccounts));
+    dispatch(addTokens(tokens));
+    console.log(response);
+  };
+
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('refreshToken');
+
+    if (token && !auth) {
+      refresh(token);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const main = document.documentElement;
   main.style.setProperty('--bgColor', themeValue.bgColor);
