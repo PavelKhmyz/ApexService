@@ -11,6 +11,7 @@ import {
   sendLoginRequest,
   sendRegistrationRequest,
 } from '../../axios/authRequests';
+import { ErrorComponent } from '../home/components/ErrorComponent';
 
 const inputConfig = {
   emailInput: {
@@ -38,6 +39,7 @@ export const SignIn = () => {
   const name = useAppSelector((state) => state.auth.name);
   const [isValid, setIsValid] = useState(false);
   const isHiden = useAppSelector((state) => state.auth.isHiden);
+  const error = useAppSelector((state) => state.auth.error);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(event.target.value));
@@ -74,7 +76,7 @@ export const SignIn = () => {
     const regisrationData = {
       email: emailValue,
       password: passwordValue,
-      userAccounts: [{ name, platform, id: name + platform }],
+      userAccounts: [{ name, platform, id: name + platform, checked: true }],
     };
     sendRegistrationRequest(regisrationData);
   };
@@ -118,6 +120,7 @@ export const SignIn = () => {
           )}
         </div>
       </div>
+      {error && <ErrorComponent data={error} />}
     </div>
   );
 };

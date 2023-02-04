@@ -35,6 +35,16 @@ const authSlice = createSlice({
     logout: (state) => {
       state.accessToken = null;
       state.refreshToken = null;
+      state.email = '';
+      state.password = '';
+      state.passwordConfirm = '';
+      state.name = '';
+      state.platform = '';
+      state.isHiden = true;
+      state.loader = false;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
 });
@@ -48,6 +58,7 @@ export const {
   changePasswordConfirm,
   changeName,
   setIsHiden,
+  setError,
 } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

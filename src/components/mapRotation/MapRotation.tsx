@@ -23,19 +23,13 @@ export const MapRotation = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (time) {
-      setTimeout(handleChangeTime, 1000);
-    }
     if (time === (0 || null)) {
       dispatch(getRotation());
     }
-  }, [dispatch, handleChangeTime, time]);
-
-  useEffect(() => {
-    if (!maps) {
-      dispatch(getRotation());
+    if (time) {
+      setTimeout(handleChangeTime, 1000);
     }
-  }, [dispatch, handleClear, maps]);
+  }, [dispatch, handleChangeTime, handleClear, time]);
 
   // eslint-disable-next-line arrow-body-style
   useEffect(() => {

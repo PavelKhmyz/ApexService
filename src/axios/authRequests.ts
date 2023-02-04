@@ -1,7 +1,16 @@
 import { AxiosError } from 'axios';
 import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
-import { addTokens, logout } from '../redux/reducer/authSlice';
-import { addPlayerData } from '../redux/reducer/userSlice';
+import {
+  addTokens,
+  changeEmail,
+  logout,
+  setError,
+} from '../redux/reducer/authSlice';
+import {
+  addPlayerData,
+  cleareState,
+  selectUser,
+} from '../redux/reducer/userSlice';
 import { store } from '../redux/store';
 import { RegistrationRequestProps, requests } from './requests';
 
@@ -17,61 +26,96 @@ export const sendRegistrationRequest = async (
 ) => {
   try {
     const response = await requestsStore.registrationRequest(data);
+    if (typeof response.data === 'string') {
+      store.dispatch(setError(response.data));
+    } else {
+      const tokens = {
+        accessToken: response.data.accessToken,
+        refreshToken: response.data.refreshToken,
+      };
 
-    const tokens = {
-      accessToken: response.data.accessToken,
-      refreshToken: response.data.refreshToken,
-    };
+      const [isChecked] = response.data.user.userAccounts.filter(
+        (el: UserEditableData) => el.checked
+      );
 
-    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
+      window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
 
-    store.dispatch(addPlayerData(response.data.user.userAccounts));
-    store.dispatch(addTokens(tokens));
+      store.dispatch(selectUser(isChecked.id));
+      store.dispatch(addPlayerData(response.data.user.userAccounts));
+      store.dispatch(addTokens(tokens));
+      store.dispatch(setError(undefined));
+    }
   } catch (error) {
     const e = error as AxiosError;
-    console.log(e.response?.data); // TODO: typed errors
+    store.dispatch(setError(e.response?.data));
   }
 };
 
 export const sendLoginRequest = async (data: RegistrationRequestProps) => {
   try {
     const response = await requestsStore.loginRequest(data);
+    if (typeof response.data === 'string') {
+      store.dispatch(setError(response.data));
+    } else {
+      const [isChecked] = response.data.user.userAccounts.filter(
+        (el: UserEditableData) => el.checked === true
+      );
+      const tokens = {
+        accessToken: response.data.accessToken,
+        refreshToken: response.data.refreshToken,
+      };
 
-    const tokens = {
-      accessToken: response.data.accessToken,
-      refreshToken: response.data.refreshToken,
-    };
+      window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
 
-    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-
-    store.dispatch(addPlayerData(response.data.user.userAccounts));
-    store.dispatch(addTokens(tokens));
+      store.dispatch(addTokens(tokens));
+      store.dispatch(addPlayerData(response.data.user.userAccounts));
+      store.dispatch(selectUser(isChecked.id));
+      store.dispatch(setError(undefined));
+    }
   } catch (error) {
     const e = error as AxiosError;
-    console.log(e.response?.data); // TODO: typed errors
+    store.dispatch(setError(e.response?.data));
   }
 };
 
 export const updateDb = async (data: UpdateDbProps) => {
   try {
     const response = await requestsStore.sendAccounts(data);
-    console.log(response);
+    store.dispatch(addPlayerData(response.data.userAccounts));
+    store.dispatch(setError(undefined));
   } catch (error) {
     const e = error as AxiosError;
-    console.log(e.response?.data); // TODO: typed errors
+    store.dispatch(setError(e.response?.data));
   }
 };
 
 export const logoutRequest = async (token: string) => {
   try {
-    const response = await requestsStore.logoutRequest(token);
-    console.log(response);
-
-    window.sessionStorage.removeItem('refreshToken');
-
-    store.dispatch(logout());
+    await requestsStore.logoutRequest(token);
   } catch (error) {
     const e = error as AxiosError;
-    console.log(e.response?.data); // TODO: typed errors
+    console.log(e.response?.data);
+  } finally {
+    window.sessionStorage.removeItem('refreshToken');
+    store.dispatch(cleareState());
+    store.dispatch(logout());
+  }
+};
+
+export const refreshRequest = async (refToken: string) => {
+  try {
+    const response = await requestsStore.refreshToken(refToken);
+    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
+    const tokens = {
+      accessToken: response.data.accessToken,
+      refreshToken: response.data.refreshToken,
+    };
+    store.dispatch(addPlayerData(response.data.user.userAccounts));
+    store.dispatch(addTokens(tokens));
+    store.dispatch(changeEmail(response.data.user.email));
+    store.dispatch(setError(undefined));
+  } catch (error) {
+    const e = error as AxiosError;
+    store.dispatch(setError(e.response?.data));
   }
 };

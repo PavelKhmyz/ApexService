@@ -43,29 +43,7 @@ export interface Legend {
 }
 
 export interface All {
-  Revenant: Legend;
-  Crypto: Legend;
-  Horizon: Legend;
-  Gibraltar: Legend;
-  Wattson: Legend;
-  Fuse: Legend;
-  Bangalore: Legend;
-  Wraith: Legend;
-  Octane: Legend;
-  Bloodhound: Legend;
-  Caustic: Legend;
-  Lifeline: Legend;
-  Pathfinder: Legend;
-  Loba: Legend;
-  Mirage: Legend;
-  Rampart: Legend;
-  Valkyrie: Legend;
-  Seer: Legend;
-  Ash: Legend;
-  'Mad Maggie': Legend;
-  Newcastle: Legend;
-  Vantage: Legend;
-  Catalyst: Legend;
+  [key: string]: Legend;
 }
 //---------------------------------------------
 
@@ -150,8 +128,8 @@ export interface PlayerStatsResponseType {
   global: Global;
   realtime: Realtime;
   legends: Legends;
-  mozambiquehere_internal: {};
+  mozambiquehere_internal: object;
   ALS: ALS;
-  total: {};
+  total: object;
   Error?: string;
 }

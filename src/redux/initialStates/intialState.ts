@@ -25,6 +25,8 @@ export const serverState: ServerDataType = {
 
 export const newsState: NewsDataType = {
   newsData: null,
+  page: 0,
+  pagesArray: 0,
   loadingNews: false,
   error: undefined,
 };
@@ -58,7 +60,8 @@ export const userData: UserDataStateType = {
   loader: false,
   serverResponse: null,
   badRequest: null,
-  theme: theme[0],
+  theme: theme.Classic,
+  error: undefined,
 };
 
 export const authData: AuthDataStateType = {
@@ -71,4 +74,5 @@ export const authData: AuthDataStateType = {
   loader: false,
   accessToken: null,
   refreshToken: null,
+  error: undefined,
 };

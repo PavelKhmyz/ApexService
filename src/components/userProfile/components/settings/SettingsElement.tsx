@@ -1,3 +1,4 @@
+import { updateDb } from '../../../../axios/authRequests';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import {
   filterArray,
@@ -12,11 +13,17 @@ export const SettingsElement = () => {
   const dispatch = useAppDispatch();
   const accounts = useAppSelector((state) => state.user.playerData);
   const request = useAppSelector((state) => state.user.selectUser);
+  const email = useAppSelector((state) => state.auth.email);
 
   const handleAddNewAccount = () => {
-    const data = { name: '', platform: 'X1', id: 'empty' };
+    const data = { name: '', platform: 'X1', id: 'empty', checked: false };
     dispatch(filterArray(data));
     dispatch(setPlayerData(data));
+  };
+
+  const handleSaveChanges = () => {
+    const data = { email, userAccounts: accounts };
+    updateDb(data);
   };
 
   const isChecked = (id: string) => {
@@ -40,6 +47,9 @@ export const SettingsElement = () => {
           className='addButton'
         >
           Add New Acount
+        </button>
+        <button type='button' onClick={handleSaveChanges} className='addButton'>
+          Save Changes
         </button>
         <div className='accountsWrapper'>
           {accounts.map((element) => (

@@ -6,6 +6,7 @@ import {
   setPlayerData,
 } from '../../../../../redux/reducer/userSlice';
 import { Input } from '../../../../common/Input';
+import { SelectElement } from '../../../../common/select/SelectElement';
 
 const inputConfig = {
   text: 'PlayerName:',
@@ -13,6 +14,11 @@ const inputConfig = {
   placeholder: 'Enter Player Name',
   id: 'nameInput',
 };
+const optionCongig = [
+  { data: 'X-box', value: 'X1' },
+  { data: 'PlayStation', value: 'PS4' },
+  { data: 'PC', value: 'PC' },
+];
 interface AccountFormProps {
   inputsValue: UserEditableData;
 }
@@ -37,39 +43,46 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
   const handleChangeDisable = () => {
     setIsDisabled((prev) => !prev);
   };
-
-  const savePlayerData = () => {
+  const removeElement = () => {
     const data = {
       name: playerName,
       platform: userPlatform,
       id: playerName + userPlatform,
+      checked: false,
+    };
+    dispatch(filterArray(data));
+  };
+
+  const savePlayerData = async () => {
+    const data = {
+      name: playerName,
+      platform: userPlatform,
+      id: playerName + userPlatform,
+      checked: false,
     };
     handleChangeDisable();
     dispatch(filterArray(data));
-
     dispatch(setPlayerData(data));
   };
+
   return (
     <div className='settingsInput'>
+      <button type='button' className='removeButton' onClick={removeElement}>
+        Remove
+      </button>
       <Input
         data={inputConfig}
         onChangeFunc={(event) => handleChangeUserName(event)}
         value={playerName}
         disabled={isDisabled}
       />
-      <label htmlFor='selectId' className='settingsSelect'>
-        <span>Platform:</span>
-        <select
-          onChange={(event) => handleChangeUserPlatform(event)}
-          value={userPlatform}
-          id='selectId'
-          disabled={isDisabled}
-        >
-          <option value='X1'>X-box</option>
-          <option value='PS4'>PlayStation</option>
-          <option value='PC'>PC</option>
-        </select>
-      </label>
+      <SelectElement
+        title={'Platform:'}
+        value={userPlatform}
+        optionsArray={optionCongig}
+        handleChange={handleChangeUserPlatform}
+        disable={isDisabled}
+      />
       <div className='buttonsBlock'>
         <button
           type='button'

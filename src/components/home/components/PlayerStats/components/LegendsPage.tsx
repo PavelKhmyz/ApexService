@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { SelectedLegend } from './SelectedLegend';
 import './legendsPageStyle.scss';
-import { SelectOption } from './SelectOption';
 import {
   useAppDispatch,
   useAppSelector,
@@ -11,6 +10,7 @@ import {
   changeSearchValue,
   setNewLegend,
 } from '../../../../../redux/reducer/playerStatsSlice';
+import { SelectElement } from '../../../../common/select/SelectElement';
 
 interface LegendsPageProps {
   data: Legends;
@@ -20,7 +20,7 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
   const dispatch = useAppDispatch();
   const searchValue = useAppSelector((state) => state.playerStats.searchValue);
   const newLegend = useAppSelector((state) => state.playerStats.newLegend);
-  const allLegends = Object.entries(data.all);
+  const { all } = data;
   const selectKeys = Object.keys(data.all);
 
   useEffect(() => {
@@ -33,32 +33,21 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
     dispatch(changeSearchValue(event.target.value));
   };
 
-  const searchLegend = (name: string) => {
-    const searchingLegend = allLegends.filter((el) => el[0] === name);
-    const [bla] = searchingLegend;
-    dispatch(setNewLegend({ ...bla[1], LegendName: bla[0] }));
+  const searchLegend = () => {
+    const searchingLegend = all[searchValue];
+    dispatch(setNewLegend(searchingLegend));
   };
 
   return (
     <div className='legendWrapper'>
       <div className='legendsSearch'>
-        <label htmlFor='selectId' className='inputLabel'>
-          <span>Legend Name:</span>
-          <select
-            onChange={(event) => handleChangeInputValue(event)}
-            value={searchValue}
-            id='selectId'
-          >
-            {selectKeys.map((key) => (
-              <SelectOption key={key} data={key} />
-            ))}
-          </select>
-        </label>
-        <button
-          className='searchButton'
-          type='button'
-          onClick={() => searchLegend(searchValue)}
-        >
+        <SelectElement
+          title={'Legend Name:'}
+          value={searchValue}
+          optionsArray={selectKeys}
+          handleChange={handleChangeInputValue}
+        />
+        <button className='searchButton' type='button' onClick={searchLegend}>
           Show
         </button>
       </div>

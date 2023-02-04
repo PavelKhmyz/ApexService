@@ -4,6 +4,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 20px;
     .inputForm{
         width: 30%;
         height: auto;
@@ -89,5 +91,12 @@
                 font-size: 30px;
             }
         }
+    }
+    .errorMessage{
+        padding: 20px;
+        font-family: 'Duke';
+        font-size: 30px;
+        color: white;
+        background-color: var(--firstColor)
     }
 }

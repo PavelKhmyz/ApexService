@@ -4,13 +4,14 @@ import {
   useAppDispatch,
 } from '../../../../../redux/hooks/hook';
 import { changeTheme } from '../../../../../redux/reducer/userSlice';
+import { SelectElement } from '../../../../common/select/SelectElement';
 import { theme } from './theme';
-import { ThemeSelectOption } from './ThemeSelectOption';
 
 export const ChangeThemeComponent = () => {
   const currentTheme = useAppSelector((state) => state.user.theme);
   const [searchValue, setSearchValue] = useState(currentTheme.name);
   const dispatch = useAppDispatch();
+  const themeKeys = Object.keys(theme);
 
   const handleChangeInputValue = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -19,26 +20,18 @@ export const ChangeThemeComponent = () => {
   };
 
   const saveTheme = () => {
-    const savedTheme = theme.filter((el) => el.name === searchValue);
-    const [actualTheme] = savedTheme;
-
-    dispatch(changeTheme(actualTheme));
+    const savedTheme = theme[searchValue];
+    dispatch(changeTheme(savedTheme));
   };
 
   return (
     <div className='changeThemeSelect'>
-      <label htmlFor='selectId' className='inputLabel'>
-        <span>Select theme:</span>
-        <select
-          onChange={(event) => handleChangeInputValue(event)}
-          value={searchValue}
-          id='selectId'
-        >
-          {theme.map((el) => (
-            <ThemeSelectOption key={el.name} data={el} />
-          ))}
-        </select>
-      </label>
+      <SelectElement
+        title={'Select theme:'}
+        value={searchValue}
+        optionsArray={themeKeys}
+        handleChange={handleChangeInputValue}
+      />
       <button type='button' onClick={saveTheme} className='themeSaveButton'>
         Save Theme
       </button>

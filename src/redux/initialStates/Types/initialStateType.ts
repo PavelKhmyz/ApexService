@@ -21,6 +21,8 @@ export interface ServerDataType {
 
 export interface NewsDataType {
   newsData: null | [NewsResponseType];
+  page: number;
+  pagesArray: number;
   loadingNews: boolean;
   error: string | undefined;
 }
@@ -52,6 +54,7 @@ export interface UserEditableData {
   name: string;
   platform: string;
   id: string;
+  checked: boolean;
 }
 
 export interface UserDataStateType {
@@ -61,6 +64,7 @@ export interface UserDataStateType {
   serverResponse: null | PlayerStatsResponseType;
   badRequest: null | PlayerStatsResponseType;
   theme: ThemeElementType;
+  error: undefined | string;
 }
 
 export interface AuthDataStateType {
@@ -73,4 +77,5 @@ export interface AuthDataStateType {
   loader: boolean;
   accessToken: null | string;
   refreshToken: null | string;
+  error: string | undefined;
 }

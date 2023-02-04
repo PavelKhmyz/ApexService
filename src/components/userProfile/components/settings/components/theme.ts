@@ -7,10 +7,12 @@ export interface ThemeElementType {
   shadow: string;
 }
 
-export type ThemeType = ThemeElementType[];
+export interface ThemeType {
+  [key: string]: ThemeElementType;
+}
 
-export const theme: ThemeType = [
-  {
+export const theme: ThemeType = {
+  Classic: {
     name: 'Classic',
     firstColor: 'rgb(218, 41, 42)',
     secondColor: 'black',
@@ -18,7 +20,7 @@ export const theme: ThemeType = [
     fontColor: 'white',
     shadow: '0px 80px 29px -5px rgba(0, 0, 0, 1) inset',
   },
-  {
+  Light: {
     name: 'Light',
     firstColor: 'rgb(218, 41, 42)',
     secondColor: 'bla',
@@ -26,20 +28,4 @@ export const theme: ThemeType = [
     fontColor: 'black',
     shadow: '0px 80px 29px -5px white inset',
   },
-  {
-    name: 'Third',
-    firstColor: 'rgb(22, 22, 22)',
-    secondColor: 'bla',
-    bgColor: 'black',
-    fontColor: 'white',
-    shadow: '0px 80px 29px -5px white inset',
-  },
-  {
-    name: 'Four',
-    firstColor: 'rgb(22, 22, 22)',
-    secondColor: 'bla',
-    bgColor: 'black',
-    fontColor: 'white',
-    shadow: '0px 80px 29px -5px white inset',
-  },
-];
+};

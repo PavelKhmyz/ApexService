@@ -13,7 +13,14 @@ export const getNews = createAsyncThunk('apex/news', async () => {
 const newsSlice = createSlice({
   name: 'news',
   initialState: newsState,
-  reducers: {},
+  reducers: {
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
+    setPagesArray: (state, action) => {
+      state.pagesArray = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getNews.pending, (state) => {
@@ -37,5 +44,7 @@ const newsSlice = createSlice({
       );
   },
 });
+
+export const { setPage, setPagesArray } = newsSlice.actions;
 
 export const newsReducer = newsSlice.reducer;

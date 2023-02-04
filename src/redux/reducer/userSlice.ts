@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GetPlayerStatsProps, requests } from '../../axios/requests';
-import { ThemeElementType } from '../../components/userProfile/components/settings/components/theme';
+import {
+  theme,
+  ThemeElementType,
+} from '../../components/userProfile/components/settings/components/theme';
 import { userData } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { UserEditableData } from '../initialStates/Types/initialStateType';
@@ -23,10 +26,17 @@ const userSlice = createSlice({
       state.theme = action.payload;
     },
     selectUser: (state, action) => {
-      const filtered = state.playerData.filter(
+      [state.selectUser] = state.playerData.filter(
         (el) => el.id === action.payload
       );
-      [state.selectUser] = filtered;
+
+      state.playerData.forEach((el) => {
+        if (el.id !== action.payload) {
+          el.checked = false;
+        } else {
+          el.checked = true;
+        }
+      });
     },
     filterArray: (state, action: PayloadAction<UserEditableData>) => {
       state.playerData = state.playerData.filter(
@@ -41,6 +51,14 @@ const userSlice = createSlice({
     addPlayerData: (state, action: PayloadAction<Array<UserEditableData>>) => {
       state.playerData = action.payload;
     },
+    cleareState: (state) => {
+      state.playerData = [];
+      state.selectUser = null;
+      state.loader = false;
+      state.serverResponse = null;
+      state.badRequest = null;
+      state.theme = theme.Classic;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,17 +70,21 @@ const userSlice = createSlice({
         (state, action: PayloadAction<PlayerStatsResponseType>) => {
           if (Object.keys(action.payload).length > 1) {
             state.serverResponse = action.payload;
+            state.badRequest = null;
           } else {
             state.badRequest = action.payload;
+            state.serverResponse = null;
           }
           state.loader = false;
+          state.error = undefined;
         }
       )
       .addCase(
         getPlayerProfile.rejected,
         (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
-          // state.loadingStats = false;
-          // state.error = action.error.message;
+          state.loader = false;
+          state.serverResponse = null;
+          state.error = action.error.message;
           console.log(action.error.message);
         }
       );
@@ -75,6 +97,7 @@ export const {
   selectUser,
   changeTheme,
   addPlayerData,
+  cleareState,
 } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;

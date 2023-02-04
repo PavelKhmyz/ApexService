@@ -23,6 +23,7 @@ export const CheckAccountButton = ({
   const handleChangePlatform = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(selectUser(event.target.value));
   };
+
   return (
     <div className='radioButton'>
       <input
