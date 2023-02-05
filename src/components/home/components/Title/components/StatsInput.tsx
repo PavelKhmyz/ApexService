@@ -36,23 +36,25 @@ export const StatsInput = () => {
   }, [nameValue, platformValue]);
 
   return (
-    <div className='input'>
-      <Input
-        data={statsInputConfig.nameInput}
-        onChangeFunc={(event) => {
-          handleChangeName(event);
-        }}
-        value={nameValue}
-      />
-      <RadioBlock fromAuth={false} />
-      <button
-        disabled={isValid}
-        className='inputButton'
-        type='button'
-        onClick={getStats}
-      >
-        Show Stats
-      </button>
+    <div className='inputWrapper'>
+      <div className='inputBlock'>
+        <Input
+          data={statsInputConfig.nameInput}
+          onChangeFunc={(event) => {
+            handleChangeName(event);
+          }}
+          value={nameValue}
+        />
+        <RadioBlock fromAuth={false} />
+        <button
+          disabled={isValid}
+          className='inputButton'
+          type='button'
+          onClick={getStats}
+        >
+          Show Stats
+        </button>
+      </div>
     </div>
   );
 };

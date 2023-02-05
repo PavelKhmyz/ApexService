@@ -21,7 +21,7 @@ export const Home = () => {
         {error && <ErrorComponent data={error} />}
         {badRequest && <ErrorComponent data={badRequest} />}
         {playerStats && <PlayerStats data={playerStats} />}
-        <PropagateLoader loading={loading} />
+        <PropagateLoader color='white' loading={loading} />
         <NewsFeed />
         <PredatorsAndCraftBlock />
       </div>

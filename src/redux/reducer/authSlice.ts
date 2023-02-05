@@ -41,6 +41,7 @@ const authSlice = createSlice({
       state.platform = '';
       state.isHiden = true;
       state.loader = false;
+      state.error = undefined;
     },
     setError: (state, action) => {
       state.error = action.payload;

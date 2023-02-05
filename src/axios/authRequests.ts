@@ -44,7 +44,11 @@ export const sendRegistrationRequest = async (
     }
   } catch (error) {
     const e = error as AxiosError;
-    store.dispatch(setError(e.response?.data));
+    if (e.response) {
+      store.dispatch(setError(e.response.data));
+    } else {
+      store.dispatch(setError(e.message));
+    }
     store.dispatch(setLoader());
   }
 };
@@ -73,7 +77,11 @@ export const sendLoginRequest = async (data: RegistrationRequestProps) => {
     }
   } catch (error) {
     const e = error as AxiosError;
-    store.dispatch(setError(e.response?.data));
+    if (e.response) {
+      store.dispatch(setError(e.response.data));
+    } else {
+      store.dispatch(setError(e.message));
+    }
     store.dispatch(setLoader());
   }
 };
@@ -86,7 +94,11 @@ export const updateDb = async (data: UpdateDbProps) => {
     store.dispatch(setError(undefined));
   } catch (error) {
     const e = error as AxiosError;
-    store.dispatch(setError(e.response?.data));
+    if (e.response) {
+      store.dispatch(setError(e.response.data));
+    } else {
+      store.dispatch(setError(e.message));
+    }
   }
 };
 
@@ -95,7 +107,11 @@ export const logoutRequest = async (token: string) => {
     await requestsStore.logoutRequest(token);
   } catch (error) {
     const e = error as AxiosError;
-    store.dispatch(setError(e.response?.data));
+    if (e.response) {
+      store.dispatch(setError(e.response.data));
+    } else {
+      store.dispatch(setError(e.message));
+    }
   } finally {
     window.sessionStorage.removeItem('refreshToken');
     store.dispatch(cleareState());
@@ -118,6 +134,10 @@ export const refreshRequest = async (refToken: string) => {
     store.dispatch(setError(undefined));
   } catch (error) {
     const e = error as AxiosError;
-    store.dispatch(setError(e.response?.data));
+    if (e.response) {
+      store.dispatch(setError(e.response.data));
+    } else {
+      store.dispatch(setError(e.message));
+    }
   }
 };

@@ -1,6 +1,7 @@
 .wrapper{
+    background-color: var(--bgColor);
     width: 100%;
-    height: 82.6vh;
+    height: calc(100vh - 150px);
     display: flex;
     align-items: center;
     justify-content: center;
