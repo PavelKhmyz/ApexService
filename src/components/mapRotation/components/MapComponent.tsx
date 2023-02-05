@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../../redux/hooks/hook';
 import { parseDate, parseTime } from '../utils/parsingDate';
-import { MapComponentPropsType } from './MapComponentsType';
+import { MapComponentPropsType } from './mapComponentType';
 
 export const MapComponent = (props: MapComponentPropsType) => {
   const { data } = props;

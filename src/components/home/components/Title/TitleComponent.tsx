@@ -1,5 +1,6 @@
 import ReactPlayer from 'react-player';
-import { StatsInput } from './StatsInput';
+import { StatsInput } from './components/StatsInput';
+import './titleComponent.style.scss';
 
 export const TitleComponent = () => (
   <div className='videoContainer'>

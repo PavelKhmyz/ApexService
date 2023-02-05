@@ -5,6 +5,7 @@ import {
   changeEmail,
   logout,
   setError,
+  setLoader,
 } from '../redux/reducer/authSlice';
 import {
   addPlayerData,
@@ -12,19 +13,16 @@ import {
   selectUser,
 } from '../redux/reducer/userSlice';
 import { store } from '../redux/store';
-import { RegistrationRequestProps, requests } from './requests';
+import { requests } from './requests';
+import { RegistrationRequestProps, TokensType, UpdateDbProps } from './types';
 
 const requestsStore = requests();
-
-interface UpdateDbProps {
-  email: string;
-  userAccounts: UserEditableData[];
-}
 
 export const sendRegistrationRequest = async (
   data: RegistrationRequestProps
 ) => {
   try {
+    store.dispatch(setLoader());
     const response = await requestsStore.registrationRequest(data);
     if (typeof response.data === 'string') {
       store.dispatch(setError(response.data));
@@ -33,26 +31,27 @@ export const sendRegistrationRequest = async (
         accessToken: response.data.accessToken,
         refreshToken: response.data.refreshToken,
       };
-
       const [isChecked] = response.data.user.userAccounts.filter(
         (el: UserEditableData) => el.checked
       );
 
       window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-
       store.dispatch(selectUser(isChecked.id));
       store.dispatch(addPlayerData(response.data.user.userAccounts));
       store.dispatch(addTokens(tokens));
       store.dispatch(setError(undefined));
+      store.dispatch(setLoader());
     }
   } catch (error) {
     const e = error as AxiosError;
     store.dispatch(setError(e.response?.data));
+    store.dispatch(setLoader());
   }
 };
 
 export const sendLoginRequest = async (data: RegistrationRequestProps) => {
   try {
+    store.dispatch(setLoader());
     const response = await requestsStore.loginRequest(data);
     if (typeof response.data === 'string') {
       store.dispatch(setError(response.data));
@@ -60,27 +59,29 @@ export const sendLoginRequest = async (data: RegistrationRequestProps) => {
       const [isChecked] = response.data.user.userAccounts.filter(
         (el: UserEditableData) => el.checked === true
       );
-      const tokens = {
+      const tokens: TokensType = {
         accessToken: response.data.accessToken,
         refreshToken: response.data.refreshToken,
       };
 
       window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-
       store.dispatch(addTokens(tokens));
       store.dispatch(addPlayerData(response.data.user.userAccounts));
       store.dispatch(selectUser(isChecked.id));
       store.dispatch(setError(undefined));
+      store.dispatch(setLoader());
     }
   } catch (error) {
     const e = error as AxiosError;
     store.dispatch(setError(e.response?.data));
+    store.dispatch(setLoader());
   }
 };
 
 export const updateDb = async (data: UpdateDbProps) => {
   try {
     const response = await requestsStore.sendAccounts(data);
+
     store.dispatch(addPlayerData(response.data.userAccounts));
     store.dispatch(setError(undefined));
   } catch (error) {
@@ -94,7 +95,7 @@ export const logoutRequest = async (token: string) => {
     await requestsStore.logoutRequest(token);
   } catch (error) {
     const e = error as AxiosError;
-    console.log(e.response?.data);
+    store.dispatch(setError(e.response?.data));
   } finally {
     window.sessionStorage.removeItem('refreshToken');
     store.dispatch(cleareState());
@@ -105,11 +106,12 @@ export const logoutRequest = async (token: string) => {
 export const refreshRequest = async (refToken: string) => {
   try {
     const response = await requestsStore.refreshToken(refToken);
-    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
     const tokens = {
       accessToken: response.data.accessToken,
       refreshToken: response.data.refreshToken,
     };
+
+    window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
     store.dispatch(addPlayerData(response.data.user.userAccounts));
     store.dispatch(addTokens(tokens));
     store.dispatch(changeEmail(response.data.user.email));

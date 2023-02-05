@@ -1,14 +1,11 @@
 import { useAppDispatch } from '../../../redux/hooks/hook';
 import { changePlatform } from '../../../redux/reducer/authSlice';
 import { addPlatform } from '../../../redux/reducer/playerStatsSlice';
-import { PcLogo } from './PcLogo';
-import { PsLogo } from './PsLogo';
-import { RadioButton } from './RadioButtons';
-import { XboxLogo } from './XboxLogo';
-
-interface RadioBlockProps {
-  fromAuth: boolean;
-}
+import { RadioBlockProps } from '../commonTypes';
+import { PcLogo } from './components/PcLogo';
+import { PsLogo } from './components/PsLogo';
+import { RadioButton } from './components/RadioButtons';
+import { XboxLogo } from './components/XboxLogo';
 
 export const RadioBlock = ({ fromAuth }: RadioBlockProps) => {
   const dispatch = useAppDispatch();

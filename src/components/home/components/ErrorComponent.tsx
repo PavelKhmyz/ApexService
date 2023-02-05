@@ -1,8 +1,4 @@
-import { PlayerStatsResponseType } from '../../../redux/initialStates/Types/playerStatsStateType';
-
-interface ErrorComponentProps {
-  data: PlayerStatsResponseType | string;
-}
+import { ErrorComponentProps } from './homeTypes';
 
 export const ErrorComponent = ({ data }: ErrorComponentProps) => {
   if (typeof data === 'string') {

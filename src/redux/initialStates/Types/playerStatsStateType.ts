@@ -45,7 +45,6 @@ export interface Legend {
 export interface All {
   [key: string]: Legend;
 }
-//---------------------------------------------
 
 export interface Legends {
   selected: Selected;
@@ -83,7 +82,9 @@ export interface Rank {
 
 export interface Battlepass {
   level: string;
-  history: any;
+  history: {
+    [key: string]: number;
+  };
 }
 
 export interface Badge {

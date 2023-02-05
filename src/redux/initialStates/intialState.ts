@@ -26,7 +26,7 @@ export const serverState: ServerDataType = {
 export const newsState: NewsDataType = {
   newsData: null,
   page: 0,
-  pagesArray: 0,
+  pagesArrayLength: 0,
   loadingNews: false,
   error: undefined,
 };

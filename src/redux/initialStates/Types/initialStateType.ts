@@ -22,7 +22,7 @@ export interface ServerDataType {
 export interface NewsDataType {
   newsData: null | [NewsResponseType];
   page: number;
-  pagesArray: number;
+  pagesArrayLength: number;
   loadingNews: boolean;
   error: string | undefined;
 }

@@ -5,6 +5,7 @@ import { getCraftItems } from '../../../../redux/reducer/craftSlice';
 import { getPredators } from '../../../../redux/reducer/predatorsSlice';
 import { CraftComponent } from './craft/CraftComponent';
 import { PredatorsComponent } from './predatorsComponent/PredatorsComponent';
+import './predatorsAndCraftBlock.style.scss';
 
 export const PredatorsAndCraftBlock = () => {
   const dispatch = useAppDispatch();

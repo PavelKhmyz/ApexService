@@ -1,27 +1,13 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../../../../redux/hooks/hook';
-import { UserEditableData } from '../../../../../redux/initialStates/Types/initialStateType';
 import {
   filterArray,
   setPlayerData,
 } from '../../../../../redux/reducer/userSlice';
 import { Input } from '../../../../common/Input';
 import { SelectElement } from '../../../../common/select/SelectElement';
-
-const inputConfig = {
-  text: 'PlayerName:',
-  type: 'text',
-  placeholder: 'Enter Player Name',
-  id: 'nameInput',
-};
-const optionCongig = [
-  { data: 'X-box', value: 'X1' },
-  { data: 'PlayStation', value: 'PS4' },
-  { data: 'PC', value: 'PC' },
-];
-interface AccountFormProps {
-  inputsValue: UserEditableData;
-}
+import { accountFormInputConfig, optionConfig } from './componentsConfig';
+import { AccountFormProps } from './settingsTypes';
 
 export const AccountForm = ({ inputsValue }: AccountFormProps) => {
   const { name, platform } = inputsValue;
@@ -71,7 +57,7 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
         Remove
       </button>
       <Input
-        data={inputConfig}
+        data={accountFormInputConfig}
         onChangeFunc={(event) => handleChangeUserName(event)}
         value={playerName}
         disabled={isDisabled}
@@ -79,7 +65,7 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
       <SelectElement
         title={'Platform:'}
         value={userPlatform}
-        optionsArray={optionCongig}
+        optionsArray={optionConfig}
         handleChange={handleChangeUserPlatform}
         disable={isDisabled}
       />

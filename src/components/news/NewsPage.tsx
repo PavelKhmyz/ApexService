@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
 import { NewsResponseType } from '../../redux/initialStates/Types/newsInitialStateType';
 import { getNews, setPage } from '../../redux/reducer/newsSlice';
-import { NewsBlock } from '../home/components/NewsFeed/NewsBlock';
-import './newsPage.css';
-import { PaginationBar } from './PaginationBar';
+import { NewsBlock } from '../common/NewsBlock';
+import './newsPage.scss';
+import { PaginationBar } from './components/PaginationBar';
 
 export const NewsPage = () => {
-  const lastPage = useAppSelector((state) => state.news.pagesArray);
+  const lastPage = useAppSelector((state) => state.news.pagesArrayLength);
   const news = useAppSelector((state) => state.news.newsData);
   const page = useAppSelector((state) => state.news.page);
   const dispatch = useAppDispatch();

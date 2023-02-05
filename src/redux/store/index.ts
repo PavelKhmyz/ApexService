@@ -8,8 +8,6 @@ import { predatorReducer } from '../reducer/predatorsSlice';
 import { serverReducer } from '../reducer/serverSlice';
 import { userReducer } from '../reducer/userSlice';
 
-export type StateType = ReturnType<typeof store.getState>;
-
 export const store = configureStore({
   reducer: {
     map: mapReducer,
@@ -23,5 +21,6 @@ export const store = configureStore({
   },
 });
 
+export type StateType = ReturnType<typeof store.getState>;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

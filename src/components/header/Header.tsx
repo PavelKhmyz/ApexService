@@ -2,12 +2,10 @@ import { NavLink } from 'react-router-dom';
 import './header.style.scss';
 import { Logo } from '../common/Logo';
 import { useAppSelector } from '../../redux/hooks/hook';
+import { LinkElement } from './components/LinkElement';
 
 export const Header = () => {
   const auth = !!useAppSelector((state) => state.auth.accessToken);
-  const activeStyle = { textDecoration: 'underline' };
-  const isActiveLink = (isActive: boolean) =>
-    isActive ? activeStyle : undefined;
 
   return (
     <div className='headerContainer'>
@@ -15,36 +13,12 @@ export const Header = () => {
         <Logo className={'logo'} />
       </NavLink>
       <div className='navigationContainer'>
-        <NavLink
-          style={({ isActive }) => isActiveLink(isActive)}
-          className='navigationLink'
-          to={'/maps'}
-        >
-          Map Rotation
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => isActiveLink(isActive)}
-          className='navigationLink'
-          to={'/server'}
-        >
-          Server Status
-        </NavLink>
+        <LinkElement path='/maps' title='Map Rotation' />
+        <LinkElement path='/server' title='Server Status' />
         {auth ? (
-          <NavLink
-            style={({ isActive }) => isActiveLink(isActive)}
-            className='navigationLink'
-            to={'/profile/user'}
-          >
-            Profile
-          </NavLink>
+          <LinkElement path='/profile/user' title='Profile' />
         ) : (
-          <NavLink
-            style={({ isActive }) => isActiveLink(isActive)}
-            className='navigationLink'
-            to={'/signIn'}
-          >
-            Sign In
-          </NavLink>
+          <LinkElement path='/signIn' title='Sign In' />
         )}
       </div>
     </div>

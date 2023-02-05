@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import { UserEditableData } from '../../../../redux/initialStates/Types/initialStateType';
 import {
@@ -15,6 +16,7 @@ export const ContentElement = () => {
   const response = useAppSelector((state) => state.user.serverResponse);
   const error = useAppSelector((state) => state.user.error);
   const badRequest = useAppSelector((state) => state.user.badRequest);
+  const loading = useAppSelector((state) => state.user.loader);
 
   useEffect(() => {
     if (accounts && !requestData) {
@@ -33,10 +35,11 @@ export const ContentElement = () => {
   }, [dispatch, requestData]);
 
   return (
-    <div>
+    <>
       {response && <PlayerStats data={response} />}
       {error && <ErrorComponent data={error} />}
       {badRequest && <ErrorComponent data={badRequest} />}
-    </div>
+      <PropagateLoader color='white' loading={loading} />
+    </>
   );
 };

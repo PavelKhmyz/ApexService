@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GetPlayerStatsProps, requests } from '../../axios/requests';
+import { requests } from '../../axios/requests';
+import { GetPlayerStatsProps } from '../../axios/types';
 import { playerStatsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import {
@@ -58,7 +59,6 @@ const playerStatsSlice = createSlice({
         (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
           state.loadingStats = false;
           state.error = action.error.message;
-          console.log(state.error);
         }
       );
   },

@@ -1,13 +1,7 @@
 import Carousel from 'react-multi-carousel';
-import { RP } from '../../../../../redux/initialStates/Types/predatorsInitialStateType';
-import { predatorResponsive } from './predatorCarouselResponsive';
-import { PredatorsInner } from './PredatorsInner';
-import './PredatorsStyle.scss';
-
-interface PredatorComponentProps {
-  title: string;
-  data: RP;
-}
+import { PredatorComponentProps } from '../../homeTypes';
+import { predatorResponsive } from './components/predatorCarouselResponsive';
+import { PredatorsInner } from './components/PredatorsInner';
 
 export const PredatorsComponent = ({ title, data }: PredatorComponentProps) => {
   const { PC, PS4, X1 } = data;

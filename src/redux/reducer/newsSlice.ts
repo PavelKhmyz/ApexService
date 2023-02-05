@@ -14,11 +14,11 @@ const newsSlice = createSlice({
   name: 'news',
   initialState: newsState,
   reducers: {
-    setPage: (state, action) => {
+    setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
-    setPagesArray: (state, action) => {
-      state.pagesArray = action.payload;
+    setPagesArray: (state, action: PayloadAction<number>) => {
+      state.pagesArrayLength = action.payload;
     },
   },
   extraReducers: (builder) => {

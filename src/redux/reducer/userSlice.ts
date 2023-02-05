@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GetPlayerStatsProps, requests } from '../../axios/requests';
+import { requests } from '../../axios/requests';
+import { GetPlayerStatsProps } from '../../axios/types';
 import {
   theme,
   ThemeElementType,
@@ -64,6 +65,7 @@ const userSlice = createSlice({
     builder
       .addCase(getPlayerProfile.pending, (state) => {
         state.loader = true;
+        state.serverResponse = null;
       })
       .addCase(
         getPlayerProfile.fulfilled,
@@ -85,7 +87,6 @@ const userSlice = createSlice({
           state.loader = false;
           state.serverResponse = null;
           state.error = action.error.message;
-          console.log(action.error.message);
         }
       );
   },

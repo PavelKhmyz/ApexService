@@ -2,11 +2,12 @@ import { updateDb } from '../../../../axios/authRequests';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import {
   filterArray,
+  selectUser,
   setPlayerData,
 } from '../../../../redux/reducer/userSlice';
+import { RadioButton } from '../../../common/radioBlock/components/RadioButtons';
 import { AccountForm } from './components/AccountForm';
 import { ChangeThemeComponent } from './components/ChangeThemeComponent';
-import { CheckAccountButton } from './components/CheckAccountButton';
 import './settingsElementStyle.scss';
 
 export const SettingsElement = () => {
@@ -20,12 +21,13 @@ export const SettingsElement = () => {
     dispatch(filterArray(data));
     dispatch(setPlayerData(data));
   };
-
   const handleSaveChanges = () => {
     const data = { email, userAccounts: accounts };
     updateDb(data);
   };
-
+  const handleChangePlatform = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(selectUser(event.target.value));
+  };
   const isChecked = (id: string) => {
     if (request && request.id === id) {
       return true;
@@ -53,10 +55,14 @@ export const SettingsElement = () => {
         </button>
         <div className='accountsWrapper'>
           {accounts.map((element) => (
-            <CheckAccountButton
+            <RadioButton
               check={isChecked(element.id)}
               key={element.id}
-              data={element}
+              data={{
+                id: element.id,
+                value: element.id,
+                changeFunc: handleChangePlatform,
+              }}
               child={<AccountForm key={element.id} inputsValue={element} />}
             />
           ))}

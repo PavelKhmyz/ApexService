@@ -1,3 +1,4 @@
+import { PropagateLoader } from 'react-spinners';
 import { useAppSelector } from '../../redux/hooks/hook';
 import 'react-multi-carousel/lib/styles.css';
 import './homeStyle.scss';
@@ -10,6 +11,7 @@ import { ErrorComponent } from './components/ErrorComponent';
 export const Home = () => {
   const playerStats = useAppSelector((state) => state.playerStats.playerStats);
   const badRequest = useAppSelector((state) => state.playerStats.badRequest);
+  const loading = useAppSelector((state) => state.playerStats.loadingStats);
   const error = useAppSelector((state) => state.playerStats.error);
 
   return (
@@ -19,6 +21,7 @@ export const Home = () => {
         {error && <ErrorComponent data={error} />}
         {badRequest && <ErrorComponent data={badRequest} />}
         {playerStats && <PlayerStats data={playerStats} />}
+        <PropagateLoader loading={loading} />
         <NewsFeed />
         <PredatorsAndCraftBlock />
       </div>

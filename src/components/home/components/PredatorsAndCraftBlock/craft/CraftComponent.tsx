@@ -1,10 +1,5 @@
-import { CraftResponseType } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
-import { CraftElement } from './CraftElement';
-import './craftStyle.scss';
-
-interface CraftComponentPropsType {
-  data: [CraftResponseType];
-}
+import { CraftComponentPropsType } from '../../homeTypes';
+import { CraftElement } from './components/CraftElement';
 
 export const CraftComponent = ({ data }: CraftComponentPropsType) => {
   const filteredData = data.filter(

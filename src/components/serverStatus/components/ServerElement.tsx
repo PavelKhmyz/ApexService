@@ -1,8 +1,4 @@
-import { ServerProps } from '../../../redux/initialStates/Types/serverInitialStateType';
-
-interface ServerElementProps {
-  data: ServerProps;
-}
+import { ServerElementProps } from './serverStatusType';
 
 export const ServerElement = (props: ServerElementProps) => {
   const { data } = props;

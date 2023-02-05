@@ -1,22 +1,9 @@
-import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
-import { apexApi, API_KEY } from './api';
-import { authApi } from './auth';
-
-export interface GetPlayerStatsProps {
-  name: string;
-  platform: string;
-}
-
-export interface RegistrationRequestProps {
-  email: string;
-  password: string;
-  userAccounts?: UserEditableData[];
-}
-
-export interface SendAccountsProps {
-  email: string;
-  userAccounts: UserEditableData[];
-}
+import { apexApi, authApi, API_KEY } from './api';
+import {
+  GetPlayerStatsProps,
+  RegistrationRequestProps,
+  SendAccountsProps,
+} from './types';
 
 export const requests = () => {
   const api = apexApi;

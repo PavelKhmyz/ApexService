@@ -1,13 +1,7 @@
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import {
-  ServerProps,
-  ServerResponseStateType,
-} from '../../../redux/initialStates/Types/serverInitialStateType';
+import { ServerProps } from '../../../redux/initialStates/Types/serverInitialStateType';
 import { ServerElement } from './ServerElement';
-
-interface ServerComponentProps {
-  serverData: ServerResponseStateType;
-}
+import { ServerComponentProps } from './serverStatusType';
 
 export const ServerComponent = (props: ServerComponentProps) => {
   const { serverData } = props;

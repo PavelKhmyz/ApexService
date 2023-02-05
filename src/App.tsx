@@ -11,7 +11,7 @@ import { NewsPage } from './components/news/NewsPage';
 import { UserProfile } from './components/userProfile/UserProfile';
 import { ContentElement } from './components/userProfile/components/content/ContentElement';
 import { useAppSelector } from './redux/hooks/hook';
-import { RequerAuth } from './private/RequerAuth';
+import { RequireAuth } from './private/RequerAuth';
 import { SettingsElement } from './components/userProfile/components/settings/SettingsElement';
 import { refreshRequest } from './axios/authRequests';
 
@@ -47,9 +47,9 @@ function App() {
           <Route
             path='/profile'
             element={
-              <RequerAuth>
+              <RequireAuth>
                 <UserProfile />
-              </RequerAuth>
+              </RequireAuth>
             }
           >
             <Route path='user' element={<ContentElement />} />

@@ -5,8 +5,8 @@ import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import { NewsResponseType } from '../../../../redux/initialStates/Types/newsInitialStateType';
 import { getNews } from '../../../../redux/reducer/newsSlice';
-import { responsive } from '../../reactCarouselResponsive';
-import { NewsBlock } from './NewsBlock';
+import { responsive } from '../reactCarouselResponsive';
+import { NewsBlock } from '../../../common/NewsBlock';
 import './newsFeedStyle.scss';
 
 export const NewsFeed = () => {

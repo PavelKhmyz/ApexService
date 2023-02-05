@@ -7,7 +7,7 @@ import {
   getRotation,
 } from '../../redux/reducer/mapSlice';
 import { MapComponent } from './components/MapComponent';
-import './mapRotation.css';
+import './mapRotation.scss';
 
 export const MapRotation = () => {
   const dispatch = useAppDispatch();
@@ -31,10 +31,7 @@ export const MapRotation = () => {
     }
   }, [dispatch, handleChangeTime, handleClear, time]);
 
-  // eslint-disable-next-line arrow-body-style
-  useEffect(() => {
-    return handleClear;
-  }, [handleClear]);
+  useEffect(() => handleClear, [handleClear]);
 
   return (
     <div className='wrapper'>

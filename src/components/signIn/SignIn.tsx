@@ -1,32 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
 import { changeEmail, changePassword } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
 import './signInStyle.scss';
-import { RegistrationBlock } from './RegistrationBlock';
-import { ConfirmButton } from './ConfirmButton';
+import { ConfirmButton } from './components/ConfirmButton';
 import {
   sendLoginRequest,
   sendRegistrationRequest,
 } from '../../axios/authRequests';
 import { ErrorComponent } from '../home/components/ErrorComponent';
-
-const inputConfig = {
-  emailInput: {
-    id: 'signInInput1',
-    text: 'E-mail:',
-    type: 'text',
-    placeholder: 'Enter your E-mail',
-  },
-  passwordInput: {
-    id: 'signInInput2',
-    text: 'Password:',
-    type: 'password',
-    placeholder: 'Enter your Password',
-  },
-};
+import { loginInputConfig } from './components/componentsConfig';
+import { RegistrationBlock } from './components/RegistrationBlock';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +27,7 @@ export const SignIn = () => {
   const [isValid, setIsValid] = useState(false);
   const isHiden = useAppSelector((state) => state.auth.isHiden);
   const error = useAppSelector((state) => state.auth.error);
+  const loader = useAppSelector((state) => state.auth.loader);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(event.target.value));
@@ -80,7 +68,6 @@ export const SignIn = () => {
     };
     sendRegistrationRequest(regisrationData);
   };
-
   const login = () => {
     const data = {
       email: emailValue,
@@ -94,20 +81,21 @@ export const SignIn = () => {
       <div className='inputForm'>
         <Logo className='signInlogo' />
         <Input
-          data={inputConfig.emailInput}
+          data={loginInputConfig.emailInput}
           onChangeFunc={(event) => {
             handleChangeEmail(event);
           }}
           value={emailValue}
         />
         <Input
-          data={inputConfig.passwordInput}
+          data={loginInputConfig.passwordInput}
           onChangeFunc={(event) => {
             handleChangePassword(event);
           }}
           value={passwordValue}
         />
         <RegistrationBlock isHiden={isHiden} />
+        <PropagateLoader color='white' loading={loader} />
         <div className='buttonWrapper'>
           {isHiden ? (
             <ConfirmButton validate={isValid} isLogin requestFunc={login} />

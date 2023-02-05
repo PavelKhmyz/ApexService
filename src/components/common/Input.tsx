@@ -1,9 +1,4 @@
-interface InputProps {
-  data: { text: string; type: string; placeholder: string; id: string };
-  onChangeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-  disabled?: boolean;
-}
+import { InputProps } from './commonTypes';
 
 export const Input = ({
   data,

@@ -1,12 +1,5 @@
-import { SelectOption } from './SelectOption';
-
-interface SelectElementProps {
-  title: string;
-  value: string;
-  optionsArray: Array<string | any>;
-  handleChange: (arg0: React.ChangeEvent<HTMLSelectElement>) => void;
-  disable?: boolean;
-}
+import { SelectElementProps, OptionsArrayType } from '../commonTypes';
+import { SelectOption } from './components/SelectOption';
 
 export const SelectElement = ({
   title,
@@ -29,9 +22,15 @@ export const SelectElement = ({
         disabled={disable}
       >
         {isString
-          ? optionsArray.map((key) => <SelectOption key={key} data={key} />)
+          ? optionsArray.map((key) => (
+              <SelectOption key={key as string} data={key as string} />
+            ))
           : optionsArray.map((key) => (
-              <SelectOption key={key.data} data={key.data} value={key.value} />
+              <SelectOption
+                key={(key as OptionsArrayType).data}
+                data={(key as OptionsArrayType).data}
+                value={(key as OptionsArrayType).value}
+              />
             ))}
       </select>
     </label>

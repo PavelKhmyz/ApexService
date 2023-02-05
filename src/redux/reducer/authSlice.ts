@@ -1,10 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TokensType } from '../../axios/types';
 import { authData } from '../initialStates/intialState';
-
-interface PayloadType {
-  refreshToken: string;
-  accessToken: string;
-}
 
 const authSlice = createSlice({
   name: 'auth',
@@ -28,9 +24,12 @@ const authSlice = createSlice({
     setIsHiden: (state) => {
       state.isHiden = !state.isHiden;
     },
-    addTokens: (state, action: PayloadAction<PayloadType>) => {
+    addTokens: (state, action: PayloadAction<TokensType>) => {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
+    },
+    setLoader: (state) => {
+      state.loader = !state.loader;
     },
     logout: (state) => {
       state.accessToken = null;
@@ -59,6 +58,7 @@ export const {
   changeName,
   setIsHiden,
   setError,
+  setLoader,
 } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

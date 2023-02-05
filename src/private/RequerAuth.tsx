@@ -1,11 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks/hook';
+import { RequerAuthProps } from './privateType';
 
-interface RequerAuthProps {
-  children: JSX.Element;
-}
-
-export const RequerAuth = ({ children }: RequerAuthProps) => {
+export const RequireAuth = ({ children }: RequerAuthProps) => {
   const auth = !!useAppSelector((state) => state.auth.accessToken);
 
   if (!auth) {
