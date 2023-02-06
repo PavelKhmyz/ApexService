@@ -6,7 +6,7 @@ import { Header } from './components/header/Header';
 import { Home } from './components/home/Home';
 import { MapRotation } from './components/mapRotation/MapRotation';
 import { ServerStatus } from './components/serverStatus/ServerStatus';
-import { SignIn } from './components/signIn/SignIn';
+import  SignIn  from './components/SignInNew/SignIn';
 import { NewsPage } from './components/news/NewsPage';
 import { UserProfile } from './components/userProfile/UserProfile';
 import { ContentElement } from './components/userProfile/components/content/ContentElement';
