@@ -21,7 +21,9 @@
         display: flex;
         justify-content: center;
         align-items: flex-end;
-        
+        @media(max-width: 680px){
+            box-shadow: none;
+        }
     }
     .homeContent{
         max-width: 1400px;
@@ -75,6 +77,8 @@
             }
             .craftAndPredatorsContent{
                 display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
                 width: 100%;
             }
         }
