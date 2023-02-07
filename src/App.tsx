@@ -33,6 +33,7 @@ function App() {
   main.style.setProperty('--secondColor', themeValue.secondColor);
   main.style.setProperty('--fontColor', themeValue.fontColor);
   main.style.setProperty('--shadow', themeValue.shadow);
+  main.style.setProperty('--secondShadow', themeValue.secondShadow);
 
   return (
     <div className='App'>

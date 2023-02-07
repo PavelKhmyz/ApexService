@@ -17,19 +17,32 @@ export const RadioBlock = ({ fromAuth }: RadioBlockProps) => {
       dispatch(addPlatform(event.target.value));
     }
   };
+
   return (
     <div className='radioWrapper'>
       <RadioButton
         child={<XboxLogo />}
-        data={{ id: 'input1', value: 'X1', changeFunc: handleChange }}
+        data={{
+          id: 'input1',
+          value: 'X1',
+          changeFunc: handleChange,
+        }}
       />
       <RadioButton
         child={<PsLogo />}
-        data={{ id: 'input2', value: 'PS4', changeFunc: handleChange }}
+        data={{
+          id: 'input2',
+          value: 'PS4',
+          changeFunc: handleChange,
+        }}
       />
       <RadioButton
         child={<PcLogo />}
-        data={{ id: 'input3', value: 'PC', changeFunc: handleChange }}
+        data={{
+          id: 'input3',
+          value: 'PC',
+          changeFunc: handleChange,
+        }}
       />
     </div>
   );

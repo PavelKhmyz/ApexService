@@ -13,10 +13,15 @@ export const SelectedLegend = ({ data }: SelectedLegendProps) => (
     </div>
     <div className='legendInner'>
       <p className='legendName'>{data.LegendName}</p>
-      {data.data &&
+      {data.data ? (
         data.data.map((legend: Datum) => (
           <StatsValue key={legend.value} statsData={legend} />
-        ))}
+        ))
+      ) : (
+        <span className='sorryMessage'>
+          Sorry, but we haven`t data about this Legend
+        </span>
+      )}
     </div>
   </>
 );

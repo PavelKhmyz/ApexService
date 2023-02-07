@@ -8,7 +8,7 @@ export const ServerComponent = (props: ServerComponentProps) => {
   const parse = Object.entries(serverData[1]);
   return (
     <div className='serverComponentWrapper'>
-      <p>{serverData[0]}</p>
+      <p className='serverTitle'>{serverData[0]}</p>
       <div className='serverComponent'>
         {parse ? (
           parse.map((server: ServerProps) => (

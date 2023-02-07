@@ -13,7 +13,7 @@ export const SelectElement = ({
   };
   const isString = typeof optionsArray[0] === 'string';
   return (
-    <label htmlFor='selectId' className='inputLabel'>
+    <label htmlFor='selectId' className='selectInputLabel'>
       <span>{title}</span>
       <select
         onChange={(event) => handleChangeOption(event)}

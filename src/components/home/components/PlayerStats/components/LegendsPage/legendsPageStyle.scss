@@ -10,7 +10,7 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
-        .inputLabel{
+        .selectInputLabel{
             display: flex;
             justify-content: space-between;
             width: 70%;
@@ -34,6 +34,24 @@
                     color: white
                 }
             }
+            @media(max-width: 960px){
+                font-size: 20px;
+                & select{
+                    font-size: 20px;
+                }
+                & option{
+                    font-size: 20px;
+                }
+            }
+            @media(max-width: 610px){
+                font-size: 15px;
+                & select{
+                    font-size: 15px;
+                }
+                & option{
+                    font-size: 15px;
+                }
+            }  
         }
         .searchButton{
             width: 25%;
@@ -61,13 +79,31 @@
             position: relative;
             top: 0;
             left: 0;
+            .sorryMessage{
+                font-size: 30px;
+                @media(max-width: 610px){
+                    font-size: 20px;
+                }
+            }
             .legendName{
                 font-size: 50px;
                 margin-bottom: 30px;
+                @media(max-width: 960px){
+                    font-size: 40px;
+                }
+                @media(max-width: 610px){
+                    font-size: 30px;
+                }
             }
             .statsValue{
                 margin-top: 10px;
                 font-size: 30px;
+                @media(max-width: 960px){
+                    font-size: 20px;
+                }
+                @media(max-width: 610px){
+                    font-size: 15px;
+                }
             }
             .legendAsset{
                 position: absolute;
@@ -75,6 +111,28 @@
                 left: 0;
                 width: 80%;
                 height: auto;
+                @media(max-width: 1120px){
+                    bottom: 0
+                }
+                @media(max-width: 960px){
+                    bottom: -80px;
+                }    
+                @media(max-width: 840px){
+                    bottom: 0;
+                }  
+                @media(max-width: 670px){
+                    bottom: 40px;
+                }  
+                @media(max-width: 610px){
+                    bottom: 0;
+                }
+                @media(max-width: 460px){
+                    width: 100%;
+                    bottom: 20px;
+                }
+                @media(max-width: 400px){
+                    bottom: 20px;
+                }
             }
         }
     }

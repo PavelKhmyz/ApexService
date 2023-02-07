@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { requests } from '../../axios/requests';
 import { GetPlayerStatsProps } from '../../axios/types';
 import {
-  theme,
+  // theme,
   ThemeElementType,
 } from '../../components/userProfile/components/settings/components/theme';
 import { userData } from '../initialStates/intialState';
@@ -58,7 +58,6 @@ const userSlice = createSlice({
       state.loader = false;
       state.serverResponse = null;
       state.badRequest = null;
-      state.theme = theme.Classic;
     },
   },
   extraReducers: (builder) => {

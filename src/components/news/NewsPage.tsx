@@ -31,7 +31,7 @@ export const NewsPage = () => {
   };
 
   return (
-    <>
+    <div className='newsPageWrapper'>
       <div className='paginationBarWrapper'>
         <button
           className='prevNextButton'
@@ -57,6 +57,6 @@ export const NewsPage = () => {
             <NewsBlock key={newsEl.title} newsEl={newsEl} />
           ))}
       </div>
-    </>
+    </div>
   );
 };

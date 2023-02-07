@@ -38,21 +38,27 @@ export const SettingsElement = () => {
   return (
     <div className='settingsWrapper'>
       <div className='themeContainer'>
-        <h2>Change Theme</h2>
+        <h2>Change Theme :</h2>
         <ChangeThemeComponent />
       </div>
-      <div className='bla'>
-        <h2>Your Accounts</h2>
-        <button
-          type='button'
-          onClick={handleAddNewAccount}
-          className='addButton'
-        >
-          Add New Acount
-        </button>
-        <button type='button' onClick={handleSaveChanges} className='addButton'>
-          Save Changes
-        </button>
+      <div className='accountsBlock'>
+        <h2>Your Accounts :</h2>
+        <div className='addSaveButtons'>
+          <button
+            type='button'
+            onClick={handleAddNewAccount}
+            className='addButton'
+          >
+            Add New Acount
+          </button>
+          <button
+            type='button'
+            onClick={handleSaveChanges}
+            className='addButton'
+          >
+            Save Changes
+          </button>
+        </div>
         <div className='accountsWrapper'>
           {accounts.map((element) => (
             <RadioButton

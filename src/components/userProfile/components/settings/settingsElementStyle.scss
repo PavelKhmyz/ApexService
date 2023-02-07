@@ -1,4 +1,5 @@
 .settingsWrapper{
+    width: 100%;
     .themeContainer{
         width: 100%;
         height: 150px;
@@ -14,19 +15,20 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .inputLabel{
+            .selectInputLabel{
                 width: 65%;
                 display: flex;
                 gap: 20px;
                 & select{
                     width: 70%;
                     background-color: inherit;
-                    border-bottom: 2px solid white;
-                    color: white;
+                    border-bottom: 2px solid;
+                    border-color: var(--fontColor);
+                    color: var(--fontColor);
                     font-size: 25px;
                     font-family: 'Duke';
                     & option{
-                        background-color: black;
+                        background-color: var(--bgColor);
                     }
                 }
             }
@@ -37,108 +39,132 @@
             }
         }
     }
-    .bla{
+    .accountsBlock{
         padding: 20px;
+        
         & h2{
             font-size: 40px;
             margin-bottom: 20px;
         }
-    }
-
-.addButton{
-    width: 200px;
-    height: 50px;
-    font-size: 30px;
-}
-.accountsWrapper{
-    display: flex;
-    margin-top: 20px;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.radioButton{
-    width: 30%;
-    height: 300px;
-    display: flex;
-}
-.radioButtonInput{
-    display: none;
-    &:checked + .radioButtonLabel{
-        background-color: blue;
-    }
-}
-.radioButtonLabel{
-    width: 100%;
-    height: 100%;
-    background-color: rgb(218, 41, 42);
-}
-.settingsInput{
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    background-color: inherit;
-    padding: 20px;
-    .inputLabel{
-        font-size: 30px;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        justify-content: space-between;
-        & input{
-            background-color: inherit;
-            border-bottom: 2px solid white;
-            font-size: 25px;
-            color: white;
-            width: 55%;
-            &:disabled{
-                border-color: rgb(218, 41, 42);
-            }
-            &::placeholder{
-                color: white;
+        .addSaveButtons{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .addButton{
+                width: 200px;
+                height: 50px;
+                font-size: 30px;
+                @media(max-width: 480px){
+                    width: 45%;
+                }
             }
         }
-    }
-    .settingsSelect{
-        font-size: 30px;
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        & select{
-            background-color: inherit;
-            border-bottom: 2px solid white;
-            font-size: 25px;
-            color: white;
-            width: 55%;
-            font-family: 'Duke';
-            &:disabled{
-                opacity: 1;
-                border-color: rgb(218, 41, 42);
-                appearance: none
+        .accountsWrapper{
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+            @media(max-width: 960px){
+                justify-content: center;
             }
-            & option {
-                color: white;
-                background-color: black;
-                
-            }
+            .radioButton{
+                min-width: 310px;
+                width: 31.5%;
+                height: auto;
+                display: flex;
+                .radioButtonInput{
+                    display: none;
+                    &:checked + .radioButtonLabel{
+                        background-color: rgb(107, 22, 22);
+                    }
+                }
+                .radioButtonLabel{
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgb(218, 41, 42);
+                    .settingsInput{
+                        width: 100%;
+                        height: 100%;
+                        background-color: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        gap: 20px;
+                        background-color: inherit;
+                        padding: 20px;
+                        position: relative;
+                        .removeButton{
+                            width: 20px;
+                            padding: 5px;
+                            height: auto;
+                            background-color: inherit;
+                            position: absolute;
+                            right: 10px;
+                            top: 10px;
+                            &:hover{
+                                fill: white
+                            }
+                        }
+                        .inputLabel{
+                            font-size: 30px;
+                            display: flex;
+                            align-items: center;
+                            width: 100%;
+                            justify-content: space-between;
+                            & input{
+                                background-color: inherit;
+                                border-bottom: 2px solid white;
+                                font-size: 25px;
+                                color: white;
+                                width: 55%;
+                                &:disabled{
+                                    border: 0;
+                                }
+                                &::placeholder{
+                                    color: white;
+                                }
+                            }
+                        }
+                        .selectInputLabel{
+                            font-size: 30px;
+                            display: flex;
+                            width: 100%;
+                            justify-content: space-between;
+                            align-items: center;
+                            & select{
+                                background-color: inherit;
+                                border-bottom: 2px solid white;
+                                font-size: 25px;
+                                color: white;
+                                width: 55%;
+                                font-family: 'Duke';
+                                &:disabled{
+                                    opacity: 1;
+                                    border: 0;
+                                    appearance: none
+                                }
+                                & option {
+                                    color: white;
+                                    background-color: black;
+                                    
+                                }
+                            }
+                        }
+                        .buttonsBlock{
+                            display: flex;
+                            width: 100%;
+                            justify-content: space-between;
+                            
+                            & button{
+                                width: 50%;
+                                height: 40px;
+                                font-size: 30px;
+                            }
+                        }
+                    }
+                }
+            }            
         }
     }
-    .buttonsBlock{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        
-        & button{
-            width: 50%;
-            height: 40px;
-            font-size: 30px;
-        }
-    }
-}
 }

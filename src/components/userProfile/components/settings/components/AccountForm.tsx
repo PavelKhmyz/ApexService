@@ -4,6 +4,7 @@ import {
   filterArray,
   setPlayerData,
 } from '../../../../../redux/reducer/userSlice';
+import { CloseIcon } from '../../../../common/CloseIcon';
 import { Input } from '../../../../common/Input';
 import { SelectElement } from '../../../../common/select/SelectElement';
 import { accountFormInputConfig, optionConfig } from './componentsConfig';
@@ -54,7 +55,7 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
   return (
     <div className='settingsInput'>
       <button type='button' className='removeButton' onClick={removeElement}>
-        Remove
+        <CloseIcon />
       </button>
       <Input
         data={accountFormInputConfig}

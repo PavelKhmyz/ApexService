@@ -1,28 +1,52 @@
-.paginationBarWrapper{
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    .prevNextButton{
-        width: 80px;
-        height: 40px;
-        font-size: 30px;
+.newsPageWrapper{
+    min-height: calc(100vh - 150px);
+    .paginationBarWrapper{
+        max-width: 650px;
+        margin: 20px auto 0;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        .prevNextButton{
+            width: 80px;
+            height: 40px;
+            font-size: 30px;
+        }
+        .paginationButton{
+            width: 40px;
+            height: 40px;
+            font-size: 30px;
+        }
+        @media(max-width: 670px){
+            max-width: 400px;
+            .paginationButton{
+                width: 25px;
+                height: 25px;
+                font-size: 20px;
+            }
+            .prevNextButton{
+                width: 70px;
+                height: 25px;
+                font-size: 20px;
+            }
+        }
+        @media(max-width: 670px){
+            max-width: 350px;
+        }
     }
-    .paginationButton{
-        width: 40px;
-        height: 40px;
-        font-size: 30px;
-    }
-}
-.newsPage{
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: black;
-    justify-content: space-between;
-    .newsBlock{
-        width: 49%;
+    .newsPage{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        @media(max-width: 670px){
+            flex-direction: column;
+        }
+        .newsBlock{
+            width: 49.5%;
+            @media(max-width: 670px){
+                width: 100%;
+            }
+        }
     }
 }

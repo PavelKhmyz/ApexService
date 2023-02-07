@@ -10,6 +10,7 @@ import {
 import { Input } from '../../../../common/Input';
 import { RadioBlock } from '../../../../common/radioBlock/RadioBlock';
 import { statsInputConfig } from './elementConfig';
+import '../titleComponent.style.scss';
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();

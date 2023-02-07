@@ -1,6 +1,7 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { logoutRequest, updateDb } from '../../axios/authRequests';
 import { useAppSelector } from '../../redux/hooks/hook';
+import { LinkElement } from '../header/components/LinkElement';
 import './userProfileStyle.scss';
 
 export const UserProfile = () => {
@@ -21,8 +22,8 @@ export const UserProfile = () => {
   return (
     <div className='userProfileWrapper'>
       <div className='navBar'>
-        <NavLink to={'user'}>Profile</NavLink>
-        <NavLink to={'settings'}>Settings</NavLink>
+        <LinkElement path='user' title='Profile' />
+        <LinkElement path='settings' title='Settings' />
         <button className='logoutButton' type='button' onClick={handleLogout}>
           Sign Out
         </button>
