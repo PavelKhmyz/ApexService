@@ -13,6 +13,7 @@ export const MapRotation = () => {
   const dispatch = useAppDispatch();
   const maps = useAppSelector((state) => state.map.maps);
   const time = useAppSelector((state) => state.map.time);
+  const { theme } = useAppSelector((state) => state.user);
 
   const handleChangeTime = useCallback(() => {
     dispatch(changeTime());
@@ -44,7 +45,7 @@ export const MapRotation = () => {
           <MapComponent data={maps.next} />
         </div>
       ) : (
-        <PropagateLoader />
+        <PropagateLoader color={theme.fontColor} />
       )}
     </div>
   );

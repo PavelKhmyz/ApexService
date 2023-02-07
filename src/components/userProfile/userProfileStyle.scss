@@ -50,10 +50,11 @@
     }
     .profileContentWrapper{
         display: flex;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
         width: 85%;
-        height: 100%;
+        height: calc(100vh - 150px);
         color: var(--fontColor);
         @media(max-width: 650px){
             width: 100%;

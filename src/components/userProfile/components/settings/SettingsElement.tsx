@@ -2,7 +2,7 @@ import { updateDb } from '../../../../axios/authRequests';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import {
   filterArray,
-  selectUser,
+  setUser,
   setPlayerData,
 } from '../../../../redux/reducer/userSlice';
 import { RadioButton } from '../../../common/radioBlock/components/RadioButtons';
@@ -26,7 +26,7 @@ export const SettingsElement = () => {
     updateDb(data);
   };
   const handleChangePlatform = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(selectUser(event.target.value));
+    dispatch(setUser(event.target.value));
   };
   const isChecked = (id: string) => {
     if (request && request.id === id) {

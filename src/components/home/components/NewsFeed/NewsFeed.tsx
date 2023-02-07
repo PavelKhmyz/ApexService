@@ -12,6 +12,7 @@ import './newsFeedStyle.scss';
 export const NewsFeed = () => {
   const dispatch = useAppDispatch();
   const news = useAppSelector((state) => state.news.newsData);
+  const { theme } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (!news) {
@@ -31,7 +32,7 @@ export const NewsFeed = () => {
           ))}
         </Carousel>
       ) : (
-        <PropagateLoader />
+        <PropagateLoader color={theme.fontColor} />
       )}
     </div>
   );

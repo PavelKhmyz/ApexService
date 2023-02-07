@@ -26,7 +26,7 @@ const userSlice = createSlice({
     changeTheme: (state, action: PayloadAction<ThemeElementType>) => {
       state.theme = action.payload;
     },
-    selectUser: (state, action) => {
+    setUser: (state, action) => {
       [state.selectUser] = state.playerData.filter(
         (el) => el.id === action.payload
       );
@@ -94,7 +94,7 @@ const userSlice = createSlice({
 export const {
   setPlayerData,
   filterArray,
-  selectUser,
+  setUser,
   changeTheme,
   addPlayerData,
   cleareState,

@@ -10,7 +10,7 @@ import {
 import {
   addPlayerData,
   cleareState,
-  selectUser,
+  setUser,
 } from '../redux/reducer/userSlice';
 import { store } from '../redux/store';
 import { requests } from './requests';
@@ -36,7 +36,7 @@ export const sendRegistrationRequest = async (
       );
 
       window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-      store.dispatch(selectUser(isChecked.id));
+      store.dispatch(setUser(isChecked.id));
       store.dispatch(addPlayerData(response.data.user.userAccounts));
       store.dispatch(addTokens(tokens));
       store.dispatch(setError(undefined));
@@ -71,7 +71,7 @@ export const sendLoginRequest = async (data: RegistrationRequestProps) => {
       window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
       store.dispatch(addTokens(tokens));
       store.dispatch(addPlayerData(response.data.user.userAccounts));
-      store.dispatch(selectUser(isChecked.id));
+      store.dispatch(setUser(isChecked.id));
       store.dispatch(setError(undefined));
       store.dispatch(setLoader());
     }

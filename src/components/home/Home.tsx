@@ -13,6 +13,7 @@ export const Home = () => {
   const badRequest = useAppSelector((state) => state.playerStats.badRequest);
   const loading = useAppSelector((state) => state.playerStats.loadingStats);
   const error = useAppSelector((state) => state.playerStats.error);
+  const { theme } = useAppSelector((state) => state.user);
 
   return (
     <div className='homeContainer'>
@@ -21,7 +22,7 @@ export const Home = () => {
         {error && <ErrorComponent data={error} />}
         {badRequest && <ErrorComponent data={badRequest} />}
         {playerStats && <PlayerStats data={playerStats} />}
-        <PropagateLoader color='white' loading={loading} />
+        <PropagateLoader color={theme.fontColor} loading={loading} />
         <NewsFeed />
         <PredatorsAndCraftBlock />
       </div>

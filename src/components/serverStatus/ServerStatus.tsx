@@ -8,6 +8,7 @@ import './serverStatusStyle.scss';
 
 export const ServerStatus = () => {
   const serverData = useAppSelector((state) => state.server.serverData);
+  const { theme } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const ServerStatus = () => {
           <ServerComponent key={server[0]} serverData={server} />
         ))
       ) : (
-        <PropagateLoader color='white' />
+        <PropagateLoader color={theme.fontColor} />
       )}
     </div>
   );

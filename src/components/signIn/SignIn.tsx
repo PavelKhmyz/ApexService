@@ -28,6 +28,7 @@ export const SignIn = () => {
   const isHiden = useAppSelector((state) => state.auth.isHiden);
   const error = useAppSelector((state) => state.auth.error);
   const loader = useAppSelector((state) => state.auth.loader);
+  const { theme } = useAppSelector((state) => state.user);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(event.target.value));
@@ -95,7 +96,7 @@ export const SignIn = () => {
           value={passwordValue}
         />
         <RegistrationBlock isHiden={isHiden} />
-        <PropagateLoader color='white' loading={loader} />
+        <PropagateLoader color={theme.fontColor} loading={loader} />
         <div className='buttonWrapper'>
           {isHiden ? (
             <ConfirmButton validate={isValid} isLogin requestFunc={login} />

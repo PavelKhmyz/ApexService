@@ -11,6 +11,7 @@ export const PredatorsAndCraftBlock = () => {
   const dispatch = useAppDispatch();
   const predators = useAppSelector((state) => state.predators.predators);
   const craft = useAppSelector((state) => state.craft.items);
+  const { theme } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (!predators) {
@@ -37,9 +38,13 @@ export const PredatorsAndCraftBlock = () => {
             <PredatorsComponent title='Arenas' data={predators.AP} />
           </>
         ) : (
-          <PropagateLoader />
+          <PropagateLoader color={theme.fontColor} />
         )}
-        {craft ? <CraftComponent data={craft} /> : <PropagateLoader />}
+        {craft ? (
+          <CraftComponent data={craft} />
+        ) : (
+          <PropagateLoader color={theme.fontColor} />
+        )}
       </div>
     </div>
   );

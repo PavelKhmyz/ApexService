@@ -2,44 +2,44 @@ import { useEffect } from 'react';
 import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import { UserEditableData } from '../../../../redux/initialStates/Types/initialStateType';
-import {
-  getPlayerProfile,
-  selectUser,
-} from '../../../../redux/reducer/userSlice';
+import { getPlayerProfile, setUser } from '../../../../redux/reducer/userSlice';
 import { ErrorComponent } from '../../../home/components/ErrorComponent';
 import { PlayerStats } from '../../../home/components/PlayerStats/PlayerStats';
 
 export const ContentElement = () => {
   const dispatch = useAppDispatch();
-  const accounts = useAppSelector((state) => state.user.playerData);
-  const requestData = useAppSelector((state) => state.user.selectUser);
-  const response = useAppSelector((state) => state.user.serverResponse);
-  const error = useAppSelector((state) => state.user.error);
-  const badRequest = useAppSelector((state) => state.user.badRequest);
-  const loading = useAppSelector((state) => state.user.loader);
+  const {
+    playerData,
+    selectUser,
+    serverResponse,
+    error,
+    badRequest,
+    loader,
+    theme,
+  } = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    if (accounts && !requestData) {
-      const [isChecked] = accounts.filter(
+    if (playerData && !selectUser) {
+      const [isChecked] = playerData.filter(
         (el: UserEditableData) => el.checked === true
       );
-      dispatch(selectUser(isChecked.id));
+      dispatch(setUser(isChecked.id));
     }
-  }, [accounts, dispatch, requestData]);
+  }, [playerData, dispatch, selectUser]);
 
   useEffect(() => {
-    if (requestData) {
-      const parse = { name: requestData.name, platform: requestData.platform };
+    if (selectUser) {
+      const parse = { name: selectUser.name, platform: selectUser.platform };
       dispatch(getPlayerProfile(parse));
     }
-  }, [dispatch, requestData]);
+  }, [dispatch, selectUser]);
 
   return (
     <>
-      {response && <PlayerStats data={response} />}
+      {serverResponse && <PlayerStats data={serverResponse} />}
       {error && <ErrorComponent data={error} />}
       {badRequest && <ErrorComponent data={badRequest} />}
-      <PropagateLoader color='white' loading={loading} />
+      <PropagateLoader color={theme.fontColor} loading={loader} />
     </>
   );
 };
