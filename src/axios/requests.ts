@@ -1,4 +1,4 @@
-import { apexApi, authApi, API_KEY } from './api';
+import axios from 'axios';
 import {
   GetPlayerStatsProps,
   RegistrationRequestProps,
@@ -6,38 +6,47 @@ import {
 } from './types';
 
 export const requests = () => {
-  const api = apexApi;
-  const backEnd = authApi;
+  const apexApi = axios.create({
+    baseURL: process.env.APEX_API_URL,
+  });
+  const backendApi = axios.create({
+    baseURL: process.env.BACKEND_URL,
+  });
 
   return {
-    getMapRotation: () => api.get(`/maprotation?auth=${API_KEY}`),
+    getMapRotation: () =>
+      apexApi.get(`/maprotation?auth=${process.env.API_KEY}`),
 
-    getCraftRotation: () => api.get(`/crafting?auth=${API_KEY}`),
+    getCraftRotation: () =>
+      apexApi.get(`/crafting?auth=${process.env.API_KEY}`),
 
-    getNews: () => api.get(`/news?auth=${API_KEY}`),
+    getNews: () => apexApi.get(`/news?auth=${process.env.API_KEY}`),
 
     getPlayerStats: ({ name, platform }: GetPlayerStatsProps) =>
-      api.get(`/bridge?auth=${API_KEY}&player=${name}&platform=${platform}`),
+      apexApi.get(
+        `/bridge?auth=${process.env.API_KEY}&player=${name}&platform=${platform}`
+      ),
 
-    getPredators: () => api.get(`/predator?auth=${API_KEY}`),
+    getPredators: () => apexApi.get(`/predator?auth=${process.env.API_KEY}`),
 
-    getServerStatus: () => api.get(`/servers?auth=${API_KEY}`),
+    getServerStatus: () => apexApi.get(`/servers?auth=${process.env.API_KEY}`),
 
     registrationRequest: (data: RegistrationRequestProps) =>
-      backEnd.post('/registration', data),
+      backendApi.post('/registration', data),
 
     loginRequest: (data: RegistrationRequestProps) =>
-      backEnd.post('/login', data),
+      backendApi.post('/login', data),
 
     logoutRequest: (refToken: string) =>
-      backEnd.post('/logout', { headers: { token: refToken } }),
+      backendApi.post('/logout', { headers: { token: refToken } }),
 
     refreshToken: (refToken: string) =>
-      backEnd.get('/refresh', { headers: { token: refToken } }),
+      backendApi.get('/refresh', { headers: { token: refToken } }),
 
     getUsers: (header: string) =>
-      backEnd.get('/users', { headers: { Authorization: header } }),
+      backendApi.get('/users', { headers: { Authorization: header } }),
 
-    sendAccounts: (data: SendAccountsProps) => backEnd.post('/account', data),
+    sendAccounts: (data: SendAccountsProps) =>
+      backendApi.post('/account', data),
   };
 };

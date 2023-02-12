@@ -1,9 +1,12 @@
 import { useAppSelector } from '../../../redux/hooks/hook';
+import { Current, Next } from '../../../redux/initialStates/Types/mapStateType';
 import { parseDate, parseTime } from '../utils/parsingDate';
-import { MapComponentPropsType } from './mapComponentType';
 
-export const MapComponent = (props: MapComponentPropsType) => {
-  const { data } = props;
+interface MapComponentPropsType {
+  data: Current | Next;
+}
+
+export const MapComponent = ({ data }: MapComponentPropsType) => {
   const time = useAppSelector((state) => state.map.time);
 
   return (

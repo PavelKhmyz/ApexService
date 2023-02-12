@@ -11,8 +11,7 @@ import './mapRotation.scss';
 
 export const MapRotation = () => {
   const dispatch = useAppDispatch();
-  const maps = useAppSelector((state) => state.map.maps);
-  const time = useAppSelector((state) => state.map.time);
+  const { maps, time } = useAppSelector((state) => state.map);
 
   const handleChangeTime = useCallback(() => {
     dispatch(changeTime());
