@@ -20,13 +20,10 @@ const predatorSlice = createSlice({
         state.loadingPredators = true;
       })
 
-      .addCase(
-        getPredators.fulfilled,
-        (state, action: PayloadAction<PredatorsResponseType>) => {
-          state.predators = action.payload;
-          state.loadingPredators = false;
-        }
-      )
+      .addCase(getPredators.fulfilled, (state, action: PayloadAction<PredatorsResponseType>) => {
+        state.predators = action.payload;
+        state.loadingPredators = false;
+      })
 
       .addCase(
         getPredators.rejected,

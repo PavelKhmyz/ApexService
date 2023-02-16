@@ -1,10 +1,6 @@
 import { RadioButtonProps } from '../../commonTypes';
 
-export const RadioButton = ({
-  data,
-  child,
-  check = false,
-}: RadioButtonProps) => {
+export const RadioButton = ({ data, child, check = false }: RadioButtonProps) => {
   const { id, value, changeFunc } = data;
   return (
     <div className='radioButton'>

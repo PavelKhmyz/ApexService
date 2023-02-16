@@ -2,10 +2,7 @@ import { useEffect } from 'react';
 import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import { UserEditableData } from '../../../../redux/initialStates/Types/initialStateType';
-import {
-  getPlayerProfile,
-  selectUser,
-} from '../../../../redux/reducer/userSlice';
+import { getPlayerProfile, selectUser } from '../../../../redux/reducer/userSlice';
 import { ErrorComponent } from '../../../home/components/ErrorComponent';
 import { PlayerStats } from '../../../home/components/PlayerStats/PlayerStats';
 
@@ -20,9 +17,7 @@ export const ContentElement = () => {
 
   useEffect(() => {
     if (accounts && !requestData) {
-      const [isChecked] = accounts.filter(
-        (el: UserEditableData) => el.checked === true
-      );
+      const [isChecked] = accounts.filter((el: UserEditableData) => el.checked === true);
       dispatch(selectUser(isChecked.id));
     }
   }, [accounts, dispatch, requestData]);

@@ -3,11 +3,7 @@ import { setIsHiden } from '../../../redux/reducer/authSlice';
 import { buttonVariable } from './componentsConfig';
 import { ConfirmButtonProps } from './signInTypes';
 
-export const ConfirmButton = ({
-  isLogin,
-  requestFunc,
-  validate,
-}: ConfirmButtonProps) => {
+export const ConfirmButton = ({ isLogin, requestFunc, validate }: ConfirmButtonProps) => {
   const dispatch = useAppDispatch();
   const buttonType = () =>
     isLogin ? buttonVariable.loginButton : buttonVariable.registrationButton;
@@ -17,12 +13,7 @@ export const ConfirmButton = ({
   };
   return (
     <>
-      <button
-        disabled={validate}
-        type='button'
-        className='signInButton'
-        onClick={requestFunc}
-      >
+      <button disabled={validate} type='button' className='signInButton' onClick={requestFunc}>
         {buttonType().confirmTitle}
       </button>
       <p className='haveAnAccount'>

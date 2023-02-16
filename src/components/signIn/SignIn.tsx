@@ -7,10 +7,7 @@ import { Input } from '../common/Input';
 import { Logo } from '../common/Logo';
 import './signInStyle.scss';
 import { ConfirmButton } from './components/ConfirmButton';
-import {
-  sendLoginRequest,
-  sendRegistrationRequest,
-} from '../../axios/authRequests';
+import { sendLoginRequest, sendRegistrationRequest } from '../../axios/authRequests';
 import { ErrorComponent } from '../home/components/ErrorComponent';
 import { loginInputConfig } from './components/componentsConfig';
 import { RegistrationBlock } from './components/RegistrationBlock';
@@ -49,11 +46,7 @@ export const SignIn = () => {
       } else {
         setIsValid(true);
       }
-    } else if (
-      confirmPassword === passwordValue &&
-      passwordValue &&
-      emailValue
-    ) {
+    } else if (confirmPassword === passwordValue && passwordValue && emailValue) {
       setIsValid(false);
     } else {
       setIsValid(true);
@@ -100,11 +93,7 @@ export const SignIn = () => {
           {isHiden ? (
             <ConfirmButton validate={isValid} isLogin requestFunc={login} />
           ) : (
-            <ConfirmButton
-              validate={isValid}
-              isLogin={false}
-              requestFunc={registration}
-            />
+            <ConfirmButton validate={isValid} isLogin={false} requestFunc={registration} />
           )}
         </div>
       </div>

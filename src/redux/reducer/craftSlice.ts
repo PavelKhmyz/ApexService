@@ -20,13 +20,10 @@ const craftItemsSlice = createSlice({
         state.loadingItems = true;
       })
 
-      .addCase(
-        getCraftItems.fulfilled,
-        (state, action: PayloadAction<[CraftResponseType]>) => {
-          state.items = action.payload;
-          state.loadingItems = false;
-        }
-      )
+      .addCase(getCraftItems.fulfilled, (state, action: PayloadAction<[CraftResponseType]>) => {
+        state.items = action.payload;
+        state.loadingItems = false;
+      })
 
       .addCase(
         getCraftItems.rejected,

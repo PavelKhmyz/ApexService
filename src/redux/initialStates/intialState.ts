@@ -12,7 +12,7 @@ import {
 
 export const mapsState: MapsStateType = {
   maps: null,
-  time: null,
+  reminingTimer: null,
   loading: false,
   error: undefined,
 };

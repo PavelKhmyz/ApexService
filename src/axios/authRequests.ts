@@ -1,26 +1,14 @@
 import { AxiosError } from 'axios';
 import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
-import {
-  addTokens,
-  changeEmail,
-  logout,
-  setError,
-  setLoader,
-} from '../redux/reducer/authSlice';
-import {
-  addPlayerData,
-  cleareState,
-  selectUser,
-} from '../redux/reducer/userSlice';
+import { addTokens, changeEmail, logout, setError, setLoader } from '../redux/reducer/authSlice';
+import { addPlayerData, cleareState, selectUser } from '../redux/reducer/userSlice';
 import { store } from '../redux/store';
 import { requests } from './requests';
 import { RegistrationRequestProps, TokensType, UpdateDbProps } from './types';
 
 const requestsStore = requests();
 
-export const sendRegistrationRequest = async (
-  data: RegistrationRequestProps
-) => {
+export const sendRegistrationRequest = async (data: RegistrationRequestProps) => {
   try {
     store.dispatch(setLoader());
     const response = await requestsStore.registrationRequest(data);

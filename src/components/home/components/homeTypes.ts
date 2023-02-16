@@ -10,10 +10,7 @@ import {
   Rank,
   Selected,
 } from '../../../redux/initialStates/Types/playerStatsStateType';
-import {
-  PlatformData,
-  RP,
-} from '../../../redux/initialStates/Types/predatorsInitialStateType';
+import { PlatformData, RP } from '../../../redux/initialStates/Types/predatorsInitialStateType';
 
 export interface ErrorComponentProps {
   data: PlayerStatsResponseType | string;

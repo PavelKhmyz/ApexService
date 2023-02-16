@@ -1,10 +1,6 @@
 import { updateDb } from '../../../../axios/authRequests';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
-import {
-  filterArray,
-  selectUser,
-  setPlayerData,
-} from '../../../../redux/reducer/userSlice';
+import { filterArray, selectUser, setPlayerData } from '../../../../redux/reducer/userSlice';
 import { RadioButton } from '../../../common/radioBlock/components/RadioButtons';
 import { AccountForm } from './components/AccountForm';
 import { ChangeThemeComponent } from './components/ChangeThemeComponent';
@@ -44,18 +40,10 @@ export const SettingsElement = () => {
       <div className='accountsBlock'>
         <h2>Your Accounts :</h2>
         <div className='addSaveButtons'>
-          <button
-            type='button'
-            onClick={handleAddNewAccount}
-            className='addButton'
-          >
+          <button type='button' onClick={handleAddNewAccount} className='addButton'>
             Add New Acount
           </button>
-          <button
-            type='button'
-            onClick={handleSaveChanges}
-            className='addButton'
-          >
+          <button type='button' onClick={handleSaveChanges} className='addButton'>
             Save Changes
           </button>
         </div>

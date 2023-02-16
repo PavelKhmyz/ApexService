@@ -24,9 +24,7 @@ const userSlice = createSlice({
       state.theme = action.payload;
     },
     selectUser: (state, action) => {
-      [state.selectUser] = state.playerData.filter(
-        (el) => el.id === action.payload
-      );
+      [state.selectUser] = state.playerData.filter((el) => el.id === action.payload);
 
       state.playerData.forEach((el) => {
         if (el.id !== action.payload) {
@@ -38,8 +36,7 @@ const userSlice = createSlice({
     },
     filterArray: (state, action: PayloadAction<UserEditableData>) => {
       state.playerData = state.playerData.filter(
-        (element) =>
-          element.name !== action.payload.name && element.id !== 'empty'
+        (element) => element.name !== action.payload.name && element.id !== 'empty'
       );
     },
     setPlayerData: (state, action: PayloadAction<UserEditableData>) => ({
@@ -88,13 +85,7 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  setPlayerData,
-  filterArray,
-  selectUser,
-  changeTheme,
-  addPlayerData,
-  cleareState,
-} = userSlice.actions;
+export const { setPlayerData, filterArray, selectUser, changeTheme, addPlayerData, cleareState } =
+  userSlice.actions;
 
 export const userReducer = userSlice.reducer;

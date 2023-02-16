@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import {
-  useAppSelector,
-  useAppDispatch,
-} from '../../../../../redux/hooks/hook';
+import { useAppSelector, useAppDispatch } from '../../../../../redux/hooks/hook';
 import { changeTheme } from '../../../../../redux/reducer/userSlice';
 import { SelectElement } from '../../../../common/select/SelectElement';
 import { theme } from './theme';
@@ -13,9 +10,7 @@ export const ChangeThemeComponent = () => {
   const dispatch = useAppDispatch();
   const themeKeys = Object.keys(theme);
 
-  const handleChangeInputValue = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleChangeInputValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchValue(event.target.value);
   };
 

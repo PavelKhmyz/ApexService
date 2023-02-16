@@ -1,8 +1,5 @@
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks/hook';
-import {
-  changePasswordConfirm,
-  changeName,
-} from '../../../redux/reducer/authSlice';
+import { changePasswordConfirm, changeName } from '../../../redux/reducer/authSlice';
 import { Input } from '../../common/Input';
 import { RadioBlock } from '../../common/radioBlock/RadioBlock';
 import { registrationInputConfig } from './componentsConfig';
@@ -21,10 +18,7 @@ export const RegistrationBlock = ({ isHiden }: RegistrationBlockProps) => {
   };
 
   return (
-    <div
-      className='registrationForm'
-      style={isHiden ? { height: '0px' } : { height: '240px' }}
-    >
+    <div className='registrationForm' style={isHiden ? { height: '0px' } : { height: '240px' }}>
       <Input
         data={registrationInputConfig.passwordInput}
         onChangeFunc={(event) => {

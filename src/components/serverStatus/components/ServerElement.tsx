@@ -19,9 +19,7 @@ export const ServerElement = (props: ServerElementProps) => {
       <p style={{ color: theme.fontColor, fontSize: '25px' }}>{data[0]}</p>
       <div>
         <p>Status: {data[1].Status}</p>
-        {data[1].Status !== 'DOWN' && data[1].ResponseTime && (
-          <p>Ping: {data[1].ResponseTime}</p>
-        )}
+        {data[1].Status !== 'DOWN' && data[1].ResponseTime && <p>Ping: {data[1].ResponseTime}</p>}
       </div>
     </div>
   );

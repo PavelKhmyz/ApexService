@@ -3,10 +3,7 @@ import { requests } from '../../axios/requests';
 import { GetPlayerStatsProps } from '../../axios/types';
 import { playerStatsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
-import {
-  Legend,
-  PlayerStatsResponseType,
-} from '../initialStates/Types/playerStatsStateType';
+import { Legend, PlayerStatsResponseType } from '../initialStates/Types/playerStatsStateType';
 
 export const getPlayerStats = createAsyncThunk(
   'apex/playerStats',
@@ -64,7 +61,6 @@ const playerStatsSlice = createSlice({
   },
 });
 
-export const { addName, addPlatform, changeSearchValue, setNewLegend } =
-  playerStatsSlice.actions;
+export const { addName, addPlatform, changeSearchValue, setNewLegend } = playerStatsSlice.actions;
 
 export const playerStatsReducer = playerStatsSlice.reducer;

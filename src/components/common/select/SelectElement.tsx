@@ -22,9 +22,7 @@ export const SelectElement = ({
         disabled={disable}
       >
         {isString
-          ? optionsArray.map((key) => (
-              <SelectOption key={key as string} data={key as string} />
-            ))
+          ? optionsArray.map((key) => <SelectOption key={key as string} data={key as string} />)
           : optionsArray.map((key) => (
               <SelectOption
                 key={(key as OptionsArrayType).data}

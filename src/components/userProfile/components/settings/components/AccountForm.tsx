@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../../../../redux/hooks/hook';
-import {
-  filterArray,
-  setPlayerData,
-} from '../../../../../redux/reducer/userSlice';
+import { filterArray, setPlayerData } from '../../../../../redux/reducer/userSlice';
 import { CloseIcon } from '../../../../common/CloseIcon';
 import { Input } from '../../../../common/Input';
 import { SelectElement } from '../../../../common/select/SelectElement';
@@ -21,9 +18,7 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
     setPlayerName(event.target.value);
   };
 
-  const handleChangeUserPlatform = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleChangeUserPlatform = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setUserPlatform(event.target.value);
   };
 
@@ -71,11 +66,7 @@ export const AccountForm = ({ inputsValue }: AccountFormProps) => {
         disable={isDisabled}
       />
       <div className='buttonsBlock'>
-        <button
-          type='button'
-          onClick={handleChangeDisable}
-          disabled={!isDisabled}
-        >
+        <button type='button' onClick={handleChangeDisable} disabled={!isDisabled}>
           Edit
         </button>
         <button type='button' onClick={savePlayerData} disabled={isDisabled}>

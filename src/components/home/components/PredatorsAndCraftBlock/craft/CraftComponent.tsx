@@ -14,9 +14,7 @@ export const CraftComponent = ({ data }: CraftComponentPropsType) => {
   const weaponOne = data.filter((element) => element.bundle === 'weapon_one');
   const weaponTwo = data.filter((element) => element.bundle === 'weapon_two');
 
-  const concatWeapons = weaponOne[0].bundleContent.concat(
-    weaponTwo[0].bundleContent
-  );
+  const concatWeapons = weaponOne[0].bundleContent.concat(weaponTwo[0].bundleContent);
 
   const weapons = {
     ...weaponOne[0],

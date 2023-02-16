@@ -9,13 +9,7 @@ export const PredatorsComponent = ({ title, data }: PredatorComponentProps) => {
   return (
     <div className='predatorsBR'>
       <p className='predatorsTitle'>{title}</p>
-      <Carousel
-        partialVisible
-        responsive={predatorResponsive}
-        autoPlay
-        infinite
-        arrows={false}
-      >
+      <Carousel partialVisible responsive={predatorResponsive} autoPlay infinite arrows={false}>
         <PredatorsInner title='PC' data={PC} />
         <PredatorsInner title='Play Station' data={PS4} />
         <PredatorsInner title='Xbox' data={X1} />

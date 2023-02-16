@@ -38,8 +38,5 @@ export interface ServerResponseType {
   otherPlatforms: OtherPlatforms;
 }
 
-export type ServerResponseStateType = [
-  string,
-  ServerGroup | SelfCoreTest | OtherPlatforms
-];
+export type ServerResponseStateType = [string, ServerGroup | SelfCoreTest | OtherPlatforms];
 export type ServerProps = [string, Server];

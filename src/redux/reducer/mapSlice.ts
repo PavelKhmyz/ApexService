@@ -5,9 +5,9 @@ import { MapResponseType } from '../initialStates/Types/mapStateType';
 import { requests } from '../../axios/requests';
 
 export const getRotation = createAsyncThunk('apex/rotation', async () => {
-  const apexResponse = requests();
-  const response = await apexResponse.getMapRotation();
-  return response.data;
+  const { getMapRotation } = requests();
+  const { data } = await getMapRotation();
+  return data;
 });
 
 const mapSlice = createSlice({
@@ -15,29 +15,26 @@ const mapSlice = createSlice({
   initialState: mapsState,
   reducers: {
     changeTime: (state) => {
-      if (state.time) {
-        state.time -= 1;
+      if (state.reminingTimer) {
+        state.reminingTimer -= 1;
       }
     },
     clearTime: (state) => {
-      state.time = null;
+      state.reminingTimer = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getRotation.pending, (state) => {
         state.loading = true;
+        state.error = undefined;
       })
 
-      .addCase(
-        getRotation.fulfilled,
-        (state, action: PayloadAction<MapResponseType>) => {
-          state.time = action.payload.current.remainingSecs;
-          state.maps = action.payload;
-          state.loading = false;
-          state.error = undefined;
-        }
-      )
+      .addCase(getRotation.fulfilled, (state, action: PayloadAction<MapResponseType>) => {
+        state.reminingTimer = action.payload.current.remainingSecs;
+        state.maps = action.payload;
+        state.loading = false;
+      })
 
       .addCase(
         getRotation.rejected,

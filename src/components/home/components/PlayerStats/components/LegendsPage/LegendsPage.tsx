@@ -1,14 +1,8 @@
 import { useEffect } from 'react';
 import { SelectedLegend } from './components/SelectedLegend';
 import './legendsPageStyle.scss';
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../../../../../redux/hooks/hook';
-import {
-  changeSearchValue,
-  setNewLegend,
-} from '../../../../../../redux/reducer/playerStatsSlice';
+import { useAppDispatch, useAppSelector } from '../../../../../../redux/hooks/hook';
+import { changeSearchValue, setNewLegend } from '../../../../../../redux/reducer/playerStatsSlice';
 import { SelectElement } from '../../../../../common/select/SelectElement';
 import { LegendsPageProps } from '../../../homeTypes';
 
@@ -23,9 +17,7 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
     dispatch(changeSearchValue(data.selected.LegendName));
   }, [data.selected.LegendName, dispatch]);
 
-  const handleChangeInputValue = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleChangeInputValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(changeSearchValue(event.target.value));
   };
 
@@ -48,11 +40,7 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
         </button>
       </div>
       <div className='legendContentWrapper'>
-        {!newLegend ? (
-          <SelectedLegend data={data.selected} />
-        ) : (
-          <SelectedLegend data={newLegend} />
-        )}
+        {!newLegend ? <SelectedLegend data={data.selected} /> : <SelectedLegend data={newLegend} />}
       </div>
     </div>
   );

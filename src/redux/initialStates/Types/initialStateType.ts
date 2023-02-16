@@ -8,7 +8,7 @@ import { ServerResponseStateType } from './serverInitialStateType';
 
 export interface MapsStateType {
   maps: null | MapResponseType;
-  time: number | null;
+  reminingTimer: number | null;
   loading: boolean;
   error: string | undefined;
 }

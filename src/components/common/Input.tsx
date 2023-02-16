@@ -1,11 +1,6 @@
 import { InputProps } from './commonTypes';
 
-export const Input = ({
-  data,
-  onChangeFunc,
-  value,
-  ...disabled
-}: InputProps) => {
+export const Input = ({ data, onChangeFunc, value, ...disabled }: InputProps) => {
   const { text, type, placeholder, id } = data;
 
   const isDisable = () => {
