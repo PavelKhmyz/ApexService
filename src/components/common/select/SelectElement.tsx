@@ -1,5 +1,17 @@
-import { SelectElementProps, OptionsArrayType } from '../commonTypes';
 import { SelectOption } from './components/SelectOption';
+
+export interface OptionsArrayType {
+  data: string;
+  value: string;
+}
+
+export interface SelectElementProps {
+  title: string;
+  value: string;
+  optionsArray: Array<string | OptionsArrayType>;
+  handleChange: (arg0: React.ChangeEvent<HTMLSelectElement>) => void;
+  disable?: boolean;
+}
 
 export const SelectElement = ({
   title,

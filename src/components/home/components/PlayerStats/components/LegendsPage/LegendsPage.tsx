@@ -21,10 +21,9 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
     dispatch(changeSearchValue(event.target.value));
   };
 
-  const searchLegend = () => {
-    const searchingLegend = all[searchValue];
-    dispatch(setNewLegend(searchingLegend));
-  };
+  useEffect(() => {
+    dispatch(setNewLegend(all[searchValue]));
+  }, [all, dispatch, searchValue]);
 
   return (
     <div className='legendWrapper'>
@@ -35,9 +34,6 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
           optionsArray={selectKeys}
           handleChange={handleChangeInputValue}
         />
-        <button className='searchButton' type='button' onClick={searchLegend}>
-          Show
-        </button>
       </div>
       <div className='legendContentWrapper'>
         {!newLegend ? <SelectedLegend data={data.selected} /> : <SelectedLegend data={newLegend} />}

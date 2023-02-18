@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../redux/hooks/hook';
-import { addName, getPlayerStats } from '../../../../../redux/reducer/playerStatsSlice';
+import {
+  addName,
+  addPlatform,
+  getPlayerStats,
+} from '../../../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../../../common/Input';
 import { RadioBlock } from '../../../../common/radioBlock/RadioBlock';
 import { statsInputConfig } from './elementConfig';
@@ -40,7 +44,7 @@ export const StatsInput = () => {
           }}
           value={nameValue}
         />
-        <RadioBlock fromAuth={false} />
+        <RadioBlock onChange={addPlatform} />
         <button disabled={isValid} className='inputButton' type='button' onClick={getStats}>
           Show Stats
         </button>

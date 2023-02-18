@@ -1,6 +1,15 @@
-import { RadioButtonProps } from '../../commonTypes';
+interface RadioInputProps {
+  id: string;
+  value: string;
+  changeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export const RadioButton = ({ data, child, check = false }: RadioButtonProps) => {
+interface RadioButtonProps {
+  data: RadioInputProps;
+  child: JSX.Element;
+}
+
+export const RadioButton = ({ data, child }: RadioButtonProps) => {
   const { id, value, changeFunc } = data;
   return (
     <div className='radioButton'>
@@ -10,7 +19,6 @@ export const RadioButton = ({ data, child, check = false }: RadioButtonProps) =>
         type='radio'
         id={id}
         value={value}
-        checked={check}
         onChange={(event) => {
           changeFunc(event);
         }}

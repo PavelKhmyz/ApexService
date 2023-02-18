@@ -1,5 +1,9 @@
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks/hook';
-import { changePasswordConfirm, changeName } from '../../../redux/reducer/authSlice';
+import {
+  changePasswordConfirm,
+  changeName,
+  changePlatform,
+} from '../../../redux/reducer/authSlice';
 import { Input } from '../../common/Input';
 import { RadioBlock } from '../../common/radioBlock/RadioBlock';
 import { registrationInputConfig } from './componentsConfig';
@@ -33,7 +37,7 @@ export const RegistrationBlock = ({ isHiden }: RegistrationBlockProps) => {
         }}
         value={name}
       />
-      <RadioBlock fromAuth />
+      <RadioBlock onChange={changePlatform} />
     </div>
   );
 };

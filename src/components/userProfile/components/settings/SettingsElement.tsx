@@ -8,9 +8,8 @@ import './settingsElementStyle.scss';
 
 export const SettingsElement = () => {
   const dispatch = useAppDispatch();
-  const accounts = useAppSelector((state) => state.user.playerData);
-  const request = useAppSelector((state) => state.user.selectUser);
-  const email = useAppSelector((state) => state.auth.email);
+  const { playerData } = useAppSelector((state) => state.user);
+  const { email } = useAppSelector((state) => state.auth);
 
   const handleAddNewAccount = () => {
     const data = { name: '', platform: 'X1', id: 'empty', checked: false };
@@ -18,17 +17,11 @@ export const SettingsElement = () => {
     dispatch(setPlayerData(data));
   };
   const handleSaveChanges = () => {
-    const data = { email, userAccounts: accounts };
+    const data = { email, userAccounts: playerData };
     updateDb(data);
   };
   const handleChangePlatform = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(selectUser(event.target.value));
-  };
-  const isChecked = (id: string) => {
-    if (request && request.id === id) {
-      return true;
-    }
-    return false;
   };
 
   return (
@@ -48,9 +41,8 @@ export const SettingsElement = () => {
           </button>
         </div>
         <div className='accountsWrapper'>
-          {accounts.map((element) => (
+          {playerData.map((element) => (
             <RadioButton
-              check={isChecked(element.id)}
               key={element.id}
               data={{
                 id: element.id,

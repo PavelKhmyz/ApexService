@@ -1,21 +1,19 @@
+import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { useAppDispatch } from '../../../redux/hooks/hook';
-import { changePlatform } from '../../../redux/reducer/authSlice';
-import { addPlatform } from '../../../redux/reducer/playerStatsSlice';
-import { RadioBlockProps } from '../commonTypes';
 import { PcLogo } from './components/PcLogo';
 import { PsLogo } from './components/PsLogo';
 import { RadioButton } from './components/RadioButtons';
 import { XboxLogo } from './components/XboxLogo';
 
-export const RadioBlock = ({ fromAuth }: RadioBlockProps) => {
+interface RadioBlockProps {
+  onChange: ActionCreatorWithPayload<string, string>;
+}
+
+export const RadioBlock = ({ onChange }: RadioBlockProps) => {
   const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (fromAuth) {
-      dispatch(changePlatform(event.target.value));
-    } else {
-      dispatch(addPlatform(event.target.value));
-    }
+    dispatch(onChange(event.target.value));
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../redux/hooks/hook';
 import { changeTheme } from '../../../../../redux/reducer/userSlice';
 import { SelectElement } from '../../../../common/select/SelectElement';
@@ -14,10 +14,9 @@ export const ChangeThemeComponent = () => {
     setSearchValue(event.target.value);
   };
 
-  const saveTheme = () => {
-    const savedTheme = theme[searchValue];
-    dispatch(changeTheme(savedTheme));
-  };
+  useEffect(() => {
+    dispatch(changeTheme(theme[searchValue]));
+  }, [dispatch, searchValue]);
 
   return (
     <div className='changeThemeSelect'>
@@ -27,9 +26,6 @@ export const ChangeThemeComponent = () => {
         optionsArray={themeKeys}
         handleChange={handleChangeInputValue}
       />
-      <button type='button' onClick={saveTheme} className='themeSaveButton'>
-        Save Theme
-      </button>
     </div>
   );
 };
