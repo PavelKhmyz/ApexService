@@ -23,7 +23,7 @@ export const requests = () => {
 
     getPredators: () => apexApi.get(`/predator?auth=${process.env.REACT_APP_API_KEY}`),
 
-    getServerState: () => apexApi.get(`/servers?auth=${process.env.REACT_APP_API_KEY}`),
+    getServerStatus: () => apexApi.get(`/servers?auth=${process.env.REACT_APP_API_KEY}`),
 
     registrationRequest: (data: RegistrationRequestProps) => backendApi.post('/registration', data),
 

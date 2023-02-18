@@ -2,10 +2,10 @@ import { useAppSelector, useAppDispatch } from '../../../redux/hooks/hook';
 import {
   changePasswordConfirm,
   changeName,
-  changePlatform,
+  // changePlatform,
 } from '../../../redux/reducer/authSlice';
 import { Input } from '../../common/Input';
-import { RadioBlock } from '../../common/radioBlock/RadioBlock';
+// import { RadioBlock } from '../../common/radioBlock/RadioBlock';
 import { registrationInputConfig } from './componentsConfig';
 import { RegistrationBlockProps } from './signInTypes';
 
@@ -37,7 +37,7 @@ export const RegistrationBlock = ({ isHiden }: RegistrationBlockProps) => {
         }}
         value={name}
       />
-      <RadioBlock onChange={changePlatform} />
+      {/* <RadioBlock onChange={changePlatform} /> */}
     </div>
   );
 };

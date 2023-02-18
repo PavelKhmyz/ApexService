@@ -1,19 +1,22 @@
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-import { useAppDispatch } from '../../../redux/hooks/hook';
-import { PcLogo } from './components/PcLogo';
-import { PsLogo } from './components/PsLogo';
-import { RadioButton } from './components/RadioButtons';
-import { XboxLogo } from './components/XboxLogo';
+// import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
+// import { useAppDispatch } from '../../../redux/hooks/hook';
+import { PcLogo } from '../../../svg/PcLogo';
+import { PsLogo } from '../../../svg/PsLogo';
+import { XboxLogo } from '../../../svg/XboxLogo';
+import { RadioButton } from './components/RadioButton';
+
+// ActionCreatorWithPayload<string, string> |
 
 interface RadioBlockProps {
-  onChange: ActionCreatorWithPayload<string, string>;
+  onChange: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const RadioBlock = ({ onChange }: RadioBlockProps) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(onChange(event.target.value));
+    // dispatch(onChange(event.target.value));
+    onChange(event.target.value);
   };
 
   return (

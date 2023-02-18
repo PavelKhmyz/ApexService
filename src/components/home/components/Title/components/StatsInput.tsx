@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../../../redux/hooks/hook';
-import {
-  addName,
-  addPlatform,
-  getPlayerStats,
-} from '../../../../../redux/reducer/playerStatsSlice';
+import { useAppDispatch } from '../../../../../redux/hooks/hook';
+import { fetchPlayerStats } from '../../../../../redux/reducer/playerStatsSlice';
 import { Input } from '../../../../common/Input';
 import { RadioBlock } from '../../../../common/radioBlock/RadioBlock';
-import { statsInputConfig } from './elementConfig';
 import '../titleComponent.style.scss';
+
+const statsInputConfig = {
+  nameInput: {
+    id: 'inputFromStats',
+    text: 'Name:',
+    type: 'text',
+    placeholder: 'Enter your Player name',
+  },
+};
 
 export const StatsInput = () => {
   const dispatch = useAppDispatch();
-  const nameValue = useAppSelector((state) => state.playerStats.name);
-  const platformValue = useAppSelector((state) => state.playerStats.platform);
+  const [nameValue, setNameValue] = useState('');
+  const [platformValue, setPlatformValue] = useState('');
   const [isValid, setIsValid] = useState(true);
 
   const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(addName(event.target.value));
+    setNameValue(event.target.value);
   };
 
   const getStats = () => {
@@ -25,7 +29,7 @@ export const StatsInput = () => {
       name: nameValue,
       platform: platformValue,
     };
-    dispatch(getPlayerStats(data));
+    dispatch(fetchPlayerStats(data));
   };
 
   useEffect(() => {
@@ -44,7 +48,7 @@ export const StatsInput = () => {
           }}
           value={nameValue}
         />
-        <RadioBlock onChange={addPlatform} />
+        <RadioBlock onChange={setPlatformValue} />
         <button disabled={isValid} className='inputButton' type='button' onClick={getStats}>
           Show Stats
         </button>

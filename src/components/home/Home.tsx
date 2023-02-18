@@ -5,23 +5,19 @@ import './homeStyle.scss';
 import { NewsFeed } from './components/NewsFeed/NewsFeed';
 import { PredatorsAndCraftBlock } from './components/PredatorsAndCraftBlock/PredatorsAndCraftBlock';
 import { TitleComponent } from './components/Title/TitleComponent';
-import { PlayerStats } from './components/PlayerStats/PlayerStats';
-import { ErrorComponent } from './components/ErrorComponent';
+import { PlayerStats } from '../common/PlayerStats/PlayerStats';
+import { ErrorComponent } from '../common/ErrorComponent';
 
 export const Home = () => {
-  const playerStats = useAppSelector((state) => state.playerStats.playerStats);
-  const badRequest = useAppSelector((state) => state.playerStats.badRequest);
-  const loading = useAppSelector((state) => state.playerStats.loadingStats);
-  const error = useAppSelector((state) => state.playerStats.error);
+  const { playerStats, loadingStats, error } = useAppSelector((state) => state.playerStats);
 
   return (
     <div className='homeContainer'>
       <TitleComponent />
       <div className='homeContent'>
-        {error && <ErrorComponent data={error} />}
-        {badRequest && <ErrorComponent data={badRequest} />}
+        {error && <ErrorComponent message={error} />}
         {playerStats && <PlayerStats data={playerStats} />}
-        <PropagateLoader color='white' loading={loading} />
+        <PropagateLoader color='white' loading={loadingStats} />
         <NewsFeed />
         <PredatorsAndCraftBlock />
       </div>

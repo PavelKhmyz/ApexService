@@ -1,14 +1,12 @@
-import { InputProps } from './commonTypes';
+interface InputProps {
+  data: { text: string; type: string; placeholder: string; id: string };
+  onChangeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  disabled?: boolean;
+}
 
-export const Input = ({ data, onChangeFunc, value, ...disabled }: InputProps) => {
+export const Input = ({ data, onChangeFunc, value, disabled = false }: InputProps) => {
   const { text, type, placeholder, id } = data;
-
-  const isDisable = () => {
-    if (disabled.disabled) {
-      return disabled.disabled;
-    }
-    return false;
-  };
 
   return (
     <div className='inputLabel'>
@@ -22,7 +20,7 @@ export const Input = ({ data, onChangeFunc, value, ...disabled }: InputProps) =>
         placeholder={placeholder}
         onChange={onChangeFunc}
         value={value}
-        disabled={isDisable()}
+        disabled={disabled}
       />
     </div>
   );

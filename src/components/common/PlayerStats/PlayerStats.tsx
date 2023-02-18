@@ -1,8 +1,7 @@
 import './playerStatsStyle.scss';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { PlayerStatsPage } from './components/PlayerStatsPage/PlayerStatsPage';
+import { PlayerStatsPage, PlayerStatsProps } from './components/PlayerStatsPage/PlayerStatsPage';
 import { LegendsPage } from './components/LegendsPage/LegendsPage';
-import { PlayerStatsProps } from '../homeTypes';
 
 export const PlayerStats = ({ data }: PlayerStatsProps) => {
   const { legends } = data;

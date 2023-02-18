@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import './header.style.scss';
-import { Logo } from '../common/Logo';
+import { Logo } from '../../svg/Logo';
 import { useAppSelector } from '../../redux/hooks/hook';
 import { LinkElement } from './components/LinkElement';
 

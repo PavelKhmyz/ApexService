@@ -4,13 +4,13 @@ import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
 import { changeEmail, changePassword } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
-import { Logo } from '../common/Logo';
+import { Logo } from '../../svg/Logo';
 import './signInStyle.scss';
 import { ConfirmButton } from './components/ConfirmButton';
 import { sendLoginRequest, sendRegistrationRequest } from '../../axios/authRequests';
-import { ErrorComponent } from '../home/components/ErrorComponent';
 import { loginInputConfig } from './components/componentsConfig';
 import { RegistrationBlock } from './components/RegistrationBlock';
+import { ErrorComponent } from '../common/ErrorComponent';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -97,7 +97,7 @@ export const SignIn = () => {
           )}
         </div>
       </div>
-      {error && <ErrorComponent data={error} />}
+      {error && <ErrorComponent message={error} />}
     </div>
   );
 };

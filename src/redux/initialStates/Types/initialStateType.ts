@@ -2,7 +2,7 @@ import { ThemeElementType } from '../../../components/userProfile/components/set
 import { CraftResponseType } from './craftInitialStateTypes';
 import { MapResponseType } from './mapStateType';
 import { NewsResponseType } from './newsInitialStateType';
-import { Legend, PlayerStatsResponseType } from './playerStatsStateType';
+import { PlayerStatsResponseType } from './playerStatsStateType';
 import { PredatorsResponseType } from './predatorsInitialStateType';
 import { ServerResponseStateType } from './serverInitialStateType';
 
@@ -28,12 +28,8 @@ export interface NewsDataType {
 }
 
 export interface PlayerStatsStateType {
-  name: string;
-  platform: string;
   playerStats: null | PlayerStatsResponseType;
   badRequest: null | PlayerStatsResponseType;
-  searchValue: string;
-  newLegend: null | Legend;
   loadingStats: boolean;
   error: string | undefined;
 }

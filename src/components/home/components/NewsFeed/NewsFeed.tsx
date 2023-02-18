@@ -4,34 +4,33 @@ import { NavLink } from 'react-router-dom';
 import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import { NewsResponseType } from '../../../../redux/initialStates/Types/newsInitialStateType';
-import { getNews } from '../../../../redux/reducer/newsSlice';
-import { responsive } from '../reactCarouselResponsive';
+import { fetchNews } from '../../../../redux/reducer/newsSlice';
+import { responsive } from './reactCarouselResponsive';
 import { NewsBlock } from '../../../common/NewsBlock';
 import './newsFeedStyle.scss';
 
 export const NewsFeed = () => {
   const dispatch = useAppDispatch();
-  const news = useAppSelector((state) => state.news.newsData);
+  const { newsData, loadingNews } = useAppSelector((state) => state.news);
 
   useEffect(() => {
-    if (!news) {
-      dispatch(getNews());
+    if (!newsData) {
+      dispatch(fetchNews());
     }
-  }, [dispatch, news]);
+  }, [dispatch, newsData]);
 
   return (
     <div className='newsFeed'>
       <NavLink className='newsLink' to={'/news'}>
         News feed
       </NavLink>
-      {news ? (
+      <PropagateLoader loading={loadingNews} />
+      {newsData && (
         <Carousel partialVisible responsive={responsive} autoPlay infinite>
-          {news.map((newsEl: NewsResponseType) => (
+          {newsData.map((newsEl: NewsResponseType) => (
             <NewsBlock key={newsEl.title} newsEl={newsEl} />
           ))}
         </Carousel>
-      ) : (
-        <PropagateLoader />
       )}
     </div>
   );

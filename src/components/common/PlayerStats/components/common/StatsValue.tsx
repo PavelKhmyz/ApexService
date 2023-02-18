@@ -1,7 +1,10 @@
-import { StatsValueProps } from '../../../homeTypes';
+import { Datum } from '../../../../../redux/initialStates/Types/playerStatsStateType';
+
+export interface StatsValueProps {
+  statsData: Datum;
+}
 
 export const StatsValue = ({ statsData }: StatsValueProps) => {
-  console.log(statsData);
   const isActual = statsData.value > -1;
   if (isActual) {
     return (
@@ -10,5 +13,5 @@ export const StatsValue = ({ statsData }: StatsValueProps) => {
       </p>
     );
   }
-  return <p />;
+  return null;
 };

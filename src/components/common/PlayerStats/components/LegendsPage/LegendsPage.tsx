@@ -1,28 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SelectedLegend } from './components/SelectedLegend';
 import './legendsPageStyle.scss';
-import { useAppDispatch, useAppSelector } from '../../../../../../redux/hooks/hook';
-import { changeSearchValue, setNewLegend } from '../../../../../../redux/reducer/playerStatsSlice';
-import { SelectElement } from '../../../../../common/select/SelectElement';
-import { LegendsPageProps } from '../../../homeTypes';
+import { useAppDispatch } from '../../../../../redux/hooks/hook';
+import { SelectElement } from '../../../select/SelectElement';
+import { Legend, Legends } from '../../../../../redux/initialStates/Types/playerStatsStateType';
+
+export interface LegendsPageProps {
+  data: Legends;
+}
 
 export const LegendsPage = ({ data }: LegendsPageProps) => {
   const dispatch = useAppDispatch();
-  const searchValue = useAppSelector((state) => state.playerStats.searchValue);
-  const newLegend = useAppSelector((state) => state.playerStats.newLegend);
+  const [newLegend, setNewLegend] = useState<null | Legend>(null);
+  const [searchValue, setSearchValue] = useState(data.selected.LegendName);
   const { all } = data;
-  const selectKeys = Object.keys(data.all);
-
-  useEffect(() => {
-    dispatch(changeSearchValue(data.selected.LegendName));
-  }, [data.selected.LegendName, dispatch]);
+  const selectKeys = Object.keys(all);
 
   const handleChangeInputValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(changeSearchValue(event.target.value));
+    setSearchValue(event.target.value);
   };
 
   useEffect(() => {
-    dispatch(setNewLegend(all[searchValue]));
+    setNewLegend(all[searchValue]);
   }, [all, dispatch, searchValue]);
 
   return (

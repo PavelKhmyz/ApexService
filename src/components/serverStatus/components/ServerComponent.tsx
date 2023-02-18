@@ -1,7 +1,12 @@
-import PropagateLoader from 'react-spinners/PropagateLoader';
-import { ServerProps } from '../../../redux/initialStates/Types/serverInitialStateType';
+import {
+  ServerProps,
+  ServerResponseStateType,
+} from '../../../redux/initialStates/Types/serverInitialStateType';
 import { ServerElement } from './ServerElement';
-import { ServerComponentProps } from './serverStatusType';
+
+export interface ServerComponentProps {
+  serverData: ServerResponseStateType;
+}
 
 export const ServerComponent = (props: ServerComponentProps) => {
   const { serverData } = props;
@@ -10,11 +15,9 @@ export const ServerComponent = (props: ServerComponentProps) => {
     <div className='serverComponentWrapper'>
       <p className='serverTitle'>{serverData[0]}</p>
       <div className='serverComponent'>
-        {parse ? (
-          parse.map((server: ServerProps) => <ServerElement key={server[0]} data={server} />)
-        ) : (
-          <PropagateLoader />
-        )}
+        {parse.map((server: ServerProps) => (
+          <ServerElement key={server[0]} data={server} />
+        ))}
       </div>
     </div>
   );

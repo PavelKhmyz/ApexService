@@ -1,4 +1,6 @@
-import { LogoProps } from './commonTypes';
+interface LogoProps {
+  className: string;
+}
 
 export const Logo = ({ className }: LogoProps) => (
   <svg className={className} viewBox='0 0 1600 1200'>

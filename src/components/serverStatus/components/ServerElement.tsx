@@ -1,9 +1,13 @@
 import { useAppSelector } from '../../../redux/hooks/hook';
-import { ServerElementProps } from './serverStatusType';
+import { ServerProps } from '../../../redux/initialStates/Types/serverInitialStateType';
+
+interface ServerElementProps {
+  data: ServerProps;
+}
 
 export const ServerElement = (props: ServerElementProps) => {
   const { data } = props;
-  const theme = useAppSelector((state) => state.user.theme);
+  const { theme } = useAppSelector((state) => state.user);
   const isDown = () => {
     if (data[1].Status === 'DOWN') {
       return { color: 'red', borderColor: 'red' };

@@ -1,11 +1,17 @@
-import { Datum } from '../../../../../../redux/initialStates/Types/playerStatsStateType';
+import {
+  Datum,
+  PlayerStatsResponseType,
+} from '../../../../../redux/initialStates/Types/playerStatsStateType';
 import { RankComponent } from './components/RankComponent';
 import { StatsValue } from '../common/StatsValue';
 import './playerStatsPageStyle.scss';
-import { XboxLogo } from '../../../../../common/radioBlock/components/XboxLogo';
-import { PsLogo } from '../../../../../common/radioBlock/components/PsLogo';
-import { PcLogo } from '../../../../../common/radioBlock/components/PcLogo';
-import { PlayerStatsProps } from '../../../homeTypes';
+import { PcLogo } from '../../../../../svg/PcLogo';
+import { XboxLogo } from '../../../../../svg/XboxLogo';
+import { PsLogo } from '../../../../../svg/PsLogo';
+
+export interface PlayerStatsProps {
+  data: PlayerStatsResponseType;
+}
 
 export const PlayerStatsPage = ({ data }: PlayerStatsProps) => {
   const { realtime, total, global } = data;
@@ -29,10 +35,7 @@ export const PlayerStatsPage = ({ data }: PlayerStatsProps) => {
         <div>
           <p>Level: {global.level}</p>
           <div className='percentsBorder'>
-            <div
-              className='percentsBar'
-              style={{ width: `${global.toNextLevelPercent}%` }}
-            />
+            <div className='percentsBar' style={{ width: `${global.toNextLevelPercent}%` }} />
           </div>
         </div>
         <p>{realtime.currentStateAsText}</p>

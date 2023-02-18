@@ -32,12 +32,8 @@ export const newsState: NewsDataType = {
 };
 
 export const playerStatsState: PlayerStatsStateType = {
-  name: '',
-  platform: '',
   playerStats: null,
   badRequest: null,
-  searchValue: '',
-  newLegend: null,
   loadingStats: false,
   error: undefined,
 };

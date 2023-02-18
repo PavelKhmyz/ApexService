@@ -9,7 +9,7 @@ import './predatorsAndCraftBlock.style.scss';
 
 export const PredatorsAndCraftBlock = () => {
   const dispatch = useAppDispatch();
-  const predators = useAppSelector((state) => state.predators.predators);
+  const { predators } = useAppSelector((state) => state.predators);
   const craft = useAppSelector((state) => state.craft.items);
 
   useEffect(() => {

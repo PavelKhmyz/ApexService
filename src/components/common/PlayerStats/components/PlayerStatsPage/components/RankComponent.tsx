@@ -1,4 +1,9 @@
-import { RankComponentProps } from '../../../../homeTypes';
+import { Rank } from '../../../../../../redux/initialStates/Types/playerStatsStateType';
+
+export interface RankComponentProps {
+  name: string;
+  data: Rank;
+}
 
 export const RankComponent = ({ data, name }: RankComponentProps) => (
   <div className='rankComponentContainer'>

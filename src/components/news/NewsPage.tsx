@@ -1,26 +1,24 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
 import { NewsResponseType } from '../../redux/initialStates/Types/newsInitialStateType';
-import { getNews, setPage } from '../../redux/reducer/newsSlice';
+import { fetchNews, setPage } from '../../redux/reducer/newsSlice';
 import { NewsBlock } from '../common/NewsBlock';
 import './newsPage.scss';
 import { PaginationBar } from './components/PaginationBar';
 
 export const NewsPage = () => {
-  const lastPage = useAppSelector((state) => state.news.pagesArrayLength);
-  const news = useAppSelector((state) => state.news.newsData);
-  const page = useAppSelector((state) => state.news.page);
+  const { pagesArrayLength, page, newsData } = useAppSelector((state) => state.news);
   const dispatch = useAppDispatch();
   const itemsOnPage = 4;
   const itemOffset = page * itemsOnPage;
   const endOffset = itemOffset + itemsOnPage;
-  const paginate = news?.slice(itemOffset, endOffset);
+  const paginate = newsData?.slice(itemOffset, endOffset);
 
   useEffect(() => {
-    if (!news) {
-      dispatch(getNews());
+    if (!newsData) {
+      dispatch(fetchNews());
     }
-  }, [dispatch, news]);
+  }, [dispatch, newsData]);
 
   const handleChangePage = (increment: boolean) => {
     if (increment) {
@@ -44,7 +42,7 @@ export const NewsPage = () => {
         <PaginationBar />
         <button
           className='prevNextButton'
-          disabled={page === lastPage}
+          disabled={page === pagesArrayLength}
           type='button'
           onClick={() => handleChangePage(true)}
         >

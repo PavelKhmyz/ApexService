@@ -4,11 +4,11 @@ import { setPage, setPagesArray } from '../../../redux/reducer/newsSlice';
 
 export const PaginationBar = () => {
   const dispatch = useAppDispatch();
-  const news = useAppSelector((state) => state.news.newsData);
+  const { newsData } = useAppSelector((state) => state.news);
 
   const arr = [];
-  if (news) {
-    const pages = Math.ceil(news.length / 4);
+  if (newsData) {
+    const pages = Math.ceil(newsData.length / 4);
     for (let i = 0; i < pages; i += 1) {
       arr.push(i);
     }

@@ -4,10 +4,10 @@ import { newsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { NewsResponseType } from '../initialStates/Types/newsInitialStateType';
 
-export const getNews = createAsyncThunk('apex/news', async () => {
-  const apexResponse = requests();
-  const response = await apexResponse.getNews();
-  return response.data;
+export const fetchNews = createAsyncThunk('apex/news', async () => {
+  const { getNews } = requests();
+  const { data } = await getNews();
+  return data;
 });
 
 const newsSlice = createSlice({
@@ -23,17 +23,17 @@ const newsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getNews.pending, (state) => {
+      .addCase(fetchNews.pending, (state) => {
         state.loadingNews = true;
       })
 
-      .addCase(getNews.fulfilled, (state, action: PayloadAction<[NewsResponseType]>) => {
+      .addCase(fetchNews.fulfilled, (state, action: PayloadAction<[NewsResponseType]>) => {
         state.newsData = action.payload;
         state.loadingNews = false;
       })
 
       .addCase(
-        getNews.rejected,
+        fetchNews.rejected,
         (state, action: PayloadAction<unknown, string, never, ErrorType>) => {
           state.loadingNews = false;
           state.error = action.error.message;

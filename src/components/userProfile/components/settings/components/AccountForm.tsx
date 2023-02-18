@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../../../../redux/hooks/hook';
 import { filterArray, setPlayerData } from '../../../../../redux/reducer/userSlice';
-import { CloseIcon } from '../../../../common/CloseIcon';
+import { CloseIcon } from '../../../../../svg/CloseIcon';
 import { Input } from '../../../../common/Input';
 import { SelectElement } from '../../../../common/select/SelectElement';
 import { accountFormInputConfig, optionConfig } from './componentsConfig';

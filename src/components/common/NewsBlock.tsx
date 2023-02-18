@@ -1,4 +1,8 @@
-import { NewsBlockProps } from './commonTypes';
+import { NewsResponseType } from '../../redux/initialStates/Types/newsInitialStateType';
+
+interface NewsBlockProps {
+  newsEl: NewsResponseType;
+}
 
 export const NewsBlock = ({ newsEl }: NewsBlockProps) => (
   <a className='newsBlock' href={newsEl.link} target='_blank' rel='noreferrer'>

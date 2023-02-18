@@ -1,5 +1,9 @@
-import { CraftElementProps } from '../../../homeTypes';
+import { CraftResponseType } from '../../../../../../redux/initialStates/Types/craftInitialStateTypes';
 import { ItemCard } from './ItemCard';
+
+interface CraftElementProps {
+  craftElement: CraftResponseType;
+}
 
 export const CraftElement = ({ craftElement }: CraftElementProps) => {
   const { bundleContent } = craftElement;

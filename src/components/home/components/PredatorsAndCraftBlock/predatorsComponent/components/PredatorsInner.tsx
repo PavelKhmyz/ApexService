@@ -1,4 +1,9 @@
-import { PredatorInnerProps } from '../../../homeTypes';
+import { PlatformData } from '../../../../../../redux/initialStates/Types/predatorsInitialStateType';
+
+export interface PredatorInnerProps {
+  data: PlatformData;
+  title: string;
+}
 
 export const PredatorsInner = ({ data, title }: PredatorInnerProps) => (
   <div>

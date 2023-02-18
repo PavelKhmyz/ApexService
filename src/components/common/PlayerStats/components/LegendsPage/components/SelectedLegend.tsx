@@ -1,6 +1,13 @@
-import { Datum } from '../../../../../../../redux/initialStates/Types/playerStatsStateType';
-import { SelectedLegendProps } from '../../../../homeTypes';
+import {
+  Datum,
+  Legend,
+  Selected,
+} from '../../../../../../redux/initialStates/Types/playerStatsStateType';
 import { StatsValue } from '../../common/StatsValue';
+
+export interface SelectedLegendProps {
+  data: Legend | Selected;
+}
 
 export const SelectedLegend = ({ data }: SelectedLegendProps) => (
   <>
