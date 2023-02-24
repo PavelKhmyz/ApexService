@@ -1,15 +1,18 @@
-import { useAppDispatch } from '../../../redux/hooks/hook';
-import { setIsHiden } from '../../../redux/reducer/authSlice';
 import { buttonVariable } from './componentsConfig';
-import { ConfirmButtonProps } from './signInTypes';
 
-export const ConfirmButton = ({ isLogin, requestFunc, validate }: ConfirmButtonProps) => {
-  const dispatch = useAppDispatch();
+export interface ConfirmButtonProps {
+  requestFunc: () => void;
+  showForm: React.Dispatch<React.SetStateAction<boolean>>;
+  validate: boolean;
+  isLogin: boolean;
+}
+
+export const ConfirmButton = ({ isLogin, requestFunc, validate, showForm }: ConfirmButtonProps) => {
   const buttonType = () =>
     isLogin ? buttonVariable.loginButton : buttonVariable.registrationButton;
 
   const showRegistrationForm = () => {
-    dispatch(setIsHiden());
+    showForm((prev) => !prev);
   };
   return (
     <>

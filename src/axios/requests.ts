@@ -1,5 +1,19 @@
 import axios from 'axios';
-import { GetPlayerStatsProps, RegistrationRequestProps, SendAccountsProps } from './types';
+import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
+
+export interface GetPlayerStatsProps {
+  name: string;
+  platform: string;
+}
+export interface RegistrationRequestProps {
+  email: string;
+  password: string;
+  userAccounts?: UserEditableData[];
+}
+export interface SendAccountsProps {
+  email: string;
+  userAccounts: UserEditableData[];
+}
 
 export const requests = () => {
   const apexApi = axios.create({

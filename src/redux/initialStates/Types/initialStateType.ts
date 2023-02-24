@@ -66,10 +66,6 @@ export interface UserDataStateType {
 export interface AuthDataStateType {
   email: string;
   name: string;
-  password: string;
-  passwordConfirm: string;
-  platform: string;
-  isHiden: boolean;
   loader: boolean;
   accessToken: null | string;
   refreshToken: null | string;

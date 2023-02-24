@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { PropagateLoader } from 'react-spinners';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { changeEmail, changePassword } from '../../redux/reducer/authSlice';
+import { changeEmail } from '../../redux/reducer/authSlice';
 import { Input } from '../common/Input';
 import { Logo } from '../../svg/Logo';
 import './signInStyle.scss';
@@ -15,47 +15,43 @@ import { ErrorComponent } from '../common/ErrorComponent';
 export const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const auth = !!useAppSelector((state) => state.auth.accessToken);
-  const platform = useAppSelector((state) => state.auth.platform);
-  const emailValue = useAppSelector((state) => state.auth.email);
-  const passwordValue = useAppSelector((state) => state.auth.password);
-  const confirmPassword = useAppSelector((state) => state.auth.passwordConfirm);
-  const name = useAppSelector((state) => state.auth.name);
+  const { accessToken, email, name, error, loader } = useAppSelector((state) => state.auth);
+  const [platform, setPlatform] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
-  const isHiden = useAppSelector((state) => state.auth.isHiden);
-  const error = useAppSelector((state) => state.auth.error);
-  const loader = useAppSelector((state) => state.auth.loader);
+  const [isHiden, setIsHiden] = useState(true);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(event.target.value));
   };
   const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(changePassword(event.target.value));
+    setPasswordValue(event.target.value);
   };
 
   useEffect(() => {
-    if (auth) {
+    if (accessToken) {
       navigate('/profile/user');
     }
-  }, [auth, navigate]);
+  }, [accessToken, navigate]);
 
   useEffect(() => {
     if (isHiden) {
-      if (emailValue && passwordValue) {
+      if (email && passwordValue) {
         setIsValid(false);
       } else {
         setIsValid(true);
       }
-    } else if (confirmPassword === passwordValue && passwordValue && emailValue) {
+    } else if (confirmPassword === passwordValue && passwordValue && email) {
       setIsValid(false);
     } else {
       setIsValid(true);
     }
-  }, [confirmPassword, emailValue, isHiden, passwordValue]);
+  }, [confirmPassword, email, isHiden, passwordValue]);
 
   const registration = () => {
     const regisrationData = {
-      email: emailValue,
+      email,
       password: passwordValue,
       userAccounts: [{ name, platform, id: name + platform, checked: true }],
     };
@@ -63,7 +59,7 @@ export const SignIn = () => {
   };
   const login = () => {
     const data = {
-      email: emailValue,
+      email,
       password: passwordValue,
     };
     sendLoginRequest(data);
@@ -78,7 +74,7 @@ export const SignIn = () => {
           onChangeFunc={(event) => {
             handleChangeEmail(event);
           }}
-          value={emailValue}
+          value={email}
         />
         <Input
           data={loginInputConfig.passwordInput}
@@ -87,13 +83,23 @@ export const SignIn = () => {
           }}
           value={passwordValue}
         />
-        <RegistrationBlock isHiden={isHiden} />
+        <RegistrationBlock
+          isHiden={isHiden}
+          changeConfirm={setConfirmPassword}
+          confirmValue={confirmPassword}
+          changePlatform={setPlatform}
+        />
         <PropagateLoader color='white' loading={loader} />
         <div className='buttonWrapper'>
           {isHiden ? (
-            <ConfirmButton validate={isValid} isLogin requestFunc={login} />
+            <ConfirmButton validate={isValid} isLogin requestFunc={login} showForm={setIsHiden} />
           ) : (
-            <ConfirmButton validate={isValid} isLogin={false} requestFunc={registration} />
+            <ConfirmButton
+              validate={isValid}
+              isLogin={false}
+              requestFunc={registration}
+              showForm={setIsHiden}
+            />
           )}
         </div>
       </div>

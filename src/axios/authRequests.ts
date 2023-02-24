@@ -3,8 +3,16 @@ import { UserEditableData } from '../redux/initialStates/Types/initialStateType'
 import { addTokens, changeEmail, logout, setError, setLoader } from '../redux/reducer/authSlice';
 import { addPlayerData, cleareState, selectUser } from '../redux/reducer/userSlice';
 import { store } from '../redux/store';
-import { requests } from './requests';
-import { RegistrationRequestProps, TokensType, UpdateDbProps } from './types';
+import { RegistrationRequestProps, requests } from './requests';
+
+export interface UpdateDbProps {
+  email: string;
+  userAccounts: UserEditableData[];
+}
+export interface TokensType {
+  refreshToken: string;
+  accessToken: string;
+}
 
 const requestsStore = requests();
 

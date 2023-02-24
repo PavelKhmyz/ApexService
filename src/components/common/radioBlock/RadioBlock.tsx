@@ -1,21 +1,14 @@
-// import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
-// import { useAppDispatch } from '../../../redux/hooks/hook';
 import { PcLogo } from '../../../svg/PcLogo';
 import { PsLogo } from '../../../svg/PsLogo';
 import { XboxLogo } from '../../../svg/XboxLogo';
 import { RadioButton } from './components/RadioButton';
-
-// ActionCreatorWithPayload<string, string> |
 
 interface RadioBlockProps {
   onChange: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const RadioBlock = ({ onChange }: RadioBlockProps) => {
-  // const dispatch = useAppDispatch();
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // dispatch(onChange(event.target.value));
     onChange(event.target.value);
   };
 

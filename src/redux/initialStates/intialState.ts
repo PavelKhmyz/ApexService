@@ -63,10 +63,6 @@ export const userData: UserDataStateType = {
 export const authData: AuthDataStateType = {
   email: '',
   name: '',
-  password: '',
-  passwordConfirm: '',
-  platform: '',
-  isHiden: true,
   loader: false,
   accessToken: null,
   refreshToken: null,
