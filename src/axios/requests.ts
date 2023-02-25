@@ -1,4 +1,4 @@
-import { apexApi, authApi, API_KEY } from './api';
+import axios from 'axios';
 import {
   GetPlayerStatsProps,
   RegistrationRequestProps,
@@ -6,38 +6,44 @@ import {
 } from './types';
 
 export const requests = () => {
-  const api = apexApi;
-  const backEnd = authApi;
+  const apexApi = axios.create({
+    baseURL: process.env.APEX_API_URL,
+  });
+  const apiKey = process.env.APEX_API_KEY
+
+  const authApi = axios.create({
+    baseURL: process.env.AUTH_API_URL,
+  });
 
   return {
-    getMapRotation: () => api.get(`/maprotation?auth=${API_KEY}`),
+    getMapRotation: () => apexApi.get(`/maprotation?auth=${apiKey}`),
 
-    getCraftRotation: () => api.get(`/crafting?auth=${API_KEY}`),
+    getCraftRotation: () => apexApi.get(`/crafting?auth=${apiKey}`),
 
-    getNews: () => api.get(`/news?auth=${API_KEY}`),
+    getNews: () => apexApi.get(`/news?auth=${apiKey}`),
 
     getPlayerStats: ({ name, platform }: GetPlayerStatsProps) =>
-      api.get(`/bridge?auth=${API_KEY}&player=${name}&platform=${platform}`),
+      apexApi.get(`/bridge?auth=${apiKey}&player=${name}&platform=${platform}`),
 
-    getPredators: () => api.get(`/predator?auth=${API_KEY}`),
+    getPredators: () => apexApi.get(`/predator?auth=${apiKey}`),
 
-    getServerStatus: () => api.get(`/servers?auth=${API_KEY}`),
+    getServerStatus: () => apexApi.get(`/servers?auth=${apiKey}`),
 
     registrationRequest: (data: RegistrationRequestProps) =>
-      backEnd.post('/registration', data),
+      authApi.post('/registration', data),
 
     loginRequest: (data: RegistrationRequestProps) =>
-      backEnd.post('/login', data),
+      authApi.post('/login', data),
 
     logoutRequest: (refToken: string) =>
-      backEnd.post('/logout', { headers: { token: refToken } }),
+      authApi.post('/logout', { headers: { token: refToken } }),
 
     refreshToken: (refToken: string) =>
-      backEnd.get('/refresh', { headers: { token: refToken } }),
+      authApi.get('/refresh', { headers: { token: refToken } }),
 
     getUsers: (header: string) =>
-      backEnd.get('/users', { headers: { Authorization: header } }),
+      authApi.get('/users', { headers: { Authorization: header } }),
 
-    sendAccounts: (data: SendAccountsProps) => backEnd.post('/account', data),
+    sendAccounts: (data: SendAccountsProps) => authApi.post('/account', data),
   };
 };

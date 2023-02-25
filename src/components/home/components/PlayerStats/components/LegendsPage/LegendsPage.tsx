@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
-import { SelectedLegend } from './components/SelectedLegend';
-import './legendsPageStyle.scss';
+import { useEffect } from "react";
+import { SelectedLegend } from "./components/SelectedLegend";
+import "./legendsPageStyle.scss";
 import {
   useAppDispatch,
   useAppSelector,
-} from '../../../../../../redux/hooks/hook';
+} from "../../../../../../redux/hooks/hook";
 import {
   changeSearchValue,
   setNewLegend,
-} from '../../../../../../redux/reducer/playerStatsSlice';
-import { SelectElement } from '../../../../../common/select/SelectElement';
-import { LegendsPageProps } from '../../../homeTypes';
+} from "../../../../../../redux/reducer/playerStatsSlice";
+import { SelectElement } from "../../../../../common/select/SelectElement";
+import { LegendsPageProps } from "../../../homeTypes";
 
 export const LegendsPage = ({ data }: LegendsPageProps) => {
   const dispatch = useAppDispatch();
@@ -26,28 +26,22 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
   const handleChangeInputValue = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    dispatch(changeSearchValue(event.target.value));
-  };
-
-  const searchLegend = () => {
-    const searchingLegend = all[searchValue];
-    dispatch(setNewLegend(searchingLegend));
+    const legendName = event.target.value;
+    const legendData = all[legendName]
+    dispatch(setNewLegend(legendData));
   };
 
   return (
-    <div className='legendWrapper'>
-      <div className='legendsSearch'>
+    <div className="legendWrapper">
+      <div className="legendsSearch">
         <SelectElement
-          title={'Legend Name:'}
+          title={"Legend Name:"}
           value={searchValue}
           optionsArray={selectKeys}
           handleChange={handleChangeInputValue}
         />
-        <button className='searchButton' type='button' onClick={searchLegend}>
-          Show
-        </button>
       </div>
-      <div className='legendContentWrapper'>
+      <div className="legendContentWrapper">
         {!newLegend ? (
           <SelectedLegend data={data.selected} />
         ) : (

@@ -1,0 +1,102 @@
+.signInWrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  .inputForm {
+    width: 30%;
+    height: auto;
+    background-color: rgb(218, 41, 42);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    gap: 20px;
+
+    .signInlogo {
+      fill: white;
+      width: 50%;
+    }
+    .inputLabel {
+      width: 100%;
+      height: 30px;
+      font-size: 30px;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      justify-content: space-between;
+      color: white;
+      & input {
+        width: 60%;
+        background-color: inherit;
+        border-bottom: 2px solid white;
+        font-size: 25px;
+        color: white;
+        &::placeholder {
+          color: white;
+        }
+      }
+    }
+    .registrationForm {
+      width: 100%;
+      overflow-y: hidden;
+      transition: height 0.5s;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .radioWrapper {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        .radioButton {
+          width: 30%;
+          &:hover label {
+            fill: white;
+          }
+          &:active label {
+            fill: rgb(168, 168, 168);
+          }
+          .radioButtonInput {
+            display: none;
+            &:checked + .radioButtonLabel {
+              fill: white;
+              transition: fill 0.2s;
+            }
+          }
+        }
+      }
+    }
+    .buttonWrapper {
+      width: 100%;
+      text-align: center;
+      .haveAnAccount {
+        color: white;
+        font-size: 20px;
+        margin-top: 20px;
+        & button {
+          background-color: inherit;
+          font-size: 20px;
+          &:hover {
+            color: blue;
+          }
+        }
+      }
+      .signInButton {
+        width: 100%;
+        height: 50px;
+        font-size: 30px;
+      }
+    }
+  }
+  .errorMessage {
+    padding: 20px;
+    font-family: "Duke";
+    font-size: 30px;
+    color: white;
+    background-color: var(--firstColor);
+  }
+}
