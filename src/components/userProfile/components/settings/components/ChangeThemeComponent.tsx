@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../../../redux/hooks/hook';
 import { changeTheme } from '../../../../../redux/reducer/userSlice';
-import { SelectElement } from '../../../../common/select/SelectElement';
+import { SelectElement } from '../../../../common/Select/SelectElement';
 import { theme } from './theme';
 
 export const ChangeThemeComponent = () => {

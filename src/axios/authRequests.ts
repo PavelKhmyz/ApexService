@@ -9,10 +9,6 @@ export interface UpdateDbProps {
   email: string;
   userAccounts: UserEditableData[];
 }
-export interface TokensType {
-  refreshToken: string;
-  accessToken: string;
-}
 
 const requestsStore = requests();
 
@@ -59,7 +55,7 @@ export const sendLoginRequest = async (data: RegistrationRequestProps) => {
       const [isChecked] = response.data.user.userAccounts.filter(
         (el: UserEditableData) => el.checked === true
       );
-      const tokens: TokensType = {
+      const tokens = {
         accessToken: response.data.accessToken,
         refreshToken: response.data.refreshToken,
       };

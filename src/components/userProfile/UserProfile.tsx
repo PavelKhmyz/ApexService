@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { logoutRequest, updateDb } from '../../axios/authRequests';
 import { useAppSelector } from '../../redux/hooks/hook';
-import { LinkElement } from '../header/components/LinkElement';
+import { LinkElement } from '../Header/components/LinkElement';
 import './userProfileStyle.scss';
 
 export const UserProfile = () => {

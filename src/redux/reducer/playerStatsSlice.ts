@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { requests } from '../../axios/requests';
-import { GetPlayerStatsProps } from '../../axios/types';
+import { GetPlayerStatsProps, requests } from '../../axios/requests';
 import { playerStatsState } from '../initialStates/intialState';
 import { ErrorType } from '../initialStates/Types/errorType';
 import { PlayerStatsResponseType } from '../initialStates/Types/playerStatsStateType';

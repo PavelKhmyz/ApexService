@@ -1,8 +1,7 @@
 import { useAppSelector, useAppDispatch } from '../../../redux/hooks/hook';
 import { changeName } from '../../../redux/reducer/authSlice';
 import { Input } from '../../common/Input';
-import { RadioBlock } from '../../common/radioBlock/RadioBlock';
-import { registrationInputConfig } from './componentsConfig';
+import { RadioBlock } from '../../common/RadioBlock/RadioBlock';
 
 export interface RegistrationBlockProps {
   isHiden: boolean;
@@ -17,8 +16,7 @@ export const RegistrationBlock = ({
   changeConfirm,
   changePlatform,
 }: RegistrationBlockProps) => {
-  const name = useAppSelector((state) => state.auth.name);
-
+  const { name } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const handleChangeConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,14 +29,24 @@ export const RegistrationBlock = ({
   return (
     <div className='registrationForm' style={isHiden ? { height: '0px' } : { height: '240px' }}>
       <Input
-        data={registrationInputConfig.passwordInput}
+        data={{
+          id: 'signInInput3',
+          text: 'Confirm:',
+          type: 'password',
+          placeholder: 'Enter Password again',
+        }}
         onChangeFunc={(event) => {
           handleChangeConfirm(event);
         }}
         value={confirmValue}
       />
       <Input
-        data={registrationInputConfig.nameInput}
+        data={{
+          id: 'signInInput4',
+          text: 'Player Name:',
+          type: 'text',
+          placeholder: 'Name',
+        }}
         onChangeFunc={(event) => {
           handleChangeName(event);
         }}

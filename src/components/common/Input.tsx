@@ -3,9 +3,16 @@ interface InputProps {
   onChangeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   disabled?: boolean;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({ data, onChangeFunc, value, disabled = false }: InputProps) => {
+export const Input = ({
+  data,
+  onChangeFunc,
+  onBlur = () => {},
+  value,
+  disabled = false,
+}: InputProps) => {
   const { text, type, placeholder, id } = data;
 
   return (
@@ -21,6 +28,7 @@ export const Input = ({ data, onChangeFunc, value, disabled = false }: InputProp
         onChange={onChangeFunc}
         value={value}
         disabled={disabled}
+        onBlur={onBlur}
       />
     </div>
   );

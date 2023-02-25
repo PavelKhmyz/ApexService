@@ -49,6 +49,7 @@
               "unnamedComponents": "arrow-function"
             }
           ],
-          "no-param-reassign": 0
+          "no-param-reassign": 0,
+          "react/jsx-props-no-spreading": 0
     }
 }

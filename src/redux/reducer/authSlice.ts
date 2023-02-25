@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TokensType } from '../../axios/types';
 import { authData } from '../initialStates/intialState';
+
+export interface TokensType {
+  refreshToken: string;
+  accessToken: string;
+}
 
 const authSlice = createSlice({
   name: 'auth',

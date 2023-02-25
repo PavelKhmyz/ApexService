@@ -1,7 +1,7 @@
 import { updateDb } from '../../../../axios/authRequests';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks/hook';
 import { filterArray, selectUser, setPlayerData } from '../../../../redux/reducer/userSlice';
-import { RadioButton } from '../../../common/radioBlock/components/RadioButton';
+import { RadioButton } from '../../../common/RadioBlock/components/RadioButton';
 import { AccountForm } from './components/AccountForm';
 import { ChangeThemeComponent } from './components/ChangeThemeComponent';
 import './settingsElementStyle.scss';

@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../../../../redux/hooks/hook';
 import { filterArray, setPlayerData } from '../../../../../redux/reducer/userSlice';
 import { CloseIcon } from '../../../../../svg/CloseIcon';
 import { Input } from '../../../../common/Input';
-import { SelectElement } from '../../../../common/select/SelectElement';
+import { SelectElement } from '../../../../common/Select/SelectElement';
 import { accountFormInputConfig, optionConfig } from './componentsConfig';
 import { AccountFormProps } from './settingsTypes';
 
