@@ -1,6 +1,6 @@
 import { CraftResponseType } from '../../../../redux/initialStates/Types/craftInitialStateTypes';
 import { CraftElement } from './components/CraftElement';
-import { parseProps } from './utils/parseProps';
+import { parseProps } from './CraftComponents.utils';
 
 interface CraftComponentPropsType {
   data: [CraftResponseType];

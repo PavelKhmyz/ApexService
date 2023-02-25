@@ -1,5 +1,5 @@
 import { Current, Next } from '../../../redux/initialStates/Types/mapStateType';
-import { parsingDate } from '../utils/parsingDate';
+import { parsingDate } from './MapComponent.utils';
 
 interface MapComponentPropsType {
   data: Current | Next;

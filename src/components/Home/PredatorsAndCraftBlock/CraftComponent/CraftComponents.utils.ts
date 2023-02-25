@@ -1,4 +1,4 @@
-import { CraftResponseType } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
+import { CraftResponseType } from '../../../../redux/initialStates/Types/craftInitialStateTypes';
 
 export const parseProps = (data: [CraftResponseType]) => {
   const filteredData = data.filter(

@@ -1,6 +1,6 @@
 import { useEffect, useCallback } from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-import { MapComponent } from './components/MapComponent';
+import { MapComponent } from './MapComponent/MapComponent';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
 import { changeTime, clearTime, getRotation } from '../../redux/reducer/mapSlice';
 import './MapRotation.style.scss';

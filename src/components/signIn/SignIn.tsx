@@ -21,15 +21,15 @@ export const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { accessToken, email, name, error, loader } = useAppSelector((state) => state.auth);
+  const [platform, setPlatform] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isHiden, setIsHiden] = useState(true);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({
     email: '',
     password: '',
     confirmPassword: '',
   });
-  const [platform, setPlatform] = useState('');
-  const [passwordValue, setPasswordValue] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isHiden, setIsHiden] = useState(true);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(changeEmail(event.target.value));
@@ -60,7 +60,6 @@ export const SignIn = () => {
       password: validatePassword(passwordValue),
       confirmPassword: '',
     };
-
     if (isHiden) {
       validationErrorsOnSubmit.confirmPassword = validateConfirmPassword(
         passwordValue,
@@ -70,17 +69,6 @@ export const SignIn = () => {
 
     setValidationErrors(validationErrorsOnSubmit);
 
-    // это ошибка - стейт ассайнится не мгновенно
-    // следовательно функция будет возращать true с ошибками
-    // if (
-    //   validationErrors.email ||
-    //   validationErrors.password ||
-    //   validationErrors.confirmPassword
-    // ) {
-    //   return false;
-    // }
-
-    // поэтому надо проверять из значение константы которую мы как раз добавили в стейт
     if (
       validationErrorsOnSubmit.email ||
       validationErrorsOnSubmit.password ||
@@ -102,11 +90,11 @@ export const SignIn = () => {
       return;
     }
     if (isHiden) {
-      const data = {
+      const loginData = {
         email,
         password: passwordValue,
       };
-      sendLoginRequest(data);
+      sendLoginRequest(loginData);
     } else {
       const regisrationData = {
         email,
