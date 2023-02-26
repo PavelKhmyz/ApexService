@@ -1,26 +1,27 @@
 import { AxiosError } from 'axios';
-import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
 import {
   addTokens,
   changeEmail,
   logout,
   setError,
   setLoader,
-} from '../redux/reducer/authSlice';
+} from '../components/SignIn/SignIn.slice';
 import {
   addPlayerData,
   cleareState,
-  setUser,
-} from '../redux/reducer/userSlice';
+  selectUser,
+} from '../components/UserProfile/UserProfile.slice';
 import { store } from '../redux/store';
-import { requests } from './requests';
-import { RegistrationRequestProps, TokensType, UpdateDbProps } from './types';
+import { RegistrationRequestProps, requests, UserEditableData } from './requests';
+
+export interface UpdateDbProps {
+  email: string;
+  userAccounts: UserEditableData[];
+}
 
 const requestsStore = requests();
 
-export const sendRegistrationRequest = async (
-  data: RegistrationRequestProps
-) => {
+export const sendRegistrationRequest = async (data: RegistrationRequestProps) => {
   try {
     store.dispatch(setLoader());
     const response = await requestsStore.registrationRequest(data);
@@ -36,7 +37,7 @@ export const sendRegistrationRequest = async (
       );
 
       window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
-      store.dispatch(setUser(isChecked.id));
+      store.dispatch(selectUser(isChecked.id));
       store.dispatch(addPlayerData(response.data.user.userAccounts));
       store.dispatch(addTokens(tokens));
       store.dispatch(setError(undefined));
@@ -63,7 +64,7 @@ export const sendLoginRequest = async (data: RegistrationRequestProps) => {
       const [isChecked] = response.data.user.userAccounts.filter(
         (el: UserEditableData) => el.checked === true
       );
-      const tokens: TokensType = {
+      const tokens = {
         accessToken: response.data.accessToken,
         refreshToken: response.data.refreshToken,
       };
@@ -71,7 +72,7 @@ export const sendLoginRequest = async (data: RegistrationRequestProps) => {
       window.sessionStorage.setItem('refreshToken', response.data.refreshToken);
       store.dispatch(addTokens(tokens));
       store.dispatch(addPlayerData(response.data.user.userAccounts));
-      store.dispatch(setUser(isChecked.id));
+      store.dispatch(selectUser(isChecked.id));
       store.dispatch(setError(undefined));
       store.dispatch(setLoader());
     }

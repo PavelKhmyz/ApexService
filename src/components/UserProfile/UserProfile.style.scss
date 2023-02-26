@@ -1,0 +1,62 @@
+.userProfileWrapper{
+    width: 100%;
+    min-height: calc(100vh - 150px);
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    @media(max-width: 650px){
+        flex-direction: column;
+    }
+    
+    .navBar{
+        width: 15%;
+        min-height: 100%;
+        background-color: var(--fontColor);
+        font-size: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 40px;
+        @media(max-width: 1140px){
+            min-width: 180px;
+        }
+        @media(max-width: 650px){
+            flex-direction: row;
+            width: 100%;
+            padding: 10px;
+            height: auto;
+        }
+        @media(max-width: 600px){
+            font-size: 30px;
+        }
+        .navigationLink{
+            color: var(--secondColor);
+            &:hover{
+                color: var(--firstColor)
+            }   
+        }
+        .logoutButton{
+            font-size: 40px;
+            background-color: inherit;
+            color: var(--firstColor);
+            &:hover{
+                color: var(--firstColor)
+            }
+            @media(max-width: 600px){
+                font-size: 30px;
+            }
+        }
+    }
+    .profileContentWrapper{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 85%;
+        height: 100%;
+        color: var(--fontColor);
+        @media(max-width: 650px){
+            width: 100%;
+        }
+    }
+}

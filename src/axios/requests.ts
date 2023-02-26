@@ -1,43 +1,62 @@
-import { apexApi, authApi, API_KEY } from './api';
-import {
-  GetPlayerStatsProps,
-  RegistrationRequestProps,
-  SendAccountsProps,
-} from './types';
+import axios from 'axios';
+
+export interface UserEditableData {
+  name: string;
+  platform: string;
+  id: string;
+  checked: boolean;
+}
+
+export interface GetPlayerStatsProps {
+  name: string;
+  platform: string;
+}
+export interface RegistrationRequestProps {
+  email: string;
+  password: string;
+  userAccounts?: UserEditableData[];
+}
+export interface SendAccountsProps {
+  email: string;
+  userAccounts: UserEditableData[];
+}
 
 export const requests = () => {
-  const api = apexApi;
-  const backEnd = authApi;
+  const apexApi = axios.create({
+    baseURL: process.env.REACT_APP_APEX_API_URL,
+  });
+  const backendApi = axios.create({
+    baseURL: process.env.REACT_APP_BACKEND_URL,
+  });
 
   return {
-    getMapRotation: () => api.get(`/maprotation?auth=${API_KEY}`),
+    getMapRotation: () => apexApi.get(`/maprotation?auth=${process.env.REACT_APP_API_KEY}`),
 
-    getCraftRotation: () => api.get(`/crafting?auth=${API_KEY}`),
+    getCraftRotation: () => apexApi.get(`/crafting?auth=${process.env.REACT_APP_API_KEY}`),
 
-    getNews: () => api.get(`/news?auth=${API_KEY}`),
+    getNews: () => apexApi.get(`/news?auth=${process.env.REACT_APP_API_KEY}`),
 
     getPlayerStats: ({ name, platform }: GetPlayerStatsProps) =>
-      api.get(`/bridge?auth=${API_KEY}&player=${name}&platform=${platform}`),
+      apexApi.get(
+        `/bridge?auth=${process.env.REACT_APP_API_KEY}&player=${name}&platform=${platform}`
+      ),
 
-    getPredators: () => api.get(`/predator?auth=${API_KEY}`),
+    getPredators: () => apexApi.get(`/predator?auth=${process.env.REACT_APP_API_KEY}`),
 
-    getServerStatus: () => api.get(`/servers?auth=${API_KEY}`),
+    getServerStatus: () => apexApi.get(`/servers?auth=${process.env.REACT_APP_API_KEY}`),
 
-    registrationRequest: (data: RegistrationRequestProps) =>
-      backEnd.post('/registration', data),
+    registrationRequest: (data: RegistrationRequestProps) => backendApi.post('/registration', data),
 
-    loginRequest: (data: RegistrationRequestProps) =>
-      backEnd.post('/login', data),
+    loginRequest: (data: RegistrationRequestProps) => backendApi.post('/login', data),
 
     logoutRequest: (refToken: string) =>
-      backEnd.post('/logout', { headers: { token: refToken } }),
+      backendApi.post('/logout', { headers: { token: refToken } }),
 
     refreshToken: (refToken: string) =>
-      backEnd.get('/refresh', { headers: { token: refToken } }),
+      backendApi.get('/refresh', { headers: { token: refToken } }),
 
-    getUsers: (header: string) =>
-      backEnd.get('/users', { headers: { Authorization: header } }),
+    getUsers: (header: string) => backendApi.get('/users', { headers: { Authorization: header } }),
 
-    sendAccounts: (data: SendAccountsProps) => backEnd.post('/account', data),
+    sendAccounts: (data: SendAccountsProps) => backendApi.post('/account', data),
   };
 };

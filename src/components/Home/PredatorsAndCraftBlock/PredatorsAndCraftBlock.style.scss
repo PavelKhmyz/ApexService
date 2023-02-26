@@ -1,0 +1,66 @@
+.predatorsBR{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    user-select: none;
+    @media(max-width: 930px){
+        width: 50%;
+    }
+    .predatorsTitle{
+        font-size: 25px;
+        color: rgb(218, 41, 42);
+        @media(max-width: 930px){
+            text-align: center;
+        }
+    }
+    .predatorsInnerTitle{
+        font-size: 20px;
+        text-decoration: underline;
+        @media(max-width: 930px){
+            text-align: center;
+        }
+    }
+    .predatorsInnerContent{
+        font-size: 25px;
+        margin: 20px 0;
+        @media(max-width: 930px){
+            text-align: center;
+        }
+    }
+}
+.craftWrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    @media(max-width: 900px){
+        width: 45%;
+    }
+    @media(max-width: 580px){
+        width: 100%;
+    }
+    .craftTitle{
+        font-size: 25px;
+        color: rgb(218, 41, 42);
+        margin-bottom: 20px;
+    }
+    .craftElement{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        .craftElementInner{
+            font-size: 30px;
+        }
+        .cardsWrapper{
+            display: flex;
+            gap: 5px;
+            .itemCardImg{
+                width: 70px;
+                height: auto;
+            }
+        }
+    }
+}
