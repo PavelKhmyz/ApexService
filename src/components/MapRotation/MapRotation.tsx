@@ -2,7 +2,7 @@ import { useEffect, useCallback } from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { MapComponent } from './MapComponent/MapComponent';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { changeTime, clearTime, getRotation } from '../../redux/reducer/mapSlice';
+import { changeTime, clearTime, getRotation } from './MapRotation.slice';
 import './MapRotation.style.scss';
 import { ErrorComponent } from '../common/ErrorComponent';
 

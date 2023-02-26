@@ -1,4 +1,4 @@
-import { Rank } from '../../../../../redux/initialStates/Types/playerStatsStateType';
+import { Rank } from '../../PlayerStats.type';
 
 export interface RankComponentProps {
   name: string;

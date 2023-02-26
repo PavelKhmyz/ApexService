@@ -1,7 +1,4 @@
-import {
-  ServerProps,
-  ServerResponseStateType,
-} from '../../../redux/initialStates/Types/serverInitialStateType';
+import { ServerProps, ServerResponseStateType } from '../ServerStatus.type';
 import { ServerElement } from './ServerElement';
 
 export interface ServerComponentProps {

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hook';
-import { ServerResponseStateType } from '../../redux/initialStates/Types/serverInitialStateType';
-import { fetchServerStatus } from '../../redux/reducer/serverSlice';
+import { ServerResponseStateType } from './ServerStatus.type';
+import { fetchServerStatus } from './ServerStatus.slice';
 import { ServerComponent } from './components/ServerComponent';
 import './ServerStatus.style.scss';
 

@@ -1,4 +1,4 @@
-import { Datum } from '../../../../redux/initialStates/Types/playerStatsStateType';
+import { Datum } from '../PlayerStats.type';
 
 export interface StatsValueProps {
   statsData: Datum;

@@ -4,8 +4,8 @@ import { CraftComponent } from './CraftComponent/CraftComponent';
 import { PredatorsComponent } from './PredatorsComponent/PredatorsComponent';
 import './PredatorsAndCraftBlock.style.scss';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks/hook';
-import { getCraftItems } from '../../../redux/reducer/craftSlice';
-import { getPredators } from '../../../redux/reducer/predatorsSlice';
+import { getCraftItems } from './CraftComponent/CraftComponent.slice';
+import { getPredators } from './PredatorsComponent/PredatorsComponent.slice';
 
 export const PredatorsAndCraftBlock = () => {
   const dispatch = useAppDispatch();

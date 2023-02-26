@@ -1,4 +1,4 @@
-import { CraftResponseType } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
+import { CraftResponseType } from '../CraftComponent.type';
 import { ItemCard } from './ItemCard';
 
 interface CraftElementProps {

@@ -1,4 +1,4 @@
-import { NewsResponseType } from '../../redux/initialStates/Types/newsInitialStateType';
+import { NewsResponseType } from '../NewsPage/NewsPage.type';
 
 interface NewsBlockProps {
   newsEl: NewsResponseType;

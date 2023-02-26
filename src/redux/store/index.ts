@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from '../reducer/authSlice';
-import { craftItemsReducer } from '../reducer/craftSlice';
-import { mapReducer } from '../reducer/mapSlice';
-import { newsReducer } from '../reducer/newsSlice';
-import { playerStatsReducer } from '../reducer/playerStatsSlice';
-import { predatorReducer } from '../reducer/predatorsSlice';
-import { serverReducer } from '../reducer/serverSlice';
-import { userReducer } from '../reducer/userSlice';
+import { authReducer } from '../../components/SignIn/SignIn.slice';
+import { craftItemsReducer } from '../../components/Home/PredatorsAndCraftBlock/CraftComponent/CraftComponent.slice';
+import { mapReducer } from '../../components/MapRotation/MapRotation.slice';
+import { newsReducer } from '../../components/NewsPage/NewsPage.slice';
+import { playerStatsReducer } from '../../components/common/PlayerStats/PlayerStats.slice';
+import { predatorReducer } from '../../components/Home/PredatorsAndCraftBlock/PredatorsComponent/PredatorsComponent.slice';
+import { serverReducer } from '../../components/ServerStatus/ServerStatus.slice';
+import { userReducer } from '../../components/UserProfile/UserProfile.slice';
 
 export const store = configureStore({
   reducer: {

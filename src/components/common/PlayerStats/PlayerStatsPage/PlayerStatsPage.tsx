@@ -1,10 +1,7 @@
 import { RankComponent } from './components/RankComponent';
 import { StatsValue } from '../common/StatsValue';
 import './PlayerStatsPage.style.scss';
-import {
-  PlayerStatsResponseType,
-  Datum,
-} from '../../../../redux/initialStates/Types/playerStatsStateType';
+import { PlayerStatsResponseType, Datum } from '../PlayerStats.type';
 import { PcLogo } from '../../../../svg/PcLogo';
 import { PsLogo } from '../../../../svg/PsLogo';
 import { XboxLogo } from '../../../../svg/XboxLogo';

@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../../redux/hooks/hook';
-import { ServerProps } from '../../../redux/initialStates/Types/serverInitialStateType';
+import { ServerProps } from '../ServerStatus.type';
 
 interface ServerElementProps {
   data: ServerProps;

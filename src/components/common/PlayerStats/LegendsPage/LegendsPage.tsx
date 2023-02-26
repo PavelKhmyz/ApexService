@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../../redux/hooks/hook';
-import { Legends, Legend } from '../../../../redux/initialStates/Types/playerStatsStateType';
+import { Legends, Legend } from '../PlayerStats.type';
 import { SelectElement } from '../../Select/SelectElement';
 import { SelectedLegend } from './components/SelectedLegend';
 import './LegendsPage.style.scss';
@@ -13,16 +13,16 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
   const dispatch = useAppDispatch();
   const [newLegend, setNewLegend] = useState<null | Legend>(null);
   const [searchValue, setSearchValue] = useState(data.selected.LegendName);
-  const { all } = data;
-  const selectKeys = Object.keys(all);
+  const { all: allLegends } = data;
+  const selectKeys = Object.keys(allLegends);
 
   const handleChangeInputValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchValue(event.target.value);
   };
 
   useEffect(() => {
-    setNewLegend(all[searchValue]);
-  }, [all, dispatch, searchValue]);
+    setNewLegend(allLegends[searchValue]);
+  }, [allLegends, dispatch, searchValue]);
 
   return (
     <div className='legendWrapper'>
@@ -31,7 +31,7 @@ export const LegendsPage = ({ data }: LegendsPageProps) => {
           title={'Legend Name:'}
           value={searchValue}
           optionsArray={selectKeys}
-          handleChange={handleChangeInputValue}
+          onChange={handleChangeInputValue}
         />
       </div>
       <div className='legendContentWrapper'>

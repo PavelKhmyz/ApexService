@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
+
+export interface UserEditableData {
+  name: string;
+  platform: string;
+  id: string;
+  checked: boolean;
+}
 
 export interface GetPlayerStatsProps {
   name: string;

@@ -1,19 +1,19 @@
 import './App.scss';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Footer } from './components/Footer/Fotter';
-import { Header } from './components/Header/Header';
+import { Footer } from './components/common/Footer/Fotter';
 import { Home } from './components/Home/Home';
 import { MapRotation } from './components/MapRotation/MapRotation';
 import { ServerStatus } from './components/ServerStatus/ServerStatus';
-import { SignIn } from './components/signIn/SignIn';
-import { NewsPage } from './components/News/NewsPage';
-import { UserProfile } from './components/userProfile/UserProfile';
-import { ContentElement } from './components/userProfile/components/content/ContentElement';
+import { SignIn } from './components/SignIn/SignIn';
+import { NewsPage } from './components/NewsPage/NewsPage';
+import { UserProfile } from './components/UserProfile/UserProfile';
+import { ContentElement } from './components/UserProfile/ContentElement/ContentElement';
 import { useAppSelector } from './redux/hooks/hook';
 import { RequireAuth } from './private/RequerAuth';
-import { SettingsElement } from './components/userProfile/components/settings/SettingsElement';
 import { refreshRequest } from './axios/authRequests';
+import { SettingsElement } from './components/UserProfile/SettingsElement/SettingsElement';
+import { Header } from './components/common/Header/Header';
 
 function App() {
   const themeValue = useAppSelector((state) => state.user.theme);

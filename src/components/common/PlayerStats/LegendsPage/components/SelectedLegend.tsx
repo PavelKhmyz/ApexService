@@ -1,8 +1,4 @@
-import {
-  Legend,
-  Selected,
-  Datum,
-} from '../../../../../redux/initialStates/Types/playerStatsStateType';
+import { Legend, Selected, Datum } from '../../PlayerStats.type';
 import { StatsValue } from '../../common/StatsValue';
 
 export interface SelectedLegendProps {

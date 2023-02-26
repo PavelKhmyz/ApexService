@@ -1,9 +1,18 @@
 import { AxiosError } from 'axios';
-import { UserEditableData } from '../redux/initialStates/Types/initialStateType';
-import { addTokens, changeEmail, logout, setError, setLoader } from '../redux/reducer/authSlice';
-import { addPlayerData, cleareState, selectUser } from '../redux/reducer/userSlice';
+import {
+  addTokens,
+  changeEmail,
+  logout,
+  setError,
+  setLoader,
+} from '../components/SignIn/SignIn.slice';
+import {
+  addPlayerData,
+  cleareState,
+  selectUser,
+} from '../components/UserProfile/UserProfile.slice';
 import { store } from '../redux/store';
-import { RegistrationRequestProps, requests } from './requests';
+import { RegistrationRequestProps, requests, UserEditableData } from './requests';
 
 export interface UpdateDbProps {
   email: string;

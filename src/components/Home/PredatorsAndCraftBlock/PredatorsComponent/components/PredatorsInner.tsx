@@ -1,4 +1,4 @@
-import { PlatformData } from '../../../../../redux/initialStates/Types/predatorsInitialStateType';
+import { PlatformData } from '../PredatorsComponent.type';
 
 export interface PredatorInnerProps {
   data: PlatformData;

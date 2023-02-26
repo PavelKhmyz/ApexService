@@ -19,7 +19,7 @@ export const RadioBlock = ({ onChange }: RadioBlockProps) => {
         data={{
           id: 'input1',
           value: 'X1',
-          changeFunc: handleChange,
+          onChange: handleChange,
         }}
       />
       <RadioButton
@@ -27,7 +27,7 @@ export const RadioBlock = ({ onChange }: RadioBlockProps) => {
         data={{
           id: 'input2',
           value: 'PS4',
-          changeFunc: handleChange,
+          onChange: handleChange,
         }}
       />
       <RadioButton
@@ -35,7 +35,7 @@ export const RadioBlock = ({ onChange }: RadioBlockProps) => {
         data={{
           id: 'input3',
           value: 'PC',
-          changeFunc: handleChange,
+          onChange: handleChange,
         }}
       />
     </div>

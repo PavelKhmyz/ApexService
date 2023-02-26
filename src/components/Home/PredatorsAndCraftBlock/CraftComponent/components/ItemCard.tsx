@@ -1,4 +1,4 @@
-import { BundleContent } from '../../../../../redux/initialStates/Types/craftInitialStateTypes';
+import { BundleContent } from '../CraftComponent.type';
 
 export interface ItemCardProps {
   card: BundleContent;

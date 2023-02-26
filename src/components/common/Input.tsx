@@ -1,22 +1,33 @@
 interface InputProps {
   data: { text: string; type: string; placeholder: string; id: string };
-  onChangeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
   disabled?: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  showValue?: () => void;
 }
 
 export const Input = ({
   data,
-  onChangeFunc,
-  onBlur = () => {},
   value,
   disabled = false,
+  onChange,
+  onBlur = () => {},
+  showValue = undefined,
 }: InputProps) => {
   const { text, type, placeholder, id } = data;
 
   return (
-    <div className='inputLabel'>
+    <div style={{ position: 'relative', top: 0, left: 0 }} className='inputLabel'>
+      {showValue && (
+        <button
+          style={{ position: 'absolute', right: 0, top: 0, height: '100%' }}
+          type='button'
+          onClick={showValue}
+        >
+          show
+        </button>
+      )}
       <label htmlFor={id}>
         <span>{text}</span>
       </label>
@@ -25,7 +36,7 @@ export const Input = ({
         className='inputElement'
         type={type}
         placeholder={placeholder}
-        onChange={onChangeFunc}
+        onChange={onChange}
         value={value}
         disabled={disabled}
         onBlur={onBlur}

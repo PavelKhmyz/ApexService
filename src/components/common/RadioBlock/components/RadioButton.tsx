@@ -1,7 +1,7 @@
 interface RadioInputProps {
   id: string;
   value: string;
-  changeFunc: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface RadioButtonProps {
@@ -10,7 +10,7 @@ interface RadioButtonProps {
 }
 
 export const RadioButton = ({ data, child }: RadioButtonProps) => {
-  const { id, value, changeFunc } = data;
+  const { id, value, onChange } = data;
   return (
     <div className='radioButton'>
       <input
@@ -20,7 +20,7 @@ export const RadioButton = ({ data, child }: RadioButtonProps) => {
         id={id}
         value={value}
         onChange={(event) => {
-          changeFunc(event);
+          onChange(event);
         }}
       />
       <label className='radioButtonLabel' htmlFor={id}>

@@ -1,4 +1,4 @@
-import { Current, Next } from '../../../redux/initialStates/Types/mapStateType';
+import { Current, Next } from '../MapRotation.type';
 import { parsingDate } from './MapComponent.utils';
 
 interface MapComponentPropsType {
