@@ -21,7 +21,13 @@ export const Input = ({
     <div style={{ position: 'relative', top: 0, left: 0 }} className='inputLabel'>
       {showValue && (
         <button
-          style={{ position: 'absolute', right: 0, top: 0, height: '100%' }}
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            height: '100%',
+            backgroundColor: 'inherit',
+          }}
           type='button'
           onClick={showValue}
         >

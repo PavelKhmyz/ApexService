@@ -33,6 +33,13 @@
             gap: 20px;
             justify-content: space-between;
             color: white;
+            & button{
+                color: white;
+                font-size: 20px;
+                &:hover{
+                    color: black;
+                }
+            }
             & input{
                 width: 60%;
                 background-color: inherit;
